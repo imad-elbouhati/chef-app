@@ -13,11 +13,12 @@
         android:layout_height="37dp"
         android:layout_marginStart="294dp"
         android:layout_marginLeft="294dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="29dp"
         android:layout_marginRight="29dp"
         android:background="@drawable/rounded_button"
         android:text="@string/ignore"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,40 +31,39 @@
         app:layout_constraintEnd_toEndOf="@+id/btnIgnore"
         app:layout_constraintHorizontal_bias="0.649"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="-102dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIgnore" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextPhoneNumber"
         android:layout_width="341dp"
         android:layout_height="53dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_edittext"
         android:hint="@string/numero_de_telephone"
-        android:paddingStart="20dp"
         android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButton2"
         android:layout_width="341dp"
         android:layout_height="53dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/black_rounded_edittext"
         android:text="@string/suivant"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/editTextPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNumber" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="@+id/appCompatButton2"
         app:layout_constraintStart_toStartOf="@+id/appCompatButton2"
@@ -82,9 +82,44 @@
             android:text="@string/ou"
             android:textColor="@color/white"
             android:textSize="16sp" />
+
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
             android:background="@color/white" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="341dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:drawableStart="@drawable/mail_ic"
+        android:drawableLeft="@drawable/mail_ic"
+        android:drawablePadding="11dp"
+        android:hint="@string/continuer_avec_email"
+        android:paddingLeft="19dp"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/socialLinearLayout"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_sign_in_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,16 @@
 <resources>
-    <string name="app_name">ChefMajjane</string>
+    <string name="app_name">Chef</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="facebook_app_id">630907857886564</string>
+    <string name="fb_login_protocol_scheme">fb630907857886564</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ignore">Ignore</string>
     <string name="numero_de_telephone">Numero de telephone</string>
     <string name="suivant">Suivant</string>
     <string name="ou">OU</string>
+    <string name="continuer_avec_email">Continuer avec Email</string>
+    <string name="en_continuant_vous_acceptez_nos">En continuant, vous acceptez nos </string>
+    <string name="conditions_d_utilisation">Conditions d’utilisation </string>
+    <string name="et_notre">et notre</string>
 </resources>
