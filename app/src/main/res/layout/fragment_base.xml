@@ -5,10 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".views.base.BaseFragment">
 
-    <View
-        android:id="@+id/bottom_curve_view"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:background="@drawable/rounded_custom_view" />
+
 
 </FrameLayout>
