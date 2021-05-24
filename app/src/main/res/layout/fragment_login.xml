@@ -97,11 +97,18 @@
         android:background="@drawable/rounded_edittext"
         android:drawableStart="@drawable/mail_ic"
         android:drawableLeft="@drawable/mail_ic"
-        android:hint="@string/continuer_avec_email"
+        android:drawablePadding="20dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/continuer_avec_email"
+        android:textColor="#707070"
+        android:textAllCaps="false"
+        android:paddingStart="19dp"
         android:paddingLeft="19dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="RtlSymmetry" />
 
     <LinearLayout
         android:id="@+id/socialLinearLayout"
@@ -109,6 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:padding="3dp"
         app:layout_constraintEnd_toEndOf="@+id/btnContinueEmail"
         app:layout_constraintStart_toStartOf="@+id/btnContinueEmail"
         app:layout_constraintTop_toBottomOf="@+id/btnContinueEmail">
@@ -117,29 +125,36 @@
             android:id="@+id/facebook_sign_in_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="2.5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_button"
             android:drawableLeft="@drawable/facebook_circular_ic"
-            android:layout_marginRight="2.5dp"
+
+            android:drawablePadding="18dp"
+            android:gravity="start|center_vertical"
             android:paddingLeft="10dp"
-            android:text="Facebook"
+            android:text="@string/facebook"
             android:textAllCaps="false"
             android:textColor="#707070"
-            android:layout_marginEnd="2.5dp" />
+            android:textSize="18sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/google_sign_in_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginStart="2.5dp"
             android:layout_marginLeft="2.5dp"
+            android:layout_weight="1"
             android:background="@drawable/rounded_button"
             android:drawableLeft="@drawable/google_ic"
+            android:drawablePadding="18dp"
+            android:gravity="start|center_vertical"
             android:paddingLeft="10dp"
-            android:text="Google"
+            android:text="@string/google"
             android:textAllCaps="false"
             android:textColor="#707070"
-            android:layout_marginStart="2.5dp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

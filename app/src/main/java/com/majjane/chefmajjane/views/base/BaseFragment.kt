@@ -34,4 +34,5 @@ abstract class BaseFragment<VM : ViewModel, V : ViewBinding, R : BaseRepository>
         _binding = null
         super.onDestroy()
     }
+
 }

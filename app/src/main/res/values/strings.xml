@@ -16,4 +16,6 @@
     <string name="ressayez">Réessayez</string>
     <string name="verifier_connextion">S\'il vous plait, vérifiez votre connexion internet</string>
     <string name="email_incorrect">Vous avez entré une adresse e-mail ou un mot de passe incorrect</string>
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
 </resources>

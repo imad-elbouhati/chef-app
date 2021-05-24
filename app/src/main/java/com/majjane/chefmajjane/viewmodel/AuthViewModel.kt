@@ -9,6 +9,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -19,6 +24,7 @@ import com.majjane.chefmajjane.repository.AuthRepository
 import com.majjane.chefmajjane.utils.Resource
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.util.*
 
 class AuthViewModel(
     val repository: AuthRepository
@@ -58,6 +64,7 @@ class AuthViewModel(
             val account = completedTask.getResult(ApiException::class.java)
             account?.let {
                 _googleLoginResponse.postValue(Resource.Success(it))
+                // TODO: 5/24/2021 POST VALUES TO API IN VM INSTEAD OF FRGMT
                 Log.d(TAG, "handleSignInResult: ${it.email} ${it.id} ${it.displayName}")
             }
         } catch (e: Exception) {
@@ -69,9 +76,9 @@ class AuthViewModel(
                     Resource.Failure(true,null,null)
                 }
             }
-
             //updateUI(null)
         }
     }
+
 
 }
