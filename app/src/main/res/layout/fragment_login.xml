@@ -89,15 +89,14 @@
             android:background="@color/white" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextEmail"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnContinueEmail"
         android:layout_width="341dp"
         android:layout_height="53dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_edittext"
         android:drawableStart="@drawable/mail_ic"
         android:drawableLeft="@drawable/mail_ic"
-        android:drawablePadding="11dp"
         android:hint="@string/continuer_avec_email"
         android:paddingLeft="19dp"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -110,15 +109,38 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
-        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail">
+        app:layout_constraintEnd_toEndOf="@+id/btnContinueEmail"
+        app:layout_constraintStart_toStartOf="@+id/btnContinueEmail"
+        app:layout_constraintTop_toBottomOf="@+id/btnContinueEmail">
 
-        <com.google.android.gms.common.SignInButton
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/facebook_sign_in_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_button"
+            android:drawableLeft="@drawable/facebook_circular_ic"
+            android:layout_marginRight="2.5dp"
+            android:paddingLeft="10dp"
+            android:text="Facebook"
+            android:textAllCaps="false"
+            android:textColor="#707070"
+            android:layout_marginEnd="2.5dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/google_sign_in_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginLeft="2.5dp"
+            android:background="@drawable/rounded_button"
+            android:drawableLeft="@drawable/google_ic"
+            android:paddingLeft="10dp"
+            android:text="Google"
+            android:textAllCaps="false"
+            android:textColor="#707070"
+            android:layout_marginStart="2.5dp" />
+
     </LinearLayout>
 
 

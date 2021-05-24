@@ -1,84 +1,70 @@
 package com.majjane.chefmajjane.views
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.Fragment
+import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
+import com.majjane.chefmajjane.views.base.BaseFragment
 import com.majjane.chefmajjane.R
+import com.majjane.chefmajjane.databinding.FragmentLoginBinding
+import com.majjane.chefmajjane.network.AuthApi
+import com.majjane.chefmajjane.network.RemoteDataSource
+import com.majjane.chefmajjane.repository.AuthRepository
+import com.majjane.chefmajjane.utils.Resource
+import com.majjane.chefmajjane.utils.handleApiError
+import com.majjane.chefmajjane.utils.snackbar
+import com.majjane.chefmajjane.viewmodel.AuthViewModel
 
 
-class LoginFragment : Fragment(R.layout.fragment_login) {
+class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {
     private val TAG = "LoginFragment"
-    lateinit var mGoogleSignInClient: GoogleSignInClient
     override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(requireContext())
         Log.d(TAG, "onStart: ${account?.email} ${account?.displayName}")
-       // updateUI(account)
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestId()
-            .requestEmail()
-            .requestProfile()
-            .build()
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso);
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<SignInButton>(R.id.google_sign_in_btn).setOnClickListener {
-            signIn()
+        viewModel.setIntent {
+            getGoogleLogIn.launch(it)
         }
-    }
-
-    private fun signIn() {
-        val signInIntent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
+        binding.googleSignInBtn.setOnClickListener {
+            viewModel.signInWithGoogle(requireActivity())
         }
+        observeGoogleLogin()
     }
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            account?.let {
-                Log.d(TAG, "handleSignInResult: ${it.email} ${it.id} ${it.displayName}")
 
+    private fun observeGoogleLogin() {
+        viewModel.googleLoginResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Success -> {
+                    requireView().snackbar("Google Login Succeed ${it.data.email}")
+                    // TODO: 5/24/2021 POST values to API
+                }
+                is Resource.Failure -> {
+                    handleApiError(it)
+                }
             }
-
-            // Signed in successfully, show authenticated UI.
-            //updateUI(account)
-        } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.statusCode)
-            //updateUI(null)
-        }
-    }
-    companion object {
-        private const val  RC_SIGN_IN  = 200
+        })
     }
 
+    private val getGoogleLogIn = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            viewModel.registerForActivityResult(it)
+    }
 
+    override fun createViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentLoginBinding = FragmentLoginBinding.inflate(inflater, container, false)
+
+    override fun createViewModel(): Class<AuthViewModel> = AuthViewModel::class.java
+
+
+    override fun getFragmentRepository(): AuthRepository =
+        AuthRepository(RemoteDataSource().buildApi(AuthApi::class.java))
 }
