@@ -31,6 +31,12 @@ class OptVerificationFragment : Fragment() {
         customKeyBoardListener()
         binding.firstPinView.doOnTextChanged { text, start, before, count ->
             Log.d(TAG, "onViewCreated: $text")
+            text.let {
+               if(it.toString().length==5){
+
+               }
+            }
+
         }
     }
 

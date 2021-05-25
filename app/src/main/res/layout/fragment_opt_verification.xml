@@ -85,15 +85,18 @@
     </LinearLayout>
 
     <TableLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TableRow>
+
             <TextView
                 android:id="@+id/numOne"
                 android:layout_width="wrap_content"
@@ -154,6 +157,7 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
                 android:id="@+id/numSeven"
                 android:layout_width="wrap_content"
@@ -181,13 +185,16 @@
                 android:textColor="@color/white"
                 android:textSize="60sp" />
         </TableRow>
+
         <TableRow>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="60sp" />
+
             <TextView
                 android:id="@+id/numZero"
                 android:layout_width="wrap_content"
@@ -196,12 +203,13 @@
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="60sp" />
+
             <ImageView
                 android:id="@+id/deleteIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:src="@drawable/delete_ic"
                 android:textColor="@color/white"
                 android:textSize="60sp" />
