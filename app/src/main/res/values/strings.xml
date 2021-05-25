@@ -18,4 +18,7 @@
     <string name="email_incorrect">Vous avez entré une adresse e-mail ou un mot de passe incorrect</string>
     <string name="google">Google</string>
     <string name="facebook">Facebook</string>
+    <string name="v_rification_du_code">Vérification du code</string>
+    <string name="resend_again">\u0020Resend again</string>
+    <string name="didn_t_receive_the_verification">Didn’t receive the verification ?</string>
 </resources>

@@ -10,4 +10,5 @@
     <color name="custom_green">#CBD439</color>
     <color name="custom_black">#1C1C1C</color>
     <color name="custom_red">#FF4041</color>
+    <color name="custom_gray">#333333</color>
 </resources>

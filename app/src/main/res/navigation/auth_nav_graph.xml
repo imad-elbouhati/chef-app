@@ -3,11 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/optVerificationFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.majjane.chefmajjane.views.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_optVerificationFragment"
+            app:destination="@id/optVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.majjane.chefmajjane.views.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/optVerificationFragment"
+        android:name="com.majjane.chefmajjane.OptVerificationFragment"
+        android:label="fragment_opt_verification"
+        tools:layout="@layout/fragment_opt_verification" />
 
 </navigation>
