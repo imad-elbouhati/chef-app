@@ -14,7 +14,7 @@ import com.majjane.chefmajjane.viewmodel.CategoryViewModel
 import com.majjane.chefmajjane.views.base.BaseFragment
 
 
-class HomeFragment : BaseFragment<CategoryViewModel,FragmentHomeBinding,CategoryRepository>() {
+class CategoryFragment : BaseFragment<CategoryViewModel,FragmentHomeBinding,CategoryRepository>() {
     override fun createViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -26,6 +26,6 @@ class HomeFragment : BaseFragment<CategoryViewModel,FragmentHomeBinding,Category
     }
     override fun createViewModel(): Class<CategoryViewModel> = CategoryViewModel::class.java
 
-    override fun getFragmentRepository(): CategoryRepository =CategoryRepository(RemoteDataSource().buildApi(CategoryApi::class.java))
+    override fun getFragmentRepository(): CategoryRepository = CategoryRepository(remoteDataSource.buildApi(CategoryApi::class.java))
 
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.majjane.chefmajjane.R
+import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.viewmodel.ViewModelFactory
 import com.majjane.chefmajjane.repository.base.BaseRepository
 import com.majjane.chefmajjane.utils.visible
@@ -18,7 +19,7 @@ abstract class BaseFragment<VM : ViewModel, V : ViewBinding, BR : BaseRepository
     private var _binding: V? = null
     protected val binding get() = _binding!!
     lateinit var viewModel: VM
-
+    val remoteDataSource = RemoteDataSource()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
