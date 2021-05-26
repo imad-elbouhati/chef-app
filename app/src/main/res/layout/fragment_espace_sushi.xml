@@ -1,11 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.EspaceSushiFragment">
 
+    <View
+        android:id="@+id/bottom_curve_view"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_custom_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_curve_view"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="@+id/bottom_curve_view"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_curve_view" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="24dp"
+        android:text="Espace Sushi"
+        android:textColor="@color/custom_black"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_curve_view" />
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="127dp"
+        android:layout_height="32dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_curve_view"
+        app:layout_constraintTop_toTopOf="@+id/textView3">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/frenchBtn"
+            android:layout_width="48dp"
+            android:layout_height="32dp"
+            android:layout_toLeftOf="@+id/englishBtn"
+            android:background="@drawable/lang_rounded_button_green"
+            android:clickable="true"
+            android:focusable="true"
+
+            android:textAllCaps="false"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/englishBtn"
+            android:layout_width="48dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/lang_rounded_button_white"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAllCaps="false"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menuTypeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp"
+        tools:listitem="@layout/item_row_layout_menu_type"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sushiRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_row_layout_sushi"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="@+id/menuTypeRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/menuTypeRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/menuTypeRecyclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

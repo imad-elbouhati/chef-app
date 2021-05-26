@@ -22,4 +22,5 @@
     <string name="resend_again">\u0020Resend again</string>
     <string name="didn_t_receive_the_verification">Didn’t receive the verification ?</string>
     <string name="_212">+212</string>
+    <string name="menus">Menus</string>
 </resources>
