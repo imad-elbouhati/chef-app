@@ -15,52 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottom_curve_view">
-
-        <ImageView
-            android:id="@+id/profileIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/profile_ic" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/frenchBtn"
-            android:layout_width="48dp"
-            android:layout_height="32dp"
-            android:clickable="true"
-            android:text="Fr"
-            android:textSize="15sp"
-            android:textAllCaps="false"
-            android:layout_toLeftOf="@+id/englishBtn"
-            android:background="@drawable/lang_rounded_button_green"
-            android:focusable="true" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/englishBtn"
-            android:layout_width="48dp"
-            android:textSize="15sp"
-
-            android:layout_height="32dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:text="Ang"
-            android:textAllCaps="false"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/lang_rounded_button_white"
-            android:focusable="true" />
-    </RelativeLayout>
 
     <TextView
         android:id="@+id/textee"
@@ -71,9 +25,8 @@
         android:text="Lorem ipsum\ndolor sit amet"
         android:textColor="@color/custom_black"
         android:textSize="35sp"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/bottom_curve_view"
+        tools:layout_editor_absoluteX="99dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -97,6 +50,6 @@
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/item_list_row_category" />
+        tools:listitem="@layout/item_row_category_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
