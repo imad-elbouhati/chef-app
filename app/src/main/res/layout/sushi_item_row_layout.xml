@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/sushiImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/demo_sushi"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sushiTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Maki Saumon"
+        android:textColor="@color/custom_black"
+        android:textSize="22dp"
+        app:layout_constraintBottom_toBottomOf="@+id/sushiImageView"
+        app:layout_constraintStart_toEndOf="@+id/sushiImageView"
+        app:layout_constraintTop_toTopOf="@+id/sushiImageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/sushiDescription"
+        android:layout_width="171dp"
+        android:layout_height="51dp"
+        android:maxLines="3"
+        android:text="Lorem ipsum dolor sit amet consectetuer elit diam nonummy nibh esed "
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/sushiTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sushiTitle"
+        app:layout_constraintTop_toBottomOf="@+id/sushiTitle" />
+
+    <TextView
+        android:id="@+id/sushiPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="70,00 MAD"
+        android:textColor="@color/custom_black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/sushiDescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sushiDescription"
+        app:layout_constraintTop_toBottomOf="@+id/sushiDescription" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="13dp"
+        app:layout_constraintEnd_toEndOf="@+id/sushiDescription"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/sushiPrice"
+        app:layout_constraintTop_toBottomOf="@+id/sushiPrice">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/minus_product_ic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_marginRight="30dp"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/plus_product_ic" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

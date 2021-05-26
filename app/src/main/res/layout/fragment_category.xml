@@ -25,22 +25,41 @@
         app:layout_constraintTop_toBottomOf="@+id/bottom_curve_view">
 
         <ImageView
+            android:id="@+id/profileIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
-            android:src="@drawable/menu_ic" />
+            android:src="@drawable/profile_ic" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/frenchBtn"
+            android:layout_width="48dp"
+            android:layout_height="32dp"
+            android:clickable="true"
+            android:text="Fr"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:layout_toLeftOf="@+id/englishBtn"
+            android:background="@drawable/lang_rounded_button_green"
+            android:focusable="true" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/englishBtn"
+            android:layout_width="48dp"
+            android:textSize="15sp"
+
+            android:layout_height="32dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:text="Ang"
+            android:textAllCaps="false"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
-            android:src="@drawable/profile_ic" />
+            android:background="@drawable/lang_rounded_button_white"
+            android:focusable="true" />
     </RelativeLayout>
 
     <TextView

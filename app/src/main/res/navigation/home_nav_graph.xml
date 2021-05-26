@@ -9,5 +9,5 @@
         android:id="@+id/homeFragment"
         android:name="com.majjane.chefmajjane.CategoryFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_category" />
 </navigation>

@@ -39,6 +39,9 @@
             android:layout_width="341dp"
             android:layout_height="53dp"
             android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/morocco_flag_ic"
+            android:drawablePadding="4dp"
+            android:text="@string/_212"
             android:focusable="false"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/numero_de_telephone"
@@ -157,6 +160,23 @@
                 android:textAllCaps="false"
                 android:textColor="#707070"
                 android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/socialLinearLayout"
+            app:layout_constraintStart_toStartOf="@+id/socialLinearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/socialLinearLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/custom_black"
+                android:text="En continuant, vous acceptez nos Conditions \nd’utilisation et notre Politique de confidentialité " />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

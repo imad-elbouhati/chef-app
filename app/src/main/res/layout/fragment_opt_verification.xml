@@ -8,6 +8,7 @@
     tools:context=".OptVerificationFragment">
 
     <TextView
+        
         android:id="@+id/tvVerficationCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,105 +86,104 @@
     </LinearLayout>
 
     <TableLayout
-        android:layout_width="fill_parent"
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:stretchColumns="*"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
         <TableRow>
-
             <TextView
                 android:id="@+id/numOne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="1"
-                android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/numTwo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="2"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
 
             <TextView
                 android:id="@+id/numTree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="3"
 
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:id="@+id/numFour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="4"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
 
             <TextView
                 android:id="@+id/numFive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="5"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
 
             <TextView
                 android:id="@+id/numSix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="6"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:id="@+id/numSeven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="7"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
 
             <TextView
                 android:id="@+id/numEight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="8"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
 
             <TextView
                 android:id="@+id/numNine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="9"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
         </TableRow>
 
         <TableRow>
@@ -193,27 +193,38 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
 
             <TextView
                 android:id="@+id/numZero"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
 
             <ImageView
                 android:id="@+id/deleteIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:src="@drawable/delete_ic"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="45sp" />
         </TableRow>
     </TableLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

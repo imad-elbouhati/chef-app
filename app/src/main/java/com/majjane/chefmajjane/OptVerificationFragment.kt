@@ -2,15 +2,15 @@ package com.majjane.chefmajjane
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.ImageView
+import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
-import com.chaos.view.PinView
+import androidx.fragment.app.Fragment
 import com.majjane.chefmajjane.databinding.FragmentOptVerificationBinding
-import java.lang.StringBuilder
+import com.majjane.chefmajjane.utils.enable
+import com.majjane.chefmajjane.utils.visible
 
 
 class OptVerificationFragment : Fragment() {
@@ -22,7 +22,7 @@ class OptVerificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentOptVerificationBinding.inflate(inflater,container,false)
+        _binding = FragmentOptVerificationBinding.inflate(inflater, container, false)
         return binding.root
     }
     private val TAG = "OptVerificationFragment"
@@ -33,11 +33,15 @@ class OptVerificationFragment : Fragment() {
             Log.d(TAG, "onViewCreated: $text")
             text.let {
                if(it.toString().length==5){
-
+                   Log.d(TAG, "onViewCreated: You reach 5 num")
+                   val code = num
+                   binding.progressBar.visible(true)
+                   
                }
             }
 
         }
+
     }
 
     private fun customKeyBoardListener() {
