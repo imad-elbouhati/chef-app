@@ -38,6 +38,7 @@
         android:layout_width="171dp"
         android:layout_height="51dp"
         android:maxLines="3"
+        android:ellipsize="end"
         android:text="Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametconsectetuer elit diam nonummy nibh esed "
         android:textSize="14sp"
         android:layout_marginRight="19dp"

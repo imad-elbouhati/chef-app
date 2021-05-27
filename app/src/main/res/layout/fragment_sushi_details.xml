@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".SushiDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        tools:context=".SushiDetailsFragment">
+
+        <ImageView
+            android:id="@+id/sushiImageView"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/shushi_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/whiteBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:src="@drawable/white_back_arrow_ic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="45dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sushiImageView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Maki Saumon"
+                android:textColor="@color/custom_black"
+                android:textSize="26sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:text="70,00 MAD"
+                android:textColor="@color/custom_black"
+                android:textSize="26sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/decriptinTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="28dp"
+            android:paddingRight="28dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textSize="13sp"
+            android:text="@string/asiatique_lorem_ipsum_dolor_amet_consectetuer_adipiscing_elit_sed_diam_nonummy_sit_et_un_accompagnement_au_choix"
+            app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+            app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:layout_marginTop="16dp"
+           app:layout_constraintEnd_toEndOf="@+id/decriptinTextView"
+           app:layout_constraintStart_toStartOf="@+id/decriptinTextView"
+           app:layout_constraintTop_toBottomOf="@+id/decriptinTextView">
+          <TextView
+              android:id="@+id/deliveryTime"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="10 - 20 min"
+              android:layout_marginRight="14dp" />
+          <TextView
+              android:id="@+id/sushiRating"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="4.8"
+               />
+          <ImageView
+              android:layout_width="11dp"
+              android:layout_height="11dp"
+              android:layout_marginRight="6dp"
+              android:src="@drawable/ic_baseline_star_rate_24"
+              android:layout_marginEnd="6dp" />
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="(80)"
+              android:layout_marginRight="14dp"
+              android:layout_marginEnd="14dp" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Frais de livraison: 10,00 MAD"
+              android:layout_marginRight="14dp"
+              android:layout_marginEnd="14dp" />
+       </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

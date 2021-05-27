@@ -3,11 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/sushiDetailsFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.majjane.chefmajjane.CategoryFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_homeFragment_to_espaceSushiFragment"
+            app:destination="@id/espaceSushiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/espaceSushiFragment"
+        android:name="com.majjane.chefmajjane.views.EspaceSushiFragment"
+        android:label="fragment_espace_sushi"
+        tools:layout="@layout/fragment_espace_sushi" >
+        <action
+            android:id="@+id/action_espaceSushiFragment_to_sushiDetailsFragment"
+            app:destination="@id/sushiDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sushiDetailsFragment"
+        android:name="com.majjane.chefmajjane.SushiDetailsFragment"
+        android:label="fragment_sushi_details"
+        tools:layout="@layout/fragment_sushi_details" />
 </navigation>
