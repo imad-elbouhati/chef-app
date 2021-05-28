@@ -1,9 +1,12 @@
 package com.majjane.chefmajjane
 
+import android.content.Context
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toolbar
@@ -22,6 +25,14 @@ class HomeActivity : AppCompatActivity() {
         toolBar = findViewById(R.id.toolbar)
         toolbarIcon = findViewById(R.id.toolbarIcon)
         toolbarTitle = findViewById(R.id.toolbarTitle)
+    }
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        //Soft-Keyboard
+        if (currentFocus != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 
     fun setToolbar(title: String) {
