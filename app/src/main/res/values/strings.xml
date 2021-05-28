@@ -25,4 +25,20 @@
     <string name="menus">Menus</string>
     <string name="espace_sushi">Espace Sushi</string>
     <string name="asiatique_lorem_ipsum_dolor_amet_consectetuer_adipiscing_elit_sed_diam_nonummy_sit_et_un_accompagnement_au_choix">Asiatique . Lorem ipsum dolor amet, consectetuer adipiscing elit, sed diam nonummy sit et un accompagnement au choix.</string>
+    <string name="compte">Compte</string>
+    <string name="mon_profile">Mon profile</string>
+    <string name="mes_commandes">Mes Commandes</string>
+    <string name="r_clamation">Réclamation</string>
+    <string name="contact">Contact</string>
+    <string name="langues">Langues</string>
+    <string name="afficher_plus">Afficher plus</string>
+    <string name="adresse_de_livraison">ADRESSE DE LIVRAISON</string>
+    <string name="lorem_ipsum_dolor_amet_consectetuer_adipiscing_elit">Lorem ipsum dolor amet, consectetuer adipiscing elit.</string>
+    <string name="num_ro_de_t_l_phone">Numéro de téléphone</string>
+    <string name="votre_num_ro_de_t_l_phone">Votre numéro de téléphone</string>
+    <string name="total">Total</string>
+    <string name="livraison">Livraison</string>
+    <string name="article">Article</string>
+    <string name="livraison_sans_contact">Livraison sans contact : dans la mesure du possible, les coursiers déposeront la commande sur le pas de votre porte. Veuillez choisir le paiement par la carte bancaire pour cette option</string>
+    <string name="confirmer_la_commande">Confirmer la commande</string>
 </resources>

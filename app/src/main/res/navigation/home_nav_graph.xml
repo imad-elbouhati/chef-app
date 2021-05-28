@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/sushiDetailsFragment">
+    app:startDestination="@id/mesCommandesFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -28,4 +28,9 @@
         android:name="com.majjane.chefmajjane.SushiDetailsFragment"
         android:label="fragment_sushi_details"
         tools:layout="@layout/fragment_sushi_details" />
+    <fragment
+        android:id="@+id/mesCommandesFragment"
+        android:name="com.majjane.chefmajjane.views.MesCommandesFragment"
+        android:label="fragment_mes_commandes"
+        tools:layout="@layout/fragment_mes_commandes" />
 </navigation>

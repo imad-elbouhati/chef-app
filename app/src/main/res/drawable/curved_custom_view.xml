@@ -5,8 +5,8 @@
     </item>
     <item
         android:bottom="0dp"
-        android:left="-50dp"
-        android:right="-50dp"
+        android:left="-150dp"
+        android:right="-150dp"
         android:top="-80dp">
         <shape android:shape="oval">
           <solid android:color="@color/custom_green"/>
