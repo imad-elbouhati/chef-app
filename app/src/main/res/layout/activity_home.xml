@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeActivity">
+    tools:context=".views.HomeActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -23,11 +24,11 @@
 
         <ImageView
             android:id="@+id/toolbarIcon"
-            android:layout_width="30dp"
-            android:layout_height="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="60dp"
-            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:src="@drawable/back_arrow_ic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,11 +36,24 @@
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/custom_black"
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbarIcon"
             app:layout_constraintStart_toEndOf="@+id/toolbarIcon"
             app:layout_constraintTop_toTopOf="@+id/toolbarIcon" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_marginEnd="28dp"
+            android:visibility="gone"
+            android:background="@drawable/demo_profile_image"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbarIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbarIcon"
+            app:layout_constraintVertical_bias="0.487" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.fragment.app.FragmentContainerView

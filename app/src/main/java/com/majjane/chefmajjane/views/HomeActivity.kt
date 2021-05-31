@@ -1,7 +1,6 @@
-package com.majjane.chefmajjane
+package com.majjane.chefmajjane.views
 
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.MotionEvent
@@ -12,19 +11,23 @@ import android.widget.TextView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import java.security.AccessController.getContext
+import com.majjane.chefmajjane.R
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class HomeActivity : AppCompatActivity() {
     private var toolBar: Toolbar? = null
     private var toolbarIcon: ImageView? = null
     private var toolbarTitle: TextView? = null
+    private var circleImageView:CircleImageView?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         toolBar = findViewById(R.id.toolbar)
         toolbarIcon = findViewById(R.id.toolbarIcon)
         toolbarTitle = findViewById(R.id.toolbarTitle)
+        circleImageView = findViewById(R.id.profileImageView)
+
     }
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         //Soft-Keyboard
@@ -41,6 +44,9 @@ class HomeActivity : AppCompatActivity() {
     fun setHeaderVisibility(visibility:Boolean){
         val layout: ConstraintLayout = findViewById(R.id.constraintLayout)
         layout.visibility = if(visibility) View.VISIBLE else View.GONE
+    }
+    fun setImageVisibility(visibility: Boolean){
+        circleImageView?.visibility = if(visibility) View.VISIBLE else View.GONE
     }
     fun setToolbarHeight(height: Int) {
 

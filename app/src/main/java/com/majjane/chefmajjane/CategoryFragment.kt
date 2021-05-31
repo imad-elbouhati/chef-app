@@ -22,7 +22,6 @@ class CategoryFragment : BaseFragment<CategoryViewModel, FragmentCategoryBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val sdk = Build.VERSION.SDK_INT
 
     }
     override fun createViewModel(): Class<CategoryViewModel> = CategoryViewModel::class.java

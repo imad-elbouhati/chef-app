@@ -7,60 +7,28 @@
     android:fitsSystemWindows="true"
     tools:context=".views.EspaceSushiFragment">
 
-    <View
-        android:fitsSystemWindows="true"
-        android:id="@+id/bottom_curve_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/curved_custom_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintEnd_toEndOf="@+id/bottom_curve_view"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="@+id/bottom_curve_view"
-        app:layout_constraintTop_toBottomOf="@+id/bottom_curve_view" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/espace_sushi"
-        android:textColor="@color/custom_black"
-        android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/bottom_curve_view" />
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menuTypeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
+        android:layoutAnimation="@anim/item_layout_anim"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_row_layout_menu_type" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sushiRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        tools:listitem="@layout/item_row_layout_sushi"
+        android:layoutAnimation="@anim/item_layout_anim"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/menuTypeRecyclerView"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/menuTypeRecyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/menuTypeRecyclerView"
-        tools:listitem="@layout/item_row_layout_sushi" />
+        app:layout_constraintTop_toBottomOf="@+id/menuTypeRecyclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,4 +41,12 @@
     <string name="article">Article</string>
     <string name="livraison_sans_contact">Livraison sans contact : dans la mesure du possible, les coursiers déposeront la commande sur le pas de votre porte. Veuillez choisir le paiement par la carte bancaire pour cette option</string>
     <string name="confirmer_la_commande">Confirmer la commande</string>
+    <string name="fran_ais">Français</string>
+    <string name="arabe">العربية</string>
+    <string name="english">English</string>
+    <string name="lang">Langues</string>
+    <string name="choisissez_votre_langue">Choisissez votre langue</string>
+    <string name="on_vous_r_pondrons">On vous répondrons rapidement à toutes les questions que vous pourriez avoir sur nos services</string>
+    <string name="envoyer_un_email">Envoyer un email</string>
+    <string name="envoyer">Envoyer</string>
 </resources>

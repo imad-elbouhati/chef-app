@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/custom_black" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewTitle"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="#00000000"
+        android:drawablePadding="8dp"
+        android:paddingBottom="16.5dp"
+        android:textColor="#707070"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="390dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:background="#DBDBE0" />
+
+    <TextView
+        android:id="@+id/errorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/error_color"
+        android:visibility="gone" />
+</RelativeLayout>

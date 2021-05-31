@@ -5,15 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.majjane.chefmajjane.HomeActivity
 import com.majjane.chefmajjane.R
-import com.majjane.chefmajjane.databinding.FragmentMesCommandesBinding
-import com.majjane.chefmajjane.network.AuthApi
-import com.majjane.chefmajjane.network.RemoteDataSource
-import com.majjane.chefmajjane.repository.AuthRepository
-import com.majjane.chefmajjane.viewmodel.AuthViewModel
-import com.majjane.chefmajjane.viewmodel.CategoryViewModel
-import com.majjane.chefmajjane.views.base.BaseFragment
 
 
 class MesCommandesFragment : Fragment() {

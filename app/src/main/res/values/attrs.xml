@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CounterView">
+        <attr name="plus_btn" format="reference" />
+        <attr name="minus_btn" format="reference" />
+        <attr name="quantity_text" format="string" />
+    </declare-styleable>
+    <declare-styleable name="CustomTextField">
+        <attr name="drawableLeft" format="reference" />
+        <attr name="android:inputType" />
+        <attr name="textTitle" format="string" />
+        <attr name="error_label" format="string" />
+    </declare-styleable>
+
+</resources>
