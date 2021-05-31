@@ -20,6 +20,7 @@ class HomeActivity : AppCompatActivity() {
     private var toolbarIcon: ImageView? = null
     private var toolbarTitle: TextView? = null
     private var circleImageView:CircleImageView?=null
+    var bigCircleImageView:CircleImageView?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -27,6 +28,7 @@ class HomeActivity : AppCompatActivity() {
         toolbarIcon = findViewById(R.id.toolbarIcon)
         toolbarTitle = findViewById(R.id.toolbarTitle)
         circleImageView = findViewById(R.id.profileImageView)
+        bigCircleImageView = findViewById(R.id.bigProfileImageView)
 
     }
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

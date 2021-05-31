@@ -7,6 +7,7 @@
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
+        android:textSize="14sp"
         android:layout_height="wrap_content"
         android:textColor="@color/custom_black" />
 
@@ -15,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewTitle"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:background="#00000000"
         android:drawablePadding="8dp"

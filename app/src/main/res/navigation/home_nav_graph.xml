@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/espaceSushiFragment">
+    app:startDestination="@id/myProfileFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -43,4 +43,9 @@
         android:name="com.majjane.chefmajjane.views.ContactFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.majjane.chefmajjane.views.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" />
 </navigation>

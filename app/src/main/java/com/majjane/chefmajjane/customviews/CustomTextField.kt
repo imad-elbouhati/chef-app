@@ -1,10 +1,12 @@
 package com.majjane.chefmajjane.customviews
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -23,6 +25,7 @@ class CustomTextField(context: Context, attrs: AttributeSet) : RelativeLayout(co
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomTextField)
         textViewTitle?.text = attributes.getString(R.styleable.CustomTextField_textTitle)
         editText?.setCompoundDrawablesWithIntrinsicBounds(attributes.getDrawable(R.styleable.CustomTextField_drawableLeft),null,null,null)
+        editText?.inputType = attributes.getInt(R.styleable.CustomTextField_inputType,EditorInfo.TYPE_TEXT_VARIATION_NORMAL)
         attributes.recycle()
 
     }
