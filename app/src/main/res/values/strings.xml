@@ -50,4 +50,15 @@
     <string name="envoyer_un_email">Envoyer un email</string>
     <string name="envoyer">Envoyer</string>
     <string name="my_profile">Mon Profile</string>
+    <string name="change_password">"Modifier mon mot de passe "</string>
+    <string name="pour_changer_votre_mot_de_passe">Pour changer votre mot de passe, complétez les informations ci-dessous.</string>
+    <string name="enregister">Enregister</string>
+    <string name="annuler">Annuler</string>
+    <string name="reclamation">Réclamation</string>
+    <string name="mode_de_paiment">Mode de paiment</string>
+    <string name="saisissez_le_num_ro_de_votre_commande">Saisissez le numéro de votre commande :</string>
+    <string name="num_ro_de_commande">Numéro de commande</string>
+    <string name="s_lectionnez_l_object">Sélectionnez l\'object</string>
+    <string name="ajouter_un_fichier">Ajouter un fichier :</string>
+    <string name="envoyer">Envoyer</string>
 </resources>

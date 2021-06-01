@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.majjane.chefmajjane.R
-import com.majjane.chefmajjane.customviews.CustomTextField
 import com.majjane.chefmajjane.utils.visible
+import com.majjane.chefmajjane.views.activities.HomeActivity
 
 
 class MyProfileFragment : Fragment() {

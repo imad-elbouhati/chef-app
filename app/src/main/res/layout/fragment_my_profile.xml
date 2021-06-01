@@ -6,16 +6,94 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.MyProfileFragment">
 
-    <com.majjane.chefmajjane.customviews.CustomTextField
-        android:id="@+id/nomEtPrenom"
-        android:layout_width="366dp"
-        android:layout_marginTop="40dp"
-        android:layout_height="wrap_content"
-        app:inputType="textPassword"
-        app:drawableLeft="@drawable/green_profile_ic"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:textTitle="Nom et prénom" />
+        app:layout_constraintTop_toTopOf="parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.majjane.chefmajjane.views.customviews.CustomTextField
+                android:id="@+id/nomEtPrenom"
+                android:layout_width="366dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                app:hint="Votre nom et prénom"
+                app:drawableLeft="@drawable/green_profile_ic"
+                app:inputType="text"
+                app:textTitle="Nom et prénom" />
+
+            <com.majjane.chefmajjane.views.customviews.CustomTextField
+                android:id="@+id/email"
+                android:layout_width="366dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nomEtPrenom"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                app:hint="Votre Email"
+                app:drawableLeft="@drawable/mail"
+                app:inputType="textEmailAddress"
+                app:textTitle="Email" />
+
+            <com.majjane.chefmajjane.views.customviews.CustomTextField
+                android:id="@+id/password"
+                android:layout_width="366dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/email"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                app:hint="Votre mot de passe"
+                app:drawableLeft="@drawable/password_ic"
+                app:inputType="textPassword"
+                app:textTitle="Mot de passe" />
+
+            <com.majjane.chefmajjane.views.customviews.CustomTextField
+                android:id="@+id/numTele"
+                android:layout_width="366dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                app:drawableLeft="@drawable/telephon_ic"
+                app:hint="Votre numéro de téléphone "
+                app:inputType="phone"
+                app:textTitle="Numéro de téléphone" />
+
+            <com.majjane.chefmajjane.views.customviews.CustomTextField
+                android:id="@+id/modePaiment"
+                android:layout_width="366dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/numTele"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                app:drawableLeft="@drawable/credit_card_ic"
+                app:hint="Votre mode de paiement"
+                app:inputType="text"
+                app:textTitle="Mode de paiment" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="40dp"
+                android:id="@+id/enregister"
+                android:layout_below="@+id/modePaiment"
+                android:text="Enregister"
+                android:textColor="@color/white"
+                android:background="@drawable/green_rounded_button"
+                android:layout_width="326dp"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

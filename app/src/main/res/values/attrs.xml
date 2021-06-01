@@ -10,6 +10,7 @@
         <attr name="drawableLeft" format="reference" />
         <attr name="textTitle" format="string" />
         <attr name="error_label" format="string" />
+        <attr name="hint" format="string" />
         <!-- The type of data being placed in a text field used to help an
          input method decide how to let the user enter text.  The constants
          here correspond to those defined by

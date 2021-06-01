@@ -1,4 +1,4 @@
-package com.majjane.chefmajjane.views
+package com.majjane.chefmajjane.views.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,7 +22,6 @@ import com.majjane.chefmajjane.utils.handleApiError
 import com.majjane.chefmajjane.utils.snackbar
 import com.majjane.chefmajjane.viewmodel.AuthViewModel
 import com.majjane.chefmajjane.views.base.BaseFragment
-import java.util.*
 
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {

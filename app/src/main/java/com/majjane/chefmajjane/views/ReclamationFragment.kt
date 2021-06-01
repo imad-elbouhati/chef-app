@@ -8,15 +8,13 @@ import android.view.ViewGroup
 import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.views.activities.HomeActivity
 
-
-class ContactFragment : Fragment() {
+class ReclamationFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
         ((activity) as HomeActivity).apply {
-            setToolbar(getString(R.string.contact))
+            setToolbar(getString(R.string.reclamation))
             setToolbarHeight(170)
-            setImageVisibility(true)
         }
     }
     override fun onCreateView(
@@ -24,7 +22,7 @@ class ContactFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false)
+        return inflater.inflate(R.layout.fragment_reclamation, container, false)
     }
 
 }

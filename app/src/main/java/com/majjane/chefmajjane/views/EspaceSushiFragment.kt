@@ -1,23 +1,18 @@
 package com.majjane.chefmajjane.views
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.Sushi
 import com.majjane.chefmajjane.adapters.SushiAdapter
 import com.majjane.chefmajjane.databinding.FragmentEspaceSushiBinding
-import com.majjane.chefmajjane.databinding.FragmentLoginBinding
 import com.majjane.chefmajjane.network.AuthApi
 import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AuthRepository
 import com.majjane.chefmajjane.viewmodel.AuthViewModel
+import com.majjane.chefmajjane.views.activities.HomeActivity
 import com.majjane.chefmajjane.views.base.BaseFragment
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 
 
 class EspaceSushiFragment :

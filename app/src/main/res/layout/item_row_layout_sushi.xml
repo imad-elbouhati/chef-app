@@ -59,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/sushiDescription"
         app:layout_constraintTop_toBottomOf="@+id/sushiDescription" />
-    <com.majjane.chefmajjane.customviews.CounterView
+    <com.majjane.chefmajjane.views.customviews.CounterView
         android:id="@+id/counterView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

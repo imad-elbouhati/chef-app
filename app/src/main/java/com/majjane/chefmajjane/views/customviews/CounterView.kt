@@ -1,4 +1,4 @@
-package com.majjane.chefmajjane.customviews
+package com.majjane.chefmajjane.views.customviews
 
 import android.content.Context
 import android.text.Editable
@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.majjane.chefmajjane.R
-import kotlin.math.min
 
 class CounterView(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
     var plusButton: Button? = null

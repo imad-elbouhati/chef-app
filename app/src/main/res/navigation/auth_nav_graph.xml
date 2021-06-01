@@ -6,7 +6,7 @@
     app:startDestination="@id/optVerificationFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.majjane.chefmajjane.views.LoginFragment"
+        android:name="com.majjane.chefmajjane.views.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/optVerificationFragment"
-        android:name="com.majjane.chefmajjane.OptVerificationFragment"
+        android:name="com.majjane.chefmajjane.views.auth.OptVerificationFragment"
         android:label="fragment_opt_verification"
         tools:layout="@layout/fragment_opt_verification" />
 

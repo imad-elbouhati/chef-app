@@ -2,12 +2,11 @@ package com.majjane.chefmajjane.utils
 
 import android.app.Activity
 import android.content.Intent
-import android.util.TypedValue
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.majjane.chefmajjane.R
-import com.majjane.chefmajjane.views.LoginFragment
+import com.majjane.chefmajjane.views.auth.LoginFragment
 
 
 fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {

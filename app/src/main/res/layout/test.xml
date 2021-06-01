@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.majjane.chefmajjane.customviews.CustomTextField
+    <com.majjane.chefmajjane.views.customviews.CustomTextField
         android:layout_width="wrap_content"
         app:textTitle="Nom et Prénom"
         android:inputType="phone"

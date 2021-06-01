@@ -1,15 +1,11 @@
-package com.majjane.chefmajjane
+package com.majjane.chefmajjane.views.auth
 
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
-import android.widget.TableRow
-import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.majjane.chefmajjane.databinding.FragmentOptVerificationBinding
-import com.majjane.chefmajjane.utils.enable
 import com.majjane.chefmajjane.utils.visible
 
 

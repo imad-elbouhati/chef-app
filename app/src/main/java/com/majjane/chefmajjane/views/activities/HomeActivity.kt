@@ -1,4 +1,4 @@
-package com.majjane.chefmajjane.views
+package com.majjane.chefmajjane.views.activities
 
 import android.content.Context
 import android.os.Bundle

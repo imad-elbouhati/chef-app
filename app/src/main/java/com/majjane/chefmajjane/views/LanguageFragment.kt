@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.majjane.chefmajjane.R
+import com.majjane.chefmajjane.views.activities.HomeActivity
 
 
 class LanguageFragment : Fragment(R.layout.fragment_language) {
