@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
+import androidx.navigation.Navigation
 import androidx.viewbinding.ViewBinding
 import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.network.RemoteDataSource
@@ -39,5 +42,6 @@ abstract class BaseFragment<VM : ViewModel, V : ViewBinding, BR : BaseRepository
         _binding = null
         super.onDestroy()
     }
+
 
 }

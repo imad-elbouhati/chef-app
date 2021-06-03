@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/changePasswordFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.majjane.chefmajjane.CategoryFragment"
+        android:name="com.majjane.chefmajjane.AccueilFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_category" >
+        tools:layout="@layout/fragment_accueil" >
         <action
-            android:id="@+id/action_homeFragment_to_espaceSushiFragment"
+            android:id="@+id/action_accueilFragment_to_espaceSushiFragment"
             app:destination="@id/espaceSushiFragment" />
     </fragment>
     <fragment
@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_espaceSushiFragment_to_sushiDetailsFragment"
             app:destination="@id/sushiDetailsFragment" />
+        <argument
+            android:name="category_bundle"
+            app:argType="com.majjane.chefmajjane.responses.AccueilResponseItem" />
     </fragment>
     <fragment
         android:id="@+id/sushiDetailsFragment"

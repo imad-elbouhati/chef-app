@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/sushiImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="120dp"
         android:scaleType="fitXY"
         android:src="@drawable/demo_sushi"
         android:layout_marginTop="28dp"
@@ -20,37 +20,33 @@
 
     <TextView
         android:id="@+id/sushiTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:text="Maki Saumon"
-        android:layout_marginRight="19dp"
         android:textColor="@color/custom_black"
-        android:textSize="22dp"
-        app:layout_constraintBottom_toBottomOf="@+id/sushiImageView"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/sushiImageView"
         app:layout_constraintTop_toTopOf="@+id/sushiImageView"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/sushiDescription"
-        android:layout_width="171dp"
+        android:layout_width="0dp"
         android:layout_height="51dp"
         android:maxLines="3"
         android:ellipsize="end"
         android:text="Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametconsectetuer elit diam nonummy nibh esed "
         android:textSize="14sp"
         android:layout_marginRight="19dp"
-
         app:layout_constraintEnd_toEndOf="@+id/sushiTitle"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/sushiTitle"
         app:layout_constraintTop_toBottomOf="@+id/sushiTitle" />
 
     <TextView
         android:id="@+id/sushiPrice"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="70,00 MAD"
         android:textColor="@color/custom_black"
@@ -60,13 +56,13 @@
         app:layout_constraintStart_toStartOf="@+id/sushiDescription"
         app:layout_constraintTop_toBottomOf="@+id/sushiDescription" />
     <com.majjane.chefmajjane.views.customviews.CounterView
-        android:id="@+id/counterView"
+        android:id="@+id/foodQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="19dp"
         app:quantity_text="0"
         android:layout_marginTop="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/sushiDescription"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/sushiPrice"
         app:layout_constraintTop_toBottomOf="@+id/sushiPrice"/>

@@ -6,11 +6,12 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:id="@+id/imageViewAccueil"
+        android:layout_width="380dp"
         android:layout_height="251dp"
         android:padding="25dp"
+        android:scaleType="fitXY"
         android:layout_margin="25dp"
-        android:background="@drawable/shushi_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -25,7 +25,7 @@ fun View.enable(enable:Boolean){
     alpha = if (enable) 1f else 0.5f
 }
 fun View.snackbar(message: String, action:(()->Unit)?=null){
-    val snackbar = Snackbar.make(this,message,Snackbar.LENGTH_SHORT)
+    val snackbar = Snackbar.make(this,message,5000)
     action?.let {
         snackbar.setAction(R.string.ressayez){
             it()
@@ -39,12 +39,12 @@ fun Fragment.handleApiError(
 ){
     when{
         failure.isNetwork -> requireView().snackbar(
-            R.string.verifier_connextion.toString(),
+            getString(R.string.verifier_connextion),
             retry
         )
         failure.errorCode == 401 -> {
             if(this is LoginFragment){
-                requireView().snackbar(R.string.email_incorrect.toString())
+                requireView().snackbar(getString(R.string.email_incorrect))
             }else{
               // TODO: 5/24/2021 Logout functionality
             }

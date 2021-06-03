@@ -31,4 +31,28 @@
         app:layout_constraintEnd_toEndOf="@+id/menuTypeRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/menuTypeRecyclerView"
         app:layout_constraintTop_toBottomOf="@+id/menuTypeRecyclerView" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/totalSumButton"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/green_rounded_button"
+        app:layout_constraintBottom_toBottomOf="@+id/sushiRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="40dp"
+        android:visibility="gone"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/sushiRecyclerView"
+        app:layout_constraintEnd_toEndOf="@+id/sushiRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/sushiRecyclerView"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

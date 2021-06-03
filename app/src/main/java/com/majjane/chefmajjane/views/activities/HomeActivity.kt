@@ -17,7 +17,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class HomeActivity : AppCompatActivity() {
     private var toolBar: Toolbar? = null
-    private var toolbarIcon: ImageView? = null
+    var toolbarIcon: ImageView? = null
     private var toolbarTitle: TextView? = null
     private var circleImageView:CircleImageView?=null
     var bigCircleImageView:CircleImageView?=null

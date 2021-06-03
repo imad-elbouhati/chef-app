@@ -4,16 +4,31 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.majjane.chefmajjane.R
+import com.majjane.chefmajjane.responses.Article
 
 class CounterView(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
+    private val TAG = "CounterView"
     var plusButton: Button? = null
     var minusButton: Button? = null
     var quantityTextView: TextView? = null
-    var num = 0
+    var article: Article? = null
+    var quantityChangedListener:QuantityChangedListener?=null
+    interface QuantityChangedListener {
+        fun onQuantityChanged(article: Article?)
+    }
+    @JvmName("setQuantityChangedListener1")
+    fun setQuantityChangedListener(quantityChangedListener:QuantityChangedListener){
+        this.quantityChangedListener = quantityChangedListener
+    }
+    fun setModel(article: Article) {
+        Log.d(TAG, "setModel: $article")
+        this.article = article
+    }
 
     init {
         inflate(context, R.layout.counter_view, this)
@@ -31,15 +46,19 @@ class CounterView(context: Context, attrs: AttributeSet) : LinearLayout(context,
 
     private fun buttonsClickListener() {
         plusButton!!.setOnClickListener {
-            num += 1
-            quantityTextView!!.text = num.toString()
+            if(article!=null){
+                if(article!!.selectedQuantity < article!!.qnt){
+                    article?.selectedQuantity = article?.selectedQuantity?.plus(1)!!
+                    quantityTextView!!.text = article?.selectedQuantity.toString()
+                }
+            }
         }
 
 
         minusButton!!.setOnClickListener {
-            if (num > 0) {
-                num -= 1
-                quantityTextView!!.text = num.toString()
+            if (article?.selectedQuantity!! > 0) {
+                article?.selectedQuantity = article?.selectedQuantity?.minus(1)!!
+                quantityTextView!!.text = article?.selectedQuantity.toString()
             }
         }
     }
@@ -57,16 +76,20 @@ class CounterView(context: Context, attrs: AttributeSet) : LinearLayout(context,
                 } else {
                     plusButton!!.setBackgroundResource(R.drawable.ic_baseline_add_circle_outline_24)
                     minusButton!!.setBackgroundResource(R.drawable.ic_baseline_remove_circle_outline_gray_24)
-
                 }
+                quantityChangedListener?.onQuantityChanged(article)
+
             }
+
 
             override fun afterTextChanged(p0: Editable?) {
             }
         })
     }
 
-    fun getQuantity():Int{
-        return quantityTextView!!.text.toString().toInt()
+
+    fun setQuantity(quantity: String) {
+        quantityTextView?.text = quantity
     }
+
 }

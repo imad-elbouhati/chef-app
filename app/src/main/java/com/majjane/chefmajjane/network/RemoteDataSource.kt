@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RemoteDataSource {
     companion object{
-        const val BASE_URL = "https://bo.homeopp.ma/Boutique/"
+        const val BASE_URL = "https://chef.majjane.info/Boutique/"
     }
     fun <Api> buildApi(
         api:Class<Api>
