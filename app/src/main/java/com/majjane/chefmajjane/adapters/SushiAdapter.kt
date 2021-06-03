@@ -45,7 +45,7 @@ class SushiAdapter(
         holder.binding.apply {
             foodQuantity.setModel(article)
             sushiTitle.text = article.name
-            val price = article.prixTTC + " MAD"
+            val price = article.prixTTC.toString() + " MAD"
             foodQuantity.setQuantity(article.selectedQuantity.toString())
             sushiPrice.text = price
             sushiDescription.text = article.description

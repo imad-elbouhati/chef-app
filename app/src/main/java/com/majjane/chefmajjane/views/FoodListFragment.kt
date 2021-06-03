@@ -1,17 +1,18 @@
 package com.majjane.chefmajjane.views
 
-import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.AbsListView
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.FacebookSdk.getApplicationContext
+import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.adapters.SushiAdapter
 import com.majjane.chefmajjane.databinding.FragmentEspaceSushiBinding
 import com.majjane.chefmajjane.network.AccueilMenuApi
@@ -19,6 +20,7 @@ import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AccueilMenuRepository
 import com.majjane.chefmajjane.responses.AccueilResponseItem
 import com.majjane.chefmajjane.responses.Article
+import com.majjane.chefmajjane.utils.Constants.Companion.ARTICLE_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.CATEGORY_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.majjane.chefmajjane.utils.Resource
@@ -30,7 +32,7 @@ import com.majjane.chefmajjane.views.base.BaseFragment
 import java.util.*
 
 
-class EspaceSushiFragment :
+class FoodListFragment :
     BaseFragment<AccueilMenuViewModel, FragmentEspaceSushiBinding, AccueilMenuRepository>() {
     private val adapter by lazy {
         SushiAdapter({ food, position -> onFoodClicked(food, position) }, { sum, articleHashMap ->
@@ -40,23 +42,6 @@ class EspaceSushiFragment :
             )
         })
     }
-
-    private fun onTotalPriceChangedListener(sum: Float, articleHashMap: HashMap<Int, Article>) {
-
-        if (sum > 0) {
-            binding.totalSumButton.apply {
-                visible(true)
-                text = "Commander ${articleHashMap.size} pour $sum MAD "
-            }
-        } else {
-            binding.totalSumButton.visible(false)
-        }
-    }
-
-    private fun onFoodClicked(foodResponse: Article, position: Int) {
-        Log.d(TAG, "onFoodClicked: ${foodResponse.name}")
-    }
-
     private val TAG = "EspaceSushiFragment"
     private lateinit var categoryArgs: AccueilResponseItem
     override fun onResume() {
@@ -72,9 +57,10 @@ class EspaceSushiFragment :
         categoryArgs = requireArguments().getParcelable(CATEGORY_BUNDLE)!!
     }
 
+    private var navController:NavController?=null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        navController = Navigation.findNavController(view)
         Log.d(TAG, "onViewCreated: $categoryArgs")
         initRecyclerView()
         observeResponse()
@@ -142,13 +128,29 @@ class EspaceSushiFragment :
     private fun initRecyclerView() {
         binding.sushiRecyclerView.adapter = adapter
         binding.sushiRecyclerView.startLayoutAnimation()
-        binding.sushiRecyclerView.addOnScrollListener(this@EspaceSushiFragment.scrollListener)
+        binding.sushiRecyclerView.addOnScrollListener(this@FoodListFragment.scrollListener)
     }
-
     private fun getFoodList() {
         viewModel.getFoodList(idLang = 1, categoryArgs.id)
     }
 
+    private fun onTotalPriceChangedListener(sum: Float, articleHashMap: HashMap<Int, Article>) {
+        if (sum > 0) {
+            binding.totalSumButton.apply {
+                visible(true)
+                text = "Commander ${articleHashMap.size} pour $sum MAD "
+            }
+        } else {
+            binding.totalSumButton.visible(false)
+        }
+    }
+
+    private fun onFoodClicked(article: Article, position: Int) {
+        Log.d(TAG, "onFoodClicked: ${article.name}")
+        val bundle = bundleOf( ARTICLE_BUNDLE to article)
+        navController?.navigate(R.id.action_espaceSushiFragment_to_sushiDetailsFragment, bundle)
+
+    }
     override fun createViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?

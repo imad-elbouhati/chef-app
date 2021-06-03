@@ -91,5 +91,7 @@ class CounterView(context: Context, attrs: AttributeSet) : LinearLayout(context,
     fun setQuantity(quantity: String) {
         quantityTextView?.text = quantity
     }
-
+    fun getQuantity():Int{
+       return quantityTextView?.text.toString().toInt()
+    }
 }

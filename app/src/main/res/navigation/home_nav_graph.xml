@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/espaceSushiFragment"
-        android:name="com.majjane.chefmajjane.views.EspaceSushiFragment"
+        android:name="com.majjane.chefmajjane.views.FoodListFragment"
         android:label="fragment_espace_sushi"
         tools:layout="@layout/fragment_espace_sushi" >
         <action
@@ -28,9 +28,13 @@
     </fragment>
     <fragment
         android:id="@+id/sushiDetailsFragment"
-        android:name="com.majjane.chefmajjane.SushiDetailsFragment"
+        android:name="com.majjane.chefmajjane.FoodDetailsFragment"
         android:label="fragment_sushi_details"
-        tools:layout="@layout/fragment_sushi_details" />
+        tools:layout="@layout/fragment_sushi_details" >
+        <argument
+            android:name="article_bundle"
+            app:argType="com.majjane.chefmajjane.responses.Article" />
+    </fragment>
     <fragment
         android:id="@+id/mesCommandesFragment"
         android:name="com.majjane.chefmajjane.views.MesCommandesFragment"

@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".views.SushiDetailsFragment">
+    android:layout_marginBottom="40dp"
+    tools:context=".FoodDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -36,7 +38,7 @@
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="45dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="45dp"
@@ -45,64 +47,60 @@
             app:layout_constraintTop_toBottomOf="@+id/sushiImageView">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/foodName"
+                android:layout_width="238dp"
+                android:layout_marginEnd="10dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="Maki Saumon"
                 android:textColor="@color/custom_black"
                 android:textSize="26sp" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/foodPrice"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:gravity="end"
-                android:text="70,00 MAD"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/foodName"
                 android:textColor="@color/custom_black"
                 android:textSize="26sp" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/decriptinTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="2"
             android:paddingLeft="28dp"
             android:paddingRight="28dp"
-            android:text="@string/asiatique_lorem_ipsum_dolor_amet_consectetuer_adipiscing_elit_sed_diam_nonummy_sit_et_un_accompagnement_au_choix"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
             app:layout_constraintStart_toStartOf="@+id/relativeLayout"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
-        <LinearLayout
+        <com.majjane.chefmajjane.views.customviews.CounterView
+            android:id="@+id/counterView2"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="68dp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/decriptinTextView"
             app:layout_constraintStart_toStartOf="@+id/decriptinTextView"
-            app:layout_constraintTop_toBottomOf="@+id/decriptinTextView">
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_baseline_remove_circle_outline_24"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="44dp"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="1"/>
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_baseline_add_circle_24"/>
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/decriptinTextView" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/totalSumButton"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/green_rounded_button"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="@+id/counterView2"
+            app:layout_constraintStart_toStartOf="@+id/counterView2"
+            app:layout_constraintTop_toBottomOf="@+id/counterView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
