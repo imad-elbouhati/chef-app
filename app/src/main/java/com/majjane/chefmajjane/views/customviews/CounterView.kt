@@ -25,8 +25,7 @@ class CounterView(context: Context, attrs: AttributeSet) : LinearLayout(context,
     fun setQuantityChangedListener(quantityChangedListener:QuantityChangedListener){
         this.quantityChangedListener = quantityChangedListener
     }
-    fun setModel(article: Article) {
-        Log.d(TAG, "setModel: $article")
+    fun setModel(article: Article?) {
         this.article = article
     }
 
@@ -90,6 +89,7 @@ class CounterView(context: Context, attrs: AttributeSet) : LinearLayout(context,
 
     fun setQuantity(quantity: String) {
         quantityTextView?.text = quantity
+        this.article?.selectedQuantity = quantity.toInt()
     }
     fun getQuantity():Int{
        return quantityTextView?.text.toString().toInt()

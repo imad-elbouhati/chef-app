@@ -9,10 +9,10 @@ import android.widget.AbsListView
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.majjane.chefmajjane.R
+import com.majjane.chefmajjane.adapters.MenuAdapter
 import com.majjane.chefmajjane.adapters.SushiAdapter
 import com.majjane.chefmajjane.databinding.FragmentEspaceSushiBinding
 import com.majjane.chefmajjane.network.AccueilMenuApi
@@ -20,6 +20,7 @@ import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AccueilMenuRepository
 import com.majjane.chefmajjane.responses.AccueilResponseItem
 import com.majjane.chefmajjane.responses.Article
+import com.majjane.chefmajjane.responses.menu.MenuResponseItem
 import com.majjane.chefmajjane.utils.Constants.Companion.ARTICLE_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.CATEGORY_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.QUERY_PAGE_SIZE
@@ -42,7 +43,21 @@ class FoodListFragment :
             )
         })
     }
-    private val TAG = "EspaceSushiFragment"
+    private val menuAdapter by lazy {
+        MenuAdapter { menu, position -> onMenuClicked(menu, position) }
+    }
+
+    private fun onMenuClicked(menu: MenuResponseItem, position: Int) {
+        isSearchingMenu = true
+        menuId = menu.id
+        viewModel.searchFoodPage = 0
+        viewModel.nextFoodListResponse = null
+       // viewModel.getFoodByMenuList(id_lang=1,menu.id)
+        viewModel.getFoodList(idLang = 1,menu.id)
+
+    }
+
+    private val TAG = "FoodListFragment"
     private lateinit var categoryArgs: AccueilResponseItem
     override fun onResume() {
         super.onResume()
@@ -60,33 +75,64 @@ class FoodListFragment :
     private var navController:NavController?=null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+       // getMenuList(1, 121)
         navController = Navigation.findNavController(view)
-        Log.d(TAG, "onViewCreated: $categoryArgs")
         initRecyclerView()
-        observeResponse()
+        if(menuId == 0){
+            getFoodList(idLang = 1, categoryArgs.id)
+            getMenuList(idLang = 1, categoryArgs.id)
+        }else{
+            getFoodList(idLang = 1, menuId)
+            getMenuList(idLang = 1, 121)
+        }
+
+        observeFoodListResponse()
+        observerMenuListResponse()
+
     }
 
-    private fun observeResponse() {
+    private fun observerMenuListResponse() {
+        viewModel.menuListResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progressBar2.visible(true)
+
+                }
+                is Resource.Success -> {
+                    binding.progressBar2.visible(false)
+
+                    menuAdapter.setItems(it.data)
+                }
+                is Resource.Failure -> {
+                    binding.progressBar2.visible(false)
+                    handleApiError(it) {
+                        getMenuList(1, 121)
+                    }
+                }
+            }
+        })
+    }
+    private fun getMenuList(idLang: Int, i: Int) {
+        viewModel.getMenuList(idLang = 1, i)
+    }
+    private fun observeFoodListResponse() {
         viewModel.foodListResponse.observe(viewLifecycleOwner, { it ->
             when (it) {
                 is Resource.Loading -> {
                     binding.progressBar2.visible(true)
                     isLoading = true
-                    Log.d(TAG, "onViewCreated: Loading...")
                 }
                 is Resource.Success -> {
                     isLoading = false
                     binding.progressBar2.visible(false)
                     val totalPages = it.data.total_products / QUERY_PAGE_SIZE + 2
                     isLastPage = viewModel.searchFoodPage == totalPages
-                    adapter.setItems(it.data.articles.filter { article ->
-                        article.qnt > 0
-                    })
+                    adapter.setItems(it.data.articles)
                 }
                 is Resource.Failure -> {
                     binding.progressBar2.visible(false)
                     handleApiError(it) {
-                        getFoodList()
+                        getFoodList(1, menuId)
                     }
                 }
             }
@@ -111,29 +157,32 @@ class FoodListFragment :
             val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
             val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
-
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
-
             val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning
             isTotalMoreThanVisible && isScrolling
             if (shouldPaginate) {
-                viewModel.getFoodList(1, categoryArgs.id)
+//                if(!isSearchingMenu){
+//                    viewModel.getFoodList(1, categoryArgs.id)
+//                }else{
+//                    viewModel.getFoodByMenuList(1, menuId)
+//                }
+                viewModel.getFoodList(1, menuId)
                 isScrolling = false
             }
         }
     }
-
+    var menuId = 0
     private fun initRecyclerView() {
         binding.sushiRecyclerView.adapter = adapter
         binding.sushiRecyclerView.startLayoutAnimation()
         binding.sushiRecyclerView.addOnScrollListener(this@FoodListFragment.scrollListener)
+        binding.menuTypeRecyclerView.adapter = menuAdapter
     }
-    private fun getFoodList() {
-        viewModel.getFoodList(idLang = 1, categoryArgs.id)
+    private fun getFoodList(idLang: Int, i: Int) {
+        viewModel.getFoodList(idLang = 1, i)
     }
-
     private fun onTotalPriceChangedListener(sum: Float, articleHashMap: HashMap<Int, Article>) {
         if (sum > 0) {
             binding.totalSumButton.apply {
@@ -146,11 +195,11 @@ class FoodListFragment :
     }
 
     private fun onFoodClicked(article: Article, position: Int) {
-        Log.d(TAG, "onFoodClicked: ${article.name}")
         val bundle = bundleOf( ARTICLE_BUNDLE to article)
         navController?.navigate(R.id.action_espaceSushiFragment_to_sushiDetailsFragment, bundle)
 
     }
+    var isSearchingMenu = false
     override fun createViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?

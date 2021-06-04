@@ -26,10 +26,8 @@ class OptVerificationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         customKeyBoardListener()
         binding.firstPinView.doOnTextChanged { text, start, before, count ->
-            Log.d(TAG, "onViewCreated: $text")
             text.let {
                if(it.toString().length==5){
-                   Log.d(TAG, "onViewCreated: You reach 5 num")
                    val code = num
                    binding.progressBar.visible(true)
                    
@@ -43,7 +41,6 @@ class OptVerificationFragment : Fragment() {
     private fun customKeyBoardListener() {
         binding.numOne.setOnClickListener {
             num +="1"
-            Log.d(TAG, "customKeyBoardListener: $num")
             binding.firstPinView.setText(num)
         }
         binding.numTwo.setOnClickListener {

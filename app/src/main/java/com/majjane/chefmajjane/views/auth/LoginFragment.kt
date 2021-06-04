@@ -30,7 +30,6 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(requireContext())
-        Log.d(TAG, "onStart: ${account?.email} ${account?.displayName}")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,16 +53,13 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         LoginManager.getInstance().registerCallback(callBackManager, object :
             FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
-                Log.d(TAG, "onSuccess: ${result?.accessToken?.token}")
                 //TODO: Facebook token to api
             }
 
             override fun onCancel() {
-                Log.d(TAG, "onCancel: ")
             }
 
             override fun onError(error: FacebookException?) {
-                Log.d(TAG, "onError: ${error.toString()}")
 
             }
         })

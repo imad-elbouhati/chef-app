@@ -50,7 +50,6 @@ class AccueilAdapter(val onClick: (AccueilResponseItem, Int) -> Unit) : Recycler
     }
 
     override fun getItemCount(): Int {
-        Log.d(TAG, "getItemCount: ${items.size}")
         return items.size
     }
 }

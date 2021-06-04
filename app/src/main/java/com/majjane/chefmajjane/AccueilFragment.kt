@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -47,16 +46,14 @@ class AccueilFragment :
             when (it) {
                 is Resource.Loading -> {
                     binding.progressBar.visible(true)
-                    Log.d(TAG, "onViewCreated: Loading...")
+
                 }
                 is Resource.Success -> {
                     binding.progressBar.visible(false)
                     adapter.setItems(it.data)
-                    Log.d(TAG, "onViewCreated: Data: ${it.data} ")
                 }
                 is Resource.Failure -> {
                     binding.progressBar.visible(false)
-                    Log.d(TAG, "onViewCreated: Error: ${it.errorBody}")
                     handleApiError(it) {
                         getAccueil()
                     }
@@ -65,7 +62,7 @@ class AccueilFragment :
         })
     }
 
-    private fun onCategoryClicked(category:AccueilResponseItem,position:Int){
+    private fun onCategoryClicked(category: AccueilResponseItem, position:Int){
         val bundle = bundleOf(CATEGORY_BUNDLE to category)
         navController.navigate(R.id.action_accueilFragment_to_espaceSushiFragment,bundle)
     }

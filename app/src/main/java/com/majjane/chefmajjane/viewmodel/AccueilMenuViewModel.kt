@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.majjane.chefmajjane.repository.AccueilMenuRepository
 import com.majjane.chefmajjane.responses.AccueilResponse
 import com.majjane.chefmajjane.responses.FoodResponse
+import com.majjane.chefmajjane.responses.menu.MenuResponse
 import com.majjane.chefmajjane.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -19,8 +20,9 @@ class AccueilMenuViewModel(
     private val _accueilResponse: MutableLiveData<Resource<AccueilResponse>> = MutableLiveData()
     private val _foodListResponse: MutableLiveData<Resource<FoodResponse>> = MutableLiveData()
     val foodListResponse: LiveData<Resource<FoodResponse>> get() = _foodListResponse
-    private var nextFoodListResponse: FoodResponse?=null
+     var nextFoodListResponse: FoodResponse? = null
     val accueilResponse: LiveData<Resource<AccueilResponse>> get() = _accueilResponse
+    val menuListResponse: MutableLiveData<Resource<MenuResponse>> = MutableLiveData()
     var searchFoodPage = 0
     fun getAccueil(
         lang_id: Int
@@ -29,9 +31,12 @@ class AccueilMenuViewModel(
         _accueilResponse.postValue(repositoryAccueil.getAccueil(lang_id))
     }
 
-    init {
-        getFoodList(idLang = 1,121)
+    fun getMenuList(idLang: Int, idMenu: Int) = viewModelScope.launch {
+        menuListResponse.postValue(Resource.Loading())
+        menuListResponse.postValue(repositoryAccueil.getMenuList(idLang, idMenu))
     }
+
+
     fun getFoodList(
         idLang: Int,
         idCategory: Int,
@@ -54,27 +59,28 @@ class AccueilMenuViewModel(
 
         }
     }
-    private  val TAG = "AccueilMenuViewModel"
+
+    private val TAG = "AccueilMenuViewModel"
     private fun handleFoodListResponse(response: Response<FoodResponse>): Resource<FoodResponse> {
         if (response.isSuccessful) {
             response.body()?.let {
-                searchFoodPage+=10
-                Log.d(TAG, "handleFoodListResponse: $searchFoodPage")
-                if(nextFoodListResponse==null){
+                searchFoodPage += 10
+                if (nextFoodListResponse == null) {
                     nextFoodListResponse = it
-                    Log.d(TAG, "handleFoodListResponse: first time $nextFoodListResponse")
-                }else{
+                   // Log.d(TAG, "handleFoodListResponse: first time $nextFoodListResponse")
+                } else {
                     val oldData = nextFoodListResponse?.articles as MutableList
-                    Log.d(TAG, "handleFoodListResponse: second time $nextFoodListResponse")
                     val newData = it.articles
-                    Log.d(TAG, "handleFoodListResponse: new Data ${newData.size}")
                     oldData.addAll(newData)
                 }
-                return Resource.Success(nextFoodListResponse ?:it)
+                return Resource.Success(nextFoodListResponse ?: it)
             }
         }
-        return Resource.Failure(false,null,null)
+        return Resource.Failure(false, null, null)
     }
+
+
+
 
 
 }

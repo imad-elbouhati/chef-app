@@ -24,7 +24,9 @@
             app:destination="@id/sushiDetailsFragment" />
         <argument
             android:name="category_bundle"
-            app:argType="com.majjane.chefmajjane.responses.AccueilResponseItem" />
+            app:argType="com.majjane.chefmajjane.responses.AccueilResponseItem"
+            />
+
     </fragment>
     <fragment
         android:id="@+id/sushiDetailsFragment"
@@ -34,6 +36,9 @@
         <argument
             android:name="article_bundle"
             app:argType="com.majjane.chefmajjane.responses.Article" />
+        <action
+            android:id="@+id/action_sushiDetailsFragment_to_espaceSushiFragment"
+            app:destination="@id/espaceSushiFragment" />
     </fragment>
     <fragment
         android:id="@+id/mesCommandesFragment"

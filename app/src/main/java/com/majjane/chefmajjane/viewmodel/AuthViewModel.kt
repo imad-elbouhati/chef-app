@@ -65,7 +65,6 @@ class AuthViewModel(
             account?.let {
                 _googleLoginResponse.postValue(Resource.Success(it))
                 // TODO: 5/24/2021 POST VALUES TO API HERE INSTEAD OF FRGMT
-                Log.d(TAG, "handleSignInResult: ${it.email} ${it.id} ${it.displayName}")
             }
         } catch (e: Exception) {
             when(e){
