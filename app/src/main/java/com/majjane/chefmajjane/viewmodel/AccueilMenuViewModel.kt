@@ -20,7 +20,7 @@ class AccueilMenuViewModel(
     private val _accueilResponse: MutableLiveData<Resource<AccueilResponse>> = MutableLiveData()
     private val _foodListResponse: MutableLiveData<Resource<FoodResponse>> = MutableLiveData()
     val foodListResponse: LiveData<Resource<FoodResponse>> get() = _foodListResponse
-     var nextFoodListResponse: FoodResponse? = null
+    var nextFoodListResponse: FoodResponse? = null
     val accueilResponse: LiveData<Resource<AccueilResponse>> get() = _accueilResponse
     val menuListResponse: MutableLiveData<Resource<MenuResponse>> = MutableLiveData()
     var searchFoodPage = 0
@@ -67,7 +67,7 @@ class AccueilMenuViewModel(
                 searchFoodPage += 10
                 if (nextFoodListResponse == null) {
                     nextFoodListResponse = it
-                   // Log.d(TAG, "handleFoodListResponse: first time $nextFoodListResponse")
+                    // Log.d(TAG, "handleFoodListResponse: first time $nextFoodListResponse")
                 } else {
                     val oldData = nextFoodListResponse?.articles as MutableList
                     val newData = it.articles
@@ -78,9 +78,5 @@ class AccueilMenuViewModel(
         }
         return Resource.Failure(false, null, null)
     }
-
-
-
-
 
 }
