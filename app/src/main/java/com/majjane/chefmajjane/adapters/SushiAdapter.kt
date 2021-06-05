@@ -9,11 +9,11 @@ import com.majjane.chefmajjane.responses.Article
 import com.majjane.chefmajjane.views.customviews.CounterView
 
 
-class FoodAdapter(
+class SushiAdapter(
     val onClick: (Article, Int) -> Unit?,
     val onTotalPriceChangedListener: (Float, HashMap<Int, Article>) -> Unit?
 ) :
-    RecyclerView.Adapter<FoodAdapter.MyViewHolder>() {
+    RecyclerView.Adapter<SushiAdapter.MyViewHolder>() {
     var items = mutableListOf<Article>()
 
     @JvmName("setItems1")
@@ -39,9 +39,7 @@ class FoodAdapter(
 
     private val TAG = "SushiAdapter"
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        articleHashMap.clear()
         val article = items[position]
-        article.selectedQuantity = 0
         holder.binding.apply {
             foodQuantity.setModel(article)
             sushiTitle.text = article.name
@@ -66,7 +64,9 @@ class FoodAdapter(
                         }
                         //  Log.d(TAG, "onQuantityChanged: $articleHashMap")
                         val totalPrice = calculateSum(articleHashMap)
-                        onTotalPriceChangedListener(totalPrice, filterArticled as HashMap<Int, Article>)
+                        onTotalPriceChangedListener(totalPrice,
+                            filterArticled as HashMap<Int, Article>
+                        )
                     }
                 }
             })

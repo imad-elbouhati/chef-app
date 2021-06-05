@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.adapters.MenuAdapter
-import com.majjane.chefmajjane.adapters.FoodAdapter
+import com.majjane.chefmajjane.adapters.SushiAdapter
 import com.majjane.chefmajjane.databinding.FragmentEspaceSushiBinding
 import com.majjane.chefmajjane.network.AccueilMenuApi
 import com.majjane.chefmajjane.network.RemoteDataSource
@@ -31,14 +31,12 @@ import com.majjane.chefmajjane.viewmodel.AccueilMenuViewModel
 import com.majjane.chefmajjane.views.activities.HomeActivity
 import com.majjane.chefmajjane.views.base.BaseFragment
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class FoodListFragment :
     BaseFragment<AccueilMenuViewModel, FragmentEspaceSushiBinding, AccueilMenuRepository>() {
-    private lateinit var mArticleHashMap: HashMap<Int, Article>
     private val adapter by lazy {
-        FoodAdapter({ food, position -> onFoodClicked(food, position) }, { sum, articleHashMap ->
+        SushiAdapter({ food, position -> onFoodClicked(food, position) }, { sum, articleHashMap ->
             onTotalPriceChangedListener(
                 sum,
                 articleHashMap
@@ -54,12 +52,8 @@ class FoodListFragment :
         menuId = menu.id
         viewModel.searchFoodPage = 0
         viewModel.nextFoodListResponse = null
-        mArticleHashMap = HashMap()
-        mArticleHashMap.clear()
-        Log.d(TAG, "onMenuClicked: $mArticleHashMap")
-        binding.totalSumButton.visible(false)
-        // viewModel.getFoodByMenuList(id_lang=1,menu.id)
-        viewModel.getFoodList(idLang = 1, menu.id)
+       // viewModel.getFoodByMenuList(id_lang=1,menu.id)
+        viewModel.getFoodList(idLang = 1,menu.id)
 
     }
 
@@ -78,23 +72,18 @@ class FoodListFragment :
         categoryArgs = requireArguments().getParcelable(CATEGORY_BUNDLE)!!
     }
 
-    private var navController: NavController? = null
+    private var navController:NavController?=null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // getMenuList(1, 121)
+       // getMenuList(1, 121)
         navController = Navigation.findNavController(view)
         initRecyclerView()
-        if (menuId == 0) {
+        if(menuId == 0){
             getFoodList(idLang = 1, categoryArgs.id)
             getMenuList(idLang = 1, categoryArgs.id)
-        } else {
+        }else{
             getFoodList(idLang = 1, menuId)
             getMenuList(idLang = 1, 121)
-        }
-        binding.totalSumButton.setOnClickListener {
-            mArticleHashMap.forEach { t, u ->
-                Log.d(TAG, "onTotalSumBtnClicked: ${u.name} ${u.selectedQuantity}")
-            }
         }
 
         observeFoodListResponse()
@@ -123,11 +112,9 @@ class FoodListFragment :
             }
         })
     }
-
     private fun getMenuList(idLang: Int, i: Int) {
         viewModel.getMenuList(idLang = 1, i)
     }
-
     private fun observeFoodListResponse() {
         viewModel.foodListResponse.observe(viewLifecycleOwner, { it ->
             when (it) {
@@ -193,18 +180,14 @@ class FoodListFragment :
         binding.sushiRecyclerView.addOnScrollListener(this@FoodListFragment.scrollListener)
         binding.menuTypeRecyclerView.adapter = menuAdapter
     }
-
     private fun getFoodList(idLang: Int, i: Int) {
         viewModel.getFoodList(idLang = 1, i)
     }
-
     private fun onTotalPriceChangedListener(sum: Float, articleHashMap: HashMap<Int, Article>) {
-        this.mArticleHashMap = articleHashMap
-        if (mArticleHashMap.size > 0) {
-            Log.d(TAG, "onTotalPriceChangedListener: ${this.mArticleHashMap}")
+        if (sum > 0) {
             binding.totalSumButton.apply {
                 visible(true)
-                text = "Commander ${mArticleHashMap.size} pour $sum MAD "
+                text = "Commander ${articleHashMap.size} pour $sum MAD "
             }
         } else {
             binding.totalSumButton.visible(false)
@@ -212,11 +195,10 @@ class FoodListFragment :
     }
 
     private fun onFoodClicked(article: Article, position: Int) {
-        val bundle = bundleOf(ARTICLE_BUNDLE to article)
+        val bundle = bundleOf( ARTICLE_BUNDLE to article)
         navController?.navigate(R.id.action_espaceSushiFragment_to_sushiDetailsFragment, bundle)
 
     }
-
     var isSearchingMenu = false
     override fun createViewBinding(
         inflater: LayoutInflater,
