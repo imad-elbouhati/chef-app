@@ -21,33 +21,41 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/quantityTextView"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/articleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="COMMANDER MAKI SAUMON"
             android:textColor="@color/custom_black" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/articlePrice"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:layout_weight="1"
             android:text="70,00 MAD"
             android:textColor="@color/custom_black" />
 
     </LinearLayout>
 
     <TextView
-        android:layout_width="230dp"
+        android:id="@+id/articleDescription"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:text="Asiatique . Lorem ipsum dolor amet, consectetuer adipiscing elit."
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/quantityTextView"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

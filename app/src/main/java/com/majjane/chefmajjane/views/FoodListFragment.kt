@@ -52,6 +52,7 @@ class FoodListFragment :
         menuId = menu.id
         viewModel.searchFoodPage = 0
         viewModel.nextFoodListResponse = null
+        adapter.articleHashMap.clear()
        // viewModel.getFoodByMenuList(id_lang=1,menu.id)
         viewModel.getFoodList(idLang = 1,menu.id)
 
@@ -73,6 +74,8 @@ class FoodListFragment :
     }
 
     private var navController:NavController?=null
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        // getMenuList(1, 121)
@@ -86,6 +89,13 @@ class FoodListFragment :
             getMenuList(idLang = 1, 121)
         }
 
+        if(adapter.articleHashMap.size > 0){
+            Log.d(TAG, "onViewCreated: ${adapter.articleHashMap.size}")
+            binding.totalSumButton.apply {
+                text = "Commander ${adapter.articleHashMap.size} pour ${adapter.totalPrice} MAD "
+                visible(true)
+            }
+        }
         observeFoodListResponse()
         observerMenuListResponse()
 

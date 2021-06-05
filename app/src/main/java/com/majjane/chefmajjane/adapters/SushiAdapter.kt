@@ -38,6 +38,7 @@ class SushiAdapter(
     }
 
     private val TAG = "SushiAdapter"
+    var totalPrice = 0.0f
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val article = items[position]
         holder.binding.apply {
@@ -59,19 +60,18 @@ class SushiAdapter(
                     if (article != null) {
                         //Log.d(TAG, "onQuantityChanged: ${article.name} ${article.selectedQuantity}")
                         articleHashMap[article.id] = article
-                        val filterArticled = articleHashMap.filterValues {
+                        articleHashMap = articleHashMap.filterValues {
                             it.selectedQuantity > 0
-                        }
+                        } as HashMap<Int, Article>
                         //  Log.d(TAG, "onQuantityChanged: $articleHashMap")
                         val totalPrice = calculateSum(articleHashMap)
                         onTotalPriceChangedListener(totalPrice,
-                            filterArticled as HashMap<Int, Article>
+                            articleHashMap
                         )
                     }
                 }
             })
         }
-
     }
 
     private fun calculateSum(hashMap: HashMap<Int, Article>): Float {
@@ -80,6 +80,7 @@ class SushiAdapter(
             // Log.d(TAG, "calculateSum: $articleId ${article.name} ${article.selectedQuantity}")
             sum += article.prixTTC.toFloat() * article.selectedQuantity
         }
+        this.totalPrice = sum
         return sum
     }
 
