@@ -10,6 +10,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,7 +18,7 @@
         tools:listitem="@layout/item_row_layout_commande" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/displayAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -25,6 +26,7 @@
         android:textColor="@color/custom_green"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
@@ -39,7 +41,7 @@
         android:background="#DBDBE0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/displayAll" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -236,6 +238,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/articleTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -258,6 +261,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/deliveryCost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -280,6 +284,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/totalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

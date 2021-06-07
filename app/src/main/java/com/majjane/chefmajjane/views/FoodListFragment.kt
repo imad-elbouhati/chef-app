@@ -22,6 +22,7 @@ import com.majjane.chefmajjane.responses.AccueilResponseItem
 import com.majjane.chefmajjane.responses.Article
 import com.majjane.chefmajjane.responses.menu.MenuResponseItem
 import com.majjane.chefmajjane.utils.Constants.Companion.ARTICLE_BUNDLE
+import com.majjane.chefmajjane.utils.Constants.Companion.ARTICLE_LIST_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.CATEGORY_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.majjane.chefmajjane.utils.Resource
@@ -31,6 +32,8 @@ import com.majjane.chefmajjane.viewmodel.AccueilMenuViewModel
 import com.majjane.chefmajjane.views.activities.HomeActivity
 import com.majjane.chefmajjane.views.base.BaseFragment
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class FoodListFragment :
@@ -53,8 +56,9 @@ class FoodListFragment :
         viewModel.searchFoodPage = 0
         viewModel.nextFoodListResponse = null
         adapter.articleHashMap.clear()
-       // viewModel.getFoodByMenuList(id_lang=1,menu.id)
-        viewModel.getFoodList(idLang = 1,menu.id)
+        // viewModel.getFoodByMenuList(id_lang=1,menu.id)
+       // binding.sushiRecyclerView.scrollToPosition(0)
+        viewModel.getFoodList(idLang = 1, menu.id)
 
     }
 
@@ -73,28 +77,37 @@ class FoodListFragment :
         categoryArgs = requireArguments().getParcelable(CATEGORY_BUNDLE)!!
     }
 
-    private var navController:NavController?=null
+    private var navController: NavController? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // getMenuList(1, 121)
+        // getMenuList(1, 121)
         navController = Navigation.findNavController(view)
         initRecyclerView()
-        if(menuId == 0){
+        if (menuId == 0) {
             getFoodList(idLang = 1, categoryArgs.id)
             getMenuList(idLang = 1, categoryArgs.id)
-        }else{
+        } else {
             getFoodList(idLang = 1, menuId)
             getMenuList(idLang = 1, 121)
         }
 
-        if(adapter.articleHashMap.size > 0){
+        if (adapter.articleHashMap.size > 0) {
             Log.d(TAG, "onViewCreated: ${adapter.articleHashMap.size}")
             binding.totalSumButton.apply {
                 text = "Commander ${adapter.articleHashMap.size} pour ${adapter.totalPrice} MAD "
                 visible(true)
             }
+        }
+
+        binding.totalSumButton.setOnClickListener {
+            val articleList = ArrayList(mArticleHashMap?.values).toTypedArray()
+            navController?.navigate(
+                R.id.action_espaceSushiFragment_to_mesCommandesFragment,
+                bundleOf(ARTICLE_LIST_BUNDLE to articleList)
+            )
+
         }
         observeFoodListResponse()
         observerMenuListResponse()
@@ -122,9 +135,11 @@ class FoodListFragment :
             }
         })
     }
+
     private fun getMenuList(idLang: Int, i: Int) {
         viewModel.getMenuList(idLang = 1, i)
     }
+
     private fun observeFoodListResponse() {
         viewModel.foodListResponse.observe(viewLifecycleOwner, { it ->
             when (it) {
@@ -173,13 +188,13 @@ class FoodListFragment :
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning
             isTotalMoreThanVisible && isScrolling
             if (shouldPaginate) {
-//                if(!isSearchingMenu){
-//                    viewModel.getFoodList(1, categoryArgs.id)
-//                }else{
-//                    viewModel.getFoodByMenuList(1, menuId)
-//                }
-                viewModel.getFoodList(1, menuId)
-                isScrolling = false
+                isScrolling = if (menuId == 0) {
+                    viewModel.getFoodList(1, categoryArgs.id)
+                    false
+                } else {
+                    viewModel.getFoodList(1, menuId)
+                    false
+                }
             }
         }
     }
@@ -190,25 +205,30 @@ class FoodListFragment :
         binding.sushiRecyclerView.addOnScrollListener(this@FoodListFragment.scrollListener)
         binding.menuTypeRecyclerView.adapter = menuAdapter
     }
+
     private fun getFoodList(idLang: Int, i: Int) {
         viewModel.getFoodList(idLang = 1, i)
     }
+
+    var mArticleHashMap: HashMap<Int, Article>? = null
     private fun onTotalPriceChangedListener(sum: Float, articleHashMap: HashMap<Int, Article>) {
         if (sum > 0) {
             binding.totalSumButton.apply {
                 visible(true)
                 text = "Commander ${articleHashMap.size} pour $sum MAD "
             }
+            this.mArticleHashMap = articleHashMap
         } else {
             binding.totalSumButton.visible(false)
         }
     }
 
     private fun onFoodClicked(article: Article, position: Int) {
-        val bundle = bundleOf( ARTICLE_BUNDLE to article)
+        val bundle = bundleOf(ARTICLE_BUNDLE to article)
         navController?.navigate(R.id.action_espaceSushiFragment_to_sushiDetailsFragment, bundle)
 
     }
+
     var isSearchingMenu = false
     override fun createViewBinding(
         inflater: LayoutInflater,

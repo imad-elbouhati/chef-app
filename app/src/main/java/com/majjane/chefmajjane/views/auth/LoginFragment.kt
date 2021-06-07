@@ -17,10 +17,9 @@ import com.majjane.chefmajjane.databinding.FragmentLoginBinding
 import com.majjane.chefmajjane.network.AuthApi
 import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AuthRepository
-import com.majjane.chefmajjane.utils.Resource
-import com.majjane.chefmajjane.utils.handleApiError
-import com.majjane.chefmajjane.utils.snackbar
+import com.majjane.chefmajjane.utils.*
 import com.majjane.chefmajjane.viewmodel.AuthViewModel
+import com.majjane.chefmajjane.views.activities.HomeActivity
 import com.majjane.chefmajjane.views.base.BaseFragment
 
 
@@ -45,6 +44,25 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
            signInWithFacebook()
         }
         observeGoogleLogin()
+        observeGConnect()
+    }
+
+    private fun observeGConnect() {
+        viewModel.gConnectResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Success -> {
+                    binding.progressBar3.visible(false)
+                    requireActivity().startNewActivity(HomeActivity::class.java)
+                }
+                is Resource.Failure -> {
+                    binding.progressBar3.visible(false)
+                    handleApiError(it)
+                }
+                is Resource.Loading -> {
+                    binding.progressBar3.visible(true)
+                }
+            }
+        })
     }
 
     private fun signInWithFacebook() {
@@ -69,11 +87,22 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         viewModel.googleLoginResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Success -> {
-                    requireView().snackbar("Google Login Succeed ${it.data.email}")
-                    // TODO: 5/24/2021 POST values to API
+                    binding.progressBar3.visible(false)
+                    val account = it.data
+                    Log.d(TAG, "observeGoogleLogin: ${account.email}")
+                    viewModel.postGoogleLogin(
+                        account.email,
+                        account.familyName,
+                        account.givenName,
+                        id_lang = 1
+                    )
                 }
                 is Resource.Failure -> {
+                    binding.progressBar3.visible(false)
                     handleApiError(it)
+                }
+                is Resource.Loading -> {
+                    binding.progressBar3.visible(true)
                 }
             }
         })

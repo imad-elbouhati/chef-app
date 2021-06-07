@@ -21,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.majjane.chefmajjane.repository.AuthRepository
+import com.majjane.chefmajjane.responses.login.GoogleResponse
 import com.majjane.chefmajjane.utils.Resource
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -30,8 +31,9 @@ class AuthViewModel(
     val repository: AuthRepository
 ) : ViewModel() {
     private val TAG = "AuthViewModel"
-    private val _googleLoginResponse: MutableLiveData<Resource<GoogleSignInAccount>> =
-        MutableLiveData()
+    private val _googleLoginResponse: MutableLiveData<Resource<GoogleSignInAccount>> = MutableLiveData()
+    private val _gConnectResponse: MutableLiveData<Resource<GoogleResponse>> = MutableLiveData()
+    val gConnectResponse: LiveData<Resource<GoogleResponse>> get() = _gConnectResponse
     val googleLoginResponse: LiveData<Resource<GoogleSignInAccount>> get() = _googleLoginResponse
     private var onIntentListener: ((Intent) -> Unit?)? = null
     fun setIntent(onIntent: (Intent) -> Unit) {
@@ -77,6 +79,11 @@ class AuthViewModel(
             }
             //updateUI(null)
         }
+    }
+
+    fun postGoogleLogin(email: String?, familyName: String?, givenName: String?,id_lang:Int) = viewModelScope.launch {
+        _gConnectResponse.postValue(Resource.Loading())
+       _gConnectResponse.postValue(repository.postGoogleLogin(email,familyName,givenName,id_lang))
     }
 
 

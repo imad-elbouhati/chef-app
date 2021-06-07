@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/mapsFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -26,6 +26,9 @@
             android:name="category_bundle"
             app:argType="com.majjane.chefmajjane.responses.AccueilResponseItem"
             />
+        <action
+            android:id="@+id/action_espaceSushiFragment_to_mesCommandesFragment"
+            app:destination="@id/mesCommandesFragment" />
 
     </fragment>
     <fragment
@@ -44,7 +47,11 @@
         android:id="@+id/mesCommandesFragment"
         android:name="com.majjane.chefmajjane.views.MesCommandesFragment"
         android:label="fragment_mes_commandes"
-        tools:layout="@layout/fragment_mes_commandes" />
+        tools:layout="@layout/fragment_mes_commandes" >
+        <argument
+            android:name="article_list_bundle"
+            app:argType="com.majjane.chefmajjane.responses.Article[]" />
+    </fragment>
     <fragment
         android:id="@+id/languageFragment"
         android:name="com.majjane.chefmajjane.views.LanguageFragment"
@@ -65,4 +72,9 @@
         android:name="com.majjane.chefmajjane.ChangePasswordFragment"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.majjane.chefmajjane.views.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
