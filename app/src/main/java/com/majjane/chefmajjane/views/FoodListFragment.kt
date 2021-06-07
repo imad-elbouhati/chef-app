@@ -55,11 +55,9 @@ class FoodListFragment :
         menuId = menu.id
         viewModel.searchFoodPage = 0
         viewModel.nextFoodListResponse = null
-        adapter.articleHashMap.clear()
-        // viewModel.getFoodByMenuList(id_lang=1,menu.id)
-       // binding.sushiRecyclerView.scrollToPosition(0)
-        viewModel.getFoodList(idLang = 1, menu.id)
+        //adapter.articleHashMap.clear()
 
+        viewModel.getFoodList(idLang = 1, menu.id)
     }
 
     private val TAG = "FoodListFragment"
@@ -92,14 +90,16 @@ class FoodListFragment :
             getFoodList(idLang = 1, menuId)
             getMenuList(idLang = 1, 121)
         }
-
-        if (adapter.articleHashMap.size > 0) {
-            Log.d(TAG, "onViewCreated: ${adapter.articleHashMap.size}")
-            binding.totalSumButton.apply {
-                text = "Commander ${adapter.articleHashMap.size} pour ${adapter.totalPrice} MAD "
-                visible(true)
+        adapter.articleHashMap?.let {
+            if (it.size > 0) {
+                Log.d(TAG, "onViewCreated: ${it.size}")
+                binding.totalSumButton.apply {
+                    text = "Commander ${it.size} pour ${adapter.totalPrice} MAD "
+                    visible(true)
+                }
             }
         }
+
 
         binding.totalSumButton.setOnClickListener {
             val articleList = ArrayList(mArticleHashMap?.values).toTypedArray()
@@ -152,7 +152,7 @@ class FoodListFragment :
                     binding.progressBar2.visible(false)
                     val totalPages = it.data.total_products / QUERY_PAGE_SIZE + 2
                     isLastPage = viewModel.searchFoodPage == totalPages
-                    adapter.setItems(it.data.articles)
+                    adapter.setItems(it.data.articles as ArrayList<Article>)
                 }
                 is Resource.Failure -> {
                     binding.progressBar2.visible(false)

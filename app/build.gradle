@@ -75,5 +75,6 @@ dependencies {
     //Glide
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 
 }

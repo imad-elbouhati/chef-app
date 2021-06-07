@@ -17,8 +17,20 @@ class SushiAdapter(
     var items = mutableListOf<Article>()
 
     @JvmName("setItems1")
-    fun setItems(items: List<Article>) {
-        this.items = items as MutableList<Article>
+    fun setItems(items: ArrayList<Article>) {
+        val listOfId = ArrayList<Int>()
+        for (id in items) {
+            listOfId.add(id.id)
+        }
+        if (articleHashMap.size > 0) {
+            articleHashMap.forEach { (articleId, article) ->
+                if (listOfId.contains(articleId)) {
+                    val item = items.find { it.id == articleId }
+                    items[items.indexOf(item)] = article
+                }
+            }
+        }
+        this.items = items
         notifyDataSetChanged()
     }
 
@@ -65,7 +77,8 @@ class SushiAdapter(
                         } as HashMap<Int, Article>
                         //  Log.d(TAG, "onQuantityChanged: $articleHashMap")
                         val totalPrice = calculateSum(articleHashMap)
-                        onTotalPriceChangedListener(totalPrice,
+                        onTotalPriceChangedListener(
+                            totalPrice,
                             articleHashMap
                         )
                     }

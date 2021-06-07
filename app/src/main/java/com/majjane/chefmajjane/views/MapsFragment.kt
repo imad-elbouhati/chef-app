@@ -8,14 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.majjane.chefmajjane.R
+import com.majjane.chefmajjane.views.activities.HomeActivity
 
 class MapsFragment : Fragment() {
-
+    override fun onResume() {
+        super.onResume()
+        ((activity) as HomeActivity).setHeaderVisibility(false)
+    }
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -26,9 +30,9 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val rabat = LatLng(33.9693414, -6.9273034)
+        googleMap.addMarker(MarkerOptions().position(rabat).title("Marker in Rabat"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(rabat))
     }
 
     override fun onCreateView(
