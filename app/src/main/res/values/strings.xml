@@ -61,4 +61,5 @@
     <string name="s_lectionnez_l_object">Sélectionnez l\'object</string>
     <string name="ajouter_un_fichier">Ajouter un fichier :</string>
     <string name="envoyer">Envoyer</string>
+    <string name="choisissez_cette_adresse">choisissez cette adresse</string>
 </resources>
