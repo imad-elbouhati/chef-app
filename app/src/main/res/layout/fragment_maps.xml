@@ -23,6 +23,7 @@
         android:layout_marginBottom="40dp"
         android:text="@string/choisissez_cette_adresse"
         android:textColor="@color/white"
+        android:textSize="20sp"
         android:background="@drawable/green_rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

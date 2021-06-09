@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +30,7 @@ import com.majjane.chefmajjane.utils.Resource
 import com.majjane.chefmajjane.utils.handleApiError
 import com.majjane.chefmajjane.utils.visible
 import com.majjane.chefmajjane.viewmodel.AccueilMenuViewModel
+import com.majjane.chefmajjane.viewmodel.SharedViewModel
 import com.majjane.chefmajjane.views.activities.HomeActivity
 import com.majjane.chefmajjane.views.base.BaseFragment
 import java.util.*
@@ -38,6 +40,7 @@ import kotlin.collections.HashMap
 
 class FoodListFragment :
     BaseFragment<AccueilMenuViewModel, FragmentEspaceSushiBinding, AccueilMenuRepository>() {
+    private lateinit var sharedViewModel: SharedViewModel
     private val adapter by lazy {
         SushiAdapter({ food, position -> onFoodClicked(food, position) }, { sum, articleHashMap ->
             onTotalPriceChangedListener(
@@ -73,6 +76,9 @@ class FoodListFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         categoryArgs = requireArguments().getParcelable(CATEGORY_BUNDLE)!!
+        activity?.run {
+            sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+        }
     }
 
     private var navController: NavController? = null
@@ -107,7 +113,7 @@ class FoodListFragment :
                 R.id.action_espaceSushiFragment_to_mesCommandesFragment,
                 bundleOf(ARTICLE_LIST_BUNDLE to articleList)
             )
-
+            sharedViewModel.commandList.value = articleList.toList()
         }
         observeFoodListResponse()
         observerMenuListResponse()
@@ -242,3 +248,57 @@ class FoodListFragment :
         AccueilMenuRepository(RemoteDataSource().buildApi(AccueilMenuApi::class.java))
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

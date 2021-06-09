@@ -87,11 +87,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/adressDeLaivrisain" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/addressText"
                     android:layout_width="299dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/lorem_ipsum_dolor_amet_consectetuer_adipiscing_elit"
+                    android:layout_marginStart="20dp"
+                    android:hint="No adress selected"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -100,19 +100,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/right_arrow_ic"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                    app:layout_constraintBottom_toBottomOf="@+id/addressText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView5"
-                    app:layout_constraintTop_toTopOf="@+id/textView5" />
+                    app:layout_constraintStart_toEndOf="@+id/addressText"
+                    app:layout_constraintTop_toTopOf="@+id/addressText" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="15dp"
                     android:background="#DBDBE0"
-                    app:layout_constraintEnd_toEndOf="@+id/textView5"
-                    app:layout_constraintStart_toStartOf="@+id/textView5"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintEnd_toEndOf="@+id/addressText"
+                    app:layout_constraintStart_toStartOf="@+id/addressText"
+                    app:layout_constraintTop_toBottomOf="@+id/addressText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -137,18 +137,17 @@
                     android:id="@+id/imageView4"
                     android:layout_width="20dp"
                     android:layout_height="27dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
-
                     android:src="@drawable/credit_card_ic"
                     app:layout_constraintLeft_toLeftOf="@+id/modePaiment"
                     app:layout_constraintTop_toBottomOf="@+id/modePaiment" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/methodePaimentText"
                     android:layout_width="299dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:text="@string/lorem_ipsum_dolor_amet_consectetuer_adipiscing_elit"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                     app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -158,19 +157,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/right_arrow_ic"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                    app:layout_constraintBottom_toBottomOf="@+id/methodePaimentText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView6"
-                    app:layout_constraintTop_toTopOf="@+id/textView6" />
+                    app:layout_constraintStart_toEndOf="@+id/methodePaimentText"
+                    app:layout_constraintTop_toTopOf="@+id/methodePaimentText" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="15dp"
                     android:background="#DBDBE0"
-                    app:layout_constraintEnd_toEndOf="@+id/textView6"
-                    app:layout_constraintStart_toStartOf="@+id/textView6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintEnd_toEndOf="@+id/methodePaimentText"
+                    app:layout_constraintStart_toStartOf="@+id/methodePaimentText"
+                    app:layout_constraintTop_toBottomOf="@+id/methodePaimentText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

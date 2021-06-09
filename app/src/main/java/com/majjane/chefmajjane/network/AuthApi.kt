@@ -1,17 +1,26 @@
 package com.majjane.chefmajjane.network
 
+import com.majjane.chefmajjane.responses.login.Login
 import com.majjane.chefmajjane.responses.login.GoogleResponse
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface AuthApi {
-    @FormUrlEncoded
+
+//    @FormUrlEncoded
+//    @POST("gconnect.php")
+//    suspend fun postGoogleLogin(
+//        @Field("id_lang") id_lang: Int,
+//        @Field("nom") familyName: String?,
+//        @Field("prenom") givenName: String?,
+//        @Field("email") email: String?
+//    ): GoogleResponse
+
     @POST("gconnect.php")
     suspend fun postGoogleLogin(
-        @Field("email") email: String?,
-        @Field("familyName") familyName: String?,
-        @Field("givenName")givenName: String ?,
-        @Field("id_lang") id_lang:Int,
+       @Body login: Login
     ): GoogleResponse
+
+    @POST("fconnect.php")
+    fun facebookLogin(id_lang: Int, @Query("token") token: String):Int
+
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/mapsFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -51,6 +51,12 @@
         <argument
             android:name="article_list_bundle"
             app:argType="com.majjane.chefmajjane.responses.Article[]" />
+        <action
+            android:id="@+id/action_mesCommandesFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_mesCommandesFragment_to_displayCommandsFragment"
+            app:destination="@id/displayCommandsFragment" />
     </fragment>
     <fragment
         android:id="@+id/languageFragment"
@@ -76,5 +82,14 @@
         android:id="@+id/mapsFragment"
         android:name="com.majjane.chefmajjane.views.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_mesCommandesFragment"
+            app:destination="@id/mesCommandesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayCommandsFragment"
+        android:name="com.majjane.chefmajjane.views.DisplayCommandsFragment"
+        android:label="fragment_display_commands"
+        tools:layout="@layout/fragment_display_commands" />
 </navigation>

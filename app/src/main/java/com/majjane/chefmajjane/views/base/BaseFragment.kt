@@ -16,6 +16,7 @@ import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.viewmodel.ViewModelFactory
 import com.majjane.chefmajjane.repository.base.BaseRepository
+import com.majjane.chefmajjane.utils.SharedPreferencesHandler
 import com.majjane.chefmajjane.utils.visible
 
 
@@ -24,12 +25,14 @@ abstract class BaseFragment<VM : ViewModel, V : ViewBinding, BR : BaseRepository
     protected val binding get() = _binding!!
     lateinit var viewModel: VM
     val remoteDataSource = RemoteDataSource()
+    lateinit var preferences: SharedPreferencesHandler
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         _binding = createViewBinding(inflater, container)
+        preferences = SharedPreferencesHandler(requireContext())
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory).get(createViewModel())
         return binding.root

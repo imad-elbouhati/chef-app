@@ -30,6 +30,7 @@ class AccueilFragment :
         AccueilAdapter { category, position -> onCategoryClicked(category, position) }
     }
 
+
     override fun createViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?

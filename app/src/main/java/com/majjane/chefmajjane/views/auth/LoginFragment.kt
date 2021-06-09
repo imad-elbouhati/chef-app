@@ -43,6 +43,24 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         binding.facebookSignInBtn.setOnClickListener {
            signInWithFacebook()
         }
+        viewModel.facebookResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Success -> {
+                    binding.progressBar3.visible(false)
+                    Log.d(TAG, "onViewCreated: facebook ${it.data}")
+                    preferences.saveIdCustomer(it.data)
+                    requireActivity().startNewActivity(HomeActivity::class.java)
+                }
+                is Resource.Failure -> {
+                    binding.progressBar3.visible(false)
+                    handleApiError(it)
+                }
+                is Resource.Loading -> {
+                    binding.progressBar3.visible(true)
+                }
+            }
+        })
+
         observeGoogleLogin()
         observeGConnect()
     }
@@ -52,6 +70,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             when (it) {
                 is Resource.Success -> {
                     binding.progressBar3.visible(false)
+                    preferences.saveIdCustomer(it.data.id)
                     requireActivity().startNewActivity(HomeActivity::class.java)
                 }
                 is Resource.Failure -> {
@@ -72,6 +91,8 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 //TODO: Facebook token to api
+                viewModel.facebookLogin(preferences.getIdLang(),result?.accessToken.toString())
+                Log.d(TAG, "onSuccess: ${result?.accessToken?.token.toString()}")
             }
 
             override fun onCancel() {
@@ -90,12 +111,19 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                     binding.progressBar3.visible(false)
                     val account = it.data
                     Log.d(TAG, "observeGoogleLogin: ${account.email}")
-                    viewModel.postGoogleLogin(
-                        account.email,
-                        account.familyName,
-                        account.givenName,
-                        id_lang = 1
-                    )
+
+                    account.email?.let { it1 ->
+                        account.familyName?.let { it2 ->
+                            account.givenName?.let { it3 ->
+                                viewModel.postGoogleLogin(
+                                    it1,
+                                    it2,
+                                    it3,
+                                    preferences.getIdLang()
+                                )
+                            }
+                        }
+                    }
                 }
                 is Resource.Failure -> {
                     binding.progressBar3.visible(false)

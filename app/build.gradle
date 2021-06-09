@@ -74,7 +74,11 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     //Glide
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    //OkHttp
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+    //Map service
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    //Map Utils
+    implementation 'com.google.maps.android:android-maps-utils:2.2.3'
 
 }

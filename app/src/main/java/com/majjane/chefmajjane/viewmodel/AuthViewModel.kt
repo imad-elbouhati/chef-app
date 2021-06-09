@@ -1,19 +1,12 @@
 package com.majjane.chefmajjane.viewmodel
 
-import android.accounts.NetworkErrorException
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -25,7 +18,6 @@ import com.majjane.chefmajjane.responses.login.GoogleResponse
 import com.majjane.chefmajjane.utils.Resource
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.util.*
 
 class AuthViewModel(
     val repository: AuthRepository
@@ -33,6 +25,8 @@ class AuthViewModel(
     private val TAG = "AuthViewModel"
     private val _googleLoginResponse: MutableLiveData<Resource<GoogleSignInAccount>> = MutableLiveData()
     private val _gConnectResponse: MutableLiveData<Resource<GoogleResponse>> = MutableLiveData()
+    private val _facebookResponse: MutableLiveData<Resource<Int>> = MutableLiveData()
+    val facebookResponse: MutableLiveData<Resource<Int>> get() = _facebookResponse
     val gConnectResponse: LiveData<Resource<GoogleResponse>> get() = _gConnectResponse
     val googleLoginResponse: LiveData<Resource<GoogleSignInAccount>> get() = _googleLoginResponse
     private var onIntentListener: ((Intent) -> Unit?)? = null
@@ -81,9 +75,13 @@ class AuthViewModel(
         }
     }
 
-    fun postGoogleLogin(email: String?, familyName: String?, givenName: String?,id_lang:Int) = viewModelScope.launch {
+    fun postGoogleLogin(email: String, familyName: String, givenName: String,id_lang:Int) = viewModelScope.launch {
         _gConnectResponse.postValue(Resource.Loading())
        _gConnectResponse.postValue(repository.postGoogleLogin(email,familyName,givenName,id_lang))
+    }
+
+    fun facebookLogin(id_lang: Int, accessToken: String) = viewModelScope.launch{
+        _facebookResponse.postValue(repository.facebookLogin(id_lang,accessToken))
     }
 
 
