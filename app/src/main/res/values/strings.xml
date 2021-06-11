@@ -62,4 +62,13 @@
     <string name="ajouter_un_fichier">Ajouter un fichier :</string>
     <string name="envoyer">Envoyer</string>
     <string name="choisissez_cette_adresse">choisissez cette adresse</string>
+    <string name="wrong_item">élément erroné</string>
+    <string name="broken_item">article cassé</string>
+    <string name="insert_commande_number">Entrez numéro de commande</string>
+    <string name="unknown_error">Error occurred</string>
+    <string name="select_image">Séléctionner une image</string>
+    <string name="field_required">champ obligatoire</string>
+    <string name="claim_success">réclamation envoyée avec succès</string>
+    <string name="phone_required">Numéro de téléphone requis</string>
+    <string name="went_wrong">Une erreur s\'est produite. Veuillez réessayer</string>
 </resources>

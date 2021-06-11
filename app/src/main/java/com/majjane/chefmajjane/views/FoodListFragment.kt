@@ -69,6 +69,7 @@ class FoodListFragment :
         super.onResume()
         ((activity) as HomeActivity).apply {
             setToolbar("Espace Sushi")
+            toolbarIcon?.setImageResource(R.drawable.back_arrow_ic)
             toolbarIcon?.visible(true)
         }
     }

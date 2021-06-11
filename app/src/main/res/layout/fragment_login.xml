@@ -39,20 +39,19 @@
             android:layout_width="341dp"
             android:layout_height="53dp"
             android:layout_marginTop="20dp"
-            android:drawableLeft="@drawable/morocco_flag_ic"
+            android:drawableStart="@drawable/morocco_flag_ic"
             android:drawablePadding="4dp"
-            android:text="@string/_212"
-            android:focusable="false"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/numero_de_telephone"
             android:paddingLeft="20dp"
+            android:inputType="phone"
             android:paddingRight="20dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton2"
+            android:id="@+id/suivantBtn"
             android:layout_width="341dp"
             android:layout_height="53dp"
             android:layout_marginTop="10dp"
@@ -70,9 +69,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            app:layout_constraintEnd_toEndOf="@+id/appCompatButton2"
-            app:layout_constraintStart_toStartOf="@+id/appCompatButton2"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton2">
+            app:layout_constraintEnd_toEndOf="@+id/suivantBtn"
+            app:layout_constraintStart_toStartOf="@+id/suivantBtn"
+            app:layout_constraintTop_toBottomOf="@+id/suivantBtn">
 
             <View
                 android:layout_width="150dp"

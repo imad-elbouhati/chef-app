@@ -25,6 +25,7 @@ class CustomTextField(context: Context, attrs: AttributeSet) : RelativeLayout(co
         editText?.setCompoundDrawablesWithIntrinsicBounds(attributes.getDrawable(R.styleable.CustomTextField_drawableLeft),null,null,null)
         editText?.inputType = attributes.getInt(R.styleable.CustomTextField_inputType,EditorInfo.TYPE_TEXT_VARIATION_NORMAL)
         editText?.hint = attributes.getString(R.styleable.CustomTextField_hint)
+        editText?.setText(attributes.getString(R.styleable.CustomTextField_textt))
         attributes.recycle()
 
     }
@@ -37,10 +38,14 @@ class CustomTextField(context: Context, attrs: AttributeSet) : RelativeLayout(co
     }
 
     fun getText():String = editText?.text.toString()
+
     fun setError(errorText:String){
         line?.setBackgroundColor(resources.getColor(R.color.error_color))
         errorLabel?.visible(true)
         errorLabel?.text = errorText
+    }
+    fun setText(text:String){
+        editText?.setText(text)
     }
     fun setDrawable(resource:Drawable){
         editText?.setCompoundDrawablesWithIntrinsicBounds(resource,null,null,null)

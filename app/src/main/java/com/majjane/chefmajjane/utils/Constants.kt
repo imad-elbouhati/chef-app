@@ -12,6 +12,6 @@ class Constants {
         const val FAMILY_NAME_KEY = "family_name_key"
         const val ID_CUSTOMER_KEY = "id_customer_key"
         const val ID_LANG_KEY = "id_lang_key"
-
+        const val IS_SOCIAL_CONNECTED = "is_social_connected"
     }
 }

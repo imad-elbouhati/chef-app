@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.majjane.chefmajjane.repository.AuthRepository
+import com.majjane.chefmajjane.responses.BaseResponse
 import com.majjane.chefmajjane.responses.login.GoogleResponse
 import com.majjane.chefmajjane.utils.Resource
 import kotlinx.coroutines.launch
@@ -23,13 +24,17 @@ class AuthViewModel(
     val repository: AuthRepository
 ) : ViewModel() {
     private val TAG = "AuthViewModel"
-    private val _googleLoginResponse: MutableLiveData<Resource<GoogleSignInAccount>> = MutableLiveData()
+    private val _googleLoginResponse: MutableLiveData<Resource<GoogleSignInAccount>> =
+        MutableLiveData()
     private val _gConnectResponse: MutableLiveData<Resource<GoogleResponse>> = MutableLiveData()
     private val _facebookResponse: MutableLiveData<Resource<Int>> = MutableLiveData()
     val facebookResponse: MutableLiveData<Resource<Int>> get() = _facebookResponse
     val gConnectResponse: LiveData<Resource<GoogleResponse>> get() = _gConnectResponse
     val googleLoginResponse: LiveData<Resource<GoogleSignInAccount>> get() = _googleLoginResponse
     private var onIntentListener: ((Intent) -> Unit?)? = null
+    private val _otpResponse: MutableLiveData<Resource<BaseResponse>> = MutableLiveData()
+    val otpResponse: LiveData<Resource<BaseResponse>> get() = _otpResponse
+
     fun setIntent(onIntent: (Intent) -> Unit) {
         onIntentListener = onIntent
     }
@@ -63,25 +68,38 @@ class AuthViewModel(
                 // TODO: 5/24/2021 POST VALUES TO API HERE INSTEAD OF FRGMT
             }
         } catch (e: Exception) {
-            when(e){
-                is ApiException ->{
-                    Resource.Failure(false,e.statusCode,null)
+            when (e) {
+                is ApiException -> {
+                    Resource.Failure(false, e.statusCode, null)
                 }
-                is IOException ->{
-                    Resource.Failure(true,null,null)
+                is IOException -> {
+                    Resource.Failure(true, null, null)
                 }
             }
             //updateUI(null)
         }
     }
 
-    fun postGoogleLogin(email: String, familyName: String, givenName: String,id_lang:Int) = viewModelScope.launch {
-        _gConnectResponse.postValue(Resource.Loading())
-       _gConnectResponse.postValue(repository.postGoogleLogin(email,familyName,givenName,id_lang))
+    fun postGoogleLogin(email: String, familyName: String, givenName: String, id_lang: Int) =
+        viewModelScope.launch {
+            _gConnectResponse.postValue(Resource.Loading())
+            _gConnectResponse.postValue(
+                repository.postGoogleLogin(
+                    email,
+                    familyName,
+                    givenName,
+                    id_lang
+                )
+            )
+        }
+
+    fun facebookLogin(id_lang: Int, accessToken: String) = viewModelScope.launch {
+        _facebookResponse.postValue(repository.facebookLogin(id_lang, accessToken))
     }
 
-    fun facebookLogin(id_lang: Int, accessToken: String) = viewModelScope.launch{
-        _facebookResponse.postValue(repository.facebookLogin(id_lang,accessToken))
+    fun sendOTP(phoneNumber: String) = viewModelScope.launch {
+        _otpResponse.postValue(Resource.Loading())
+        _otpResponse.postValue(repository.sendOTP(phoneNumber))
     }
 
 

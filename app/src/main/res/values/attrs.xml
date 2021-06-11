@@ -11,6 +11,7 @@
         <attr name="textTitle" format="string" />
         <attr name="error_label" format="string" />
         <attr name="hint" format="string" />
+        <attr name="textt" format="reference"/>
         <!-- The type of data being placed in a text field used to help an
          input method decide how to let the user enter text.  The constants
          here correspond to those defined by

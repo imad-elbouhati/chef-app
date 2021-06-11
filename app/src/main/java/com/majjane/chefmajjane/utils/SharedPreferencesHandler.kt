@@ -6,6 +6,7 @@ import com.majjane.chefmajjane.utils.Constants.Companion.EMAIL_KEY
 import com.majjane.chefmajjane.utils.Constants.Companion.FAMILY_NAME_KEY
 import com.majjane.chefmajjane.utils.Constants.Companion.ID_CUSTOMER_KEY
 import com.majjane.chefmajjane.utils.Constants.Companion.ID_LANG_KEY
+import com.majjane.chefmajjane.utils.Constants.Companion.IS_SOCIAL_CONNECTED
 import com.majjane.chefmajjane.utils.Constants.Companion.MY_DATA_PREFERENCES
 import com.majjane.chefmajjane.utils.Constants.Companion.NAME_KEY
 import kotlinx.coroutines.Dispatchers
@@ -37,5 +38,16 @@ class SharedPreferencesHandler(val context:Context) {
 
     fun getIdLang(): Int {
         return sharedPreference.getInt(ID_LANG_KEY, 1)
+    }
+
+
+    fun setSocialLogin(isSocialConnected:Boolean){
+        editor.apply {
+            putBoolean(IS_SOCIAL_CONNECTED,isSocialConnected)
+            commit()
+        }
+    }
+    fun isSocialLogin():Boolean{
+        return sharedPreference.getBoolean(IS_SOCIAL_CONNECTED,false)
     }
 }

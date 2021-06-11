@@ -1,89 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.ReclamationFragment">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_height="match_parent" android:layout_width="match_parent">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:text="@string/s_lectionnez_l_object"
-        android:textColor="@color/custom_black"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:context=".views.ReclamationFragment">
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/s_lectionnez_l_object"
+            android:textColor="@color/custom_black"
+            app:layout_constraintEnd_toEndOf="@+id/spinner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="366dp"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv"
-        tools:layout_editor_absoluteY="80dp" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv"
+            tools:layout_editor_absoluteY="80dp" />
 
-    <com.majjane.chefmajjane.views.customviews.CustomTextField
-        android:id="@+id/customTextField"
-        android:layout_width="366dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:hint="Numéro de commande"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:textTitle="Saisissez le numéro de votre commande :" />
+        <com.majjane.chefmajjane.views.customviews.CustomTextField
+            android:id="@+id/numCommande"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:hint="Numéro de commande"
+            app:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/spinner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:textTitle="Saisissez le numéro de votre commande :" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/ajouter_un_fichier"
-        android:textColor="@color/custom_black"
-        app:layout_constraintStart_toStartOf="@+id/customTextField"
-        app:layout_constraintTop_toBottomOf="@+id/customTextField" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/ajouter_un_fichier"
+            android:textColor="@color/custom_black"
+            app:layout_constraintStart_toStartOf="@+id/numCommande"
+            app:layout_constraintTop_toBottomOf="@+id/numCommande" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/dashed"
-        android:src="@drawable/black_camera_ic"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        <ImageButton
+            android:id="@+id/ibSelectImage"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/dashed"
+            android:src="@drawable/black_camera_ic"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        <ImageView
+            android:id="@+id/ivSelectImage"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <com.majjane.chefmajjane.views.customviews.CustomTextField
-        android:id="@+id/commentaire"
-        android:layout_width="366dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        app:hint="Commentaire"
-        app:layout_constraintEnd_toEndOf="@+id/customTextField"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:textTitle="Laissez un commentaire  :" />
+        <com.majjane.chefmajjane.views.customviews.CustomTextField
+            android:id="@+id/commentaire"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            app:hint="Commentaire"
+            app:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/numCommande"
+            app:layout_constraintStart_toStartOf="@+id/ibSelectImage"
+            app:layout_constraintTop_toBottomOf="@+id/ibSelectImage"
+            app:textTitle="Laissez un commentaire  :" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="326dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="184dp"
-        android:background="@drawable/green_rounded_button"
-        android:text="@string/envoyer"
-        android:textColor="@color/white"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/commentaire"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="@+id/commentaire"
-        app:layout_constraintTop_toBottomOf="@+id/commentaire" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sendBtn"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/green_rounded_button"
+            android:text="@string/envoyer"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/commentaire"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintStart_toStartOf="@+id/commentaire"
+            app:layout_constraintTop_toBottomOf="@+id/commentaire" />
+
+        <ProgressBar
+            android:id="@+id/progressBar5"
+            android:visibility="gone"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

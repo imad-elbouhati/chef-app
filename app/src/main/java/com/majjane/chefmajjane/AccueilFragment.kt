@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -39,6 +40,7 @@ class AccueilFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+
         getAccueil()
         binding.recyclerViewAccueil.adapter = adapter
 
@@ -61,6 +63,7 @@ class AccueilFragment :
                 }
             }
         })
+        onBackPressed()
     }
 
     private fun onCategoryClicked(category: AccueilResponseItem, position:Int){
@@ -82,8 +85,20 @@ class AccueilFragment :
     override fun onResume() {
         super.onResume()
         ((activity) as HomeActivity).apply {
-            toolbarIcon?.visible(false)
+            toolbarIcon?.setImageResource(R.drawable.profile_ic)
+            setToolbarHeight(50)
             this.setToolbar("")
+            toolbarIcon?.setOnClickListener {
+               // navController.nav
+            }
         }
+    }
+    private fun onBackPressed() {
+        val callback = object : OnBackPressedCallback(true ) {
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 }
