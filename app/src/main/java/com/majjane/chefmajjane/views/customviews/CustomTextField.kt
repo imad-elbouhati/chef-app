@@ -23,6 +23,7 @@ class CustomTextField(context: Context, attrs: AttributeSet) : RelativeLayout(co
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomTextField)
         textViewTitle?.text = attributes.getString(R.styleable.CustomTextField_textTitle)
         editText?.setCompoundDrawablesWithIntrinsicBounds(attributes.getDrawable(R.styleable.CustomTextField_drawableLeft),null,null,null)
+        editText?.setCompoundDrawablesWithIntrinsicBounds(null,null,attributes.getDrawable(R.styleable.CustomTextField_drawableRight),null)
         editText?.inputType = attributes.getInt(R.styleable.CustomTextField_inputType,EditorInfo.TYPE_TEXT_VARIATION_NORMAL)
         editText?.hint = attributes.getString(R.styleable.CustomTextField_hint)
         editText?.setText(attributes.getString(R.styleable.CustomTextField_textt))
@@ -50,4 +51,7 @@ class CustomTextField(context: Context, attrs: AttributeSet) : RelativeLayout(co
     fun setDrawable(resource:Drawable){
         editText?.setCompoundDrawablesWithIntrinsicBounds(resource,null,null,null)
     }
+
+
+    
 }

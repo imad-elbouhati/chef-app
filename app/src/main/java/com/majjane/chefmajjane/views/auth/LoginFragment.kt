@@ -2,10 +2,14 @@ package com.majjane.chefmajjane.views.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.Selection
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
@@ -34,6 +38,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(requireContext())
+        // TODO : IF $account != null NAVIGATE TO HOME ACTIVITY
     }
 
     private lateinit var navController: NavController
@@ -51,21 +56,54 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             signInWithFacebook()
         }
         binding.suivantBtn.setOnClickListener {
-            if (binding.editTextPhoneNumber.text.isEmpty()) {
+            if (binding.editTextPhoneNumber.text?.isEmpty() == true) {
                 requireView().snackbar(getString(R.string.phone_required))
                 return@setOnClickListener
             }
-            viewModel.sendOTP(binding.editTextPhoneNumber.text.toString().trim())
-            Log.d(TAG, "onViewCreated: ${binding.editTextPhoneNumber.text.toString()}")
+            val phone = binding.editTextPhoneNumber.text.removePrefix("+212 ")
+            viewModel.sendOTP(phone.toString().trim())
+            Log.d(TAG, "onViewCreated: ${binding.editTextPhoneNumber.text}")
         }
 
+
+        binding.btnContinueEmail.setOnClickListener {
+            navController.navigate(R.id.action_loginFragment_to_signInFragment)
+        }
+
+        handlePhoneNumberPrefix()
         observeFacebook()
         observeGoogleLogin()
         observeGConnect()
         observeOTPMessage()
-
         onBackPressed()
 
+    }
+
+    private fun handlePhoneNumberPrefix() {
+        Selection.setSelection(
+            binding.editTextPhoneNumber.text,
+            binding.editTextPhoneNumber.text.length
+        )
+        binding.editTextPhoneNumber.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                if (!s.toString().contains("+212 ")) {
+                    binding.editTextPhoneNumber.setText("+212 ")
+                    Selection.setSelection(
+                        binding.editTextPhoneNumber.text,
+                        binding.editTextPhoneNumber.text.length
+                    )
+                }
+            }
+        })
     }
 
     private fun observeOTPMessage() {
@@ -74,16 +112,19 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 is Resource.Success -> {
                     binding.progressBar3.visible(false)
                     if (it.data.success == 1) {
-                        navController.navigate(R.id.action_loginFragment_to_optVerificationFragment)
+
+                        navController.navigate(
+                            R.id.action_loginFragment_to_optVerificationFragment,
+                            bundleOf("OTP_VERIFICATION" to binding.editTextPhoneNumber.text.toString())
+                        )
                         return@observe
                     }
-                    if(it.data.success == 0){
+                    if (it.data.success == 0) {
                         requireView().snackbar(getString(R.string.went_wrong))
                     }
                 }
                 is Resource.Failure -> {
-                   // requireView().snackbar(getString(R.string.went_wrong))
-                    handleApiError(it)
+                    requireView().snackbar(getString(R.string.went_wrong))
                     binding.progressBar3.visible(false)
                 }
                 is Resource.Loading -> {

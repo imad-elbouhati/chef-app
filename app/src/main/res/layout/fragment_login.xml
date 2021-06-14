@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/custom_green"
     tools:context=".views.auth.LoginFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnIgnore"
             android:layout_width="77dp"
@@ -34,22 +36,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnIgnore" />
 
+
         <EditText
             android:id="@+id/editTextPhoneNumber"
             android:layout_width="341dp"
             android:layout_height="53dp"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/morocco_flag_ic"
-            android:drawablePadding="4dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="@string/numero_de_telephone"
-            android:paddingLeft="20dp"
+            android:hint="@string/votre_num_ro_de_t_l_phone"
+            android:drawablePadding="24dp"
+            android:padding="12dp"
             android:inputType="phone"
-            android:paddingRight="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:drawableStart="@drawable/morocco_flag_ic"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
+            app:layout_constraintTop_toBottomOf="@+id/imageView"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/suivantBtn"
             android:layout_width="341dp"
@@ -103,11 +104,11 @@
             android:drawableLeft="@drawable/mail_ic"
             android:drawablePadding="20dp"
             android:gravity="start|center_vertical"
-            android:text="@string/continuer_avec_email"
-            android:textColor="#707070"
-            android:textAllCaps="false"
             android:paddingStart="19dp"
             android:paddingLeft="19dp"
+            android:text="@string/continuer_avec_email"
+            android:textAllCaps="false"
+            android:textColor="#707070"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
@@ -174,16 +175,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/custom_black"
-                android:text="En continuant, vous acceptez nos Conditions \nd’utilisation et notre Politique de confidentialité " />
+                android:text="En continuant, vous acceptez nos Conditions \nd’utilisation et notre Politique de confidentialité "
+                android:textColor="@color/custom_black" />
         </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progressBar3"
-            android:visibility="gone"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/myProfileFragment">
+    app:startDestination="@id/changePasswordFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -72,12 +72,20 @@
         android:id="@+id/myProfileFragment"
         android:name="com.majjane.chefmajjane.views.MyProfileFragment"
         android:label="fragment_my_profile"
-        tools:layout="@layout/fragment_my_profile" />
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_myProfileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.majjane.chefmajjane.ChangePasswordFragment"
         android:label="fragment_change_password"
-        tools:layout="@layout/fragment_change_password" />
+        tools:layout="@layout/fragment_change_password" >
+        <action
+            android:id="@+id/action_changePasswordFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.majjane.chefmajjane.views.MapsFragment"
@@ -102,4 +110,9 @@
             app:destination="@id/homeFragment"
             />
     </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.majjane.chefmajjane.views.auth.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>

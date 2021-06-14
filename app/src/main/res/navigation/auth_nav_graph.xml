@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/signUpFragment2">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.majjane.chefmajjane.views.auth.LoginFragment"
@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_loginFragment_to_optVerificationFragment"
             app:destination="@id/optVerificationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -24,8 +27,39 @@
     </fragment>
     <fragment
         android:id="@+id/optVerificationFragment"
-        android:name="com.majjane.chefmajjane.views.auth.OptVerificationFragment"
+        android:name="com.majjane.chefmajjane.views.auth.OtpVerificationFragment"
         android:label="fragment_opt_verification"
-        tools:layout="@layout/fragment_opt_verification" />
+        tools:layout="@layout/fragment_opt_verification" >
+        <argument
+            android:name="OTP_VERIFICATION"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_optVerificationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_optVerificationFragment_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment2"
+        android:name="com.majjane.chefmajjane.views.auth.SignUpFragment"
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.majjane.chefmajjane.views.auth.SignInViaEmailFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in_via_email" >
+        <action
+            android:id="@+id/action_signInFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" />
+    </fragment>
 
 </navigation>

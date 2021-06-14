@@ -15,7 +15,7 @@
     <string name="et_notre">et notre</string>
     <string name="ressayez">Réessayez</string>
     <string name="verifier_connextion">S\'il vous plait, vérifiez votre connexion internet</string>
-    <string name="email_incorrect">Vous avez entré une adresse e-mail ou un mot de passe incorrect</string>
+    <string name="email_or_password_incorrect">Vous avez entré une adresse e-mail ou un mot de passe incorrect</string>
     <string name="google">Google</string>
     <string name="facebook">Facebook</string>
     <string name="v_rification_du_code">Vérification du code</string>
@@ -71,4 +71,26 @@
     <string name="claim_success">réclamation envoyée avec succès</string>
     <string name="phone_required">Numéro de téléphone requis</string>
     <string name="went_wrong">Une erreur s\'est produite. Veuillez réessayer</string>
+    <string name="otp_verification">You have entered invalid code.</string>
+    <string name="please_type_code">Please type the verification code sent</string>
+    <string name="too">to</string>
+    <string name="votre_num_ro_de_telephone">Votre numéro de telephone</string>
+    <string name="empty_field_not_allowed">Les champs vides ne sont pas autorisés</string>
+    <string name="invalid_email">Email invalide</string>
+    <string name="invalid_phone">Numéro de téléphone invalide</string>
+    <string name="profile_updated">Mise à jour du profil réussie</string>
+    <string name="prenom">Prénom</string>
+    <string name="nom">Nom</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="pin_code">Code Pin</string>
+    <string name="phone_number">Numéro de Téléphone</string>
+    <string name="cr_er_un_compte">Créer un compte</string>
+    <string name="connectez_vous">Connectez-vous</string>
+    <string name="connecter">Connecter</string>
+    <string name="mot_de_passe_actuel">Votre mot de passe actuel</string>
+    <string name="saisissez_new_password">"Saisissez votre nouveau mot de passe "</string>
+    <string name="resaisissez_new_password">Ressaisissez votre nouveau mot de passe</string>
+    <string name="password_do_not_match">Les mots de passe ne correspondent pas</string>
+    <string name="password_updated_succefully">Mot de passe mis à jour avec succès</string>
 </resources>

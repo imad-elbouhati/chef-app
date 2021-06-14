@@ -129,12 +129,18 @@ class ReclamationFragment :
                 "multipart/form-data".toMediaTypeOrNull(),
                 binding.commentaire.getText()
             ),
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "PBJRZBIYB"),
+            RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                binding.numCommande.getText()
+            ),
             RequestBody.create(
                 "multipart/form-data".toMediaTypeOrNull(),
                 binding.spinner.selectedItem.toString()
             ),
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "3"),
+            RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                preferences.getIdCustomer().toString()
+            ),
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(), "0"),
         ).enqueue(object : retrofit2.Callback<ReclamationResponse> {
             override fun onResponse(
@@ -142,14 +148,12 @@ class ReclamationFragment :
                 response: Response<ReclamationResponse>
             ) {
                 if (response.code() == 200) {
-                    Log.d(TAG, "onResponse: 20000")
                     response.body()?.let {
                         if (it.succes == 1) {
                             binding.progressBar5.visible(false)
                             binding.sendBtn.enable(true)
                             Log.d(TAG, "onResponse: ${it.succes}")
                             requireView().snackbar(getString(R.string.claim_success))
-                            Thread.sleep(1000)
                             navController.navigate(R.id.action_reclamationFragment_to_homeFragment)
 
                         } else if (it.comment != null || it.numCom != null || it.id != null || it.msj != null) {

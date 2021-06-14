@@ -47,7 +47,7 @@ fun Fragment.handleApiError(
         )
         failure.errorCode == 401 -> {
             if(this is LoginFragment){
-                requireView().snackbar(getString(R.string.email_incorrect))
+                requireView().snackbar(getString(R.string.email_or_password_incorrect))
             }else{
               // TODO: 5/24/2021 Logout functionality
             }

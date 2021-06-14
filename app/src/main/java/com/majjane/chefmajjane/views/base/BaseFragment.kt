@@ -5,22 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.NavGraph
-import androidx.navigation.Navigation
 import androidx.viewbinding.ViewBinding
-import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.viewmodel.ViewModelFactory
 import com.majjane.chefmajjane.repository.base.BaseRepository
 import com.majjane.chefmajjane.utils.SharedPreferencesHandler
-import com.majjane.chefmajjane.utils.visible
+import com.majjane.chefmajjane.views.activities.HomeActivity
 
 
-abstract class BaseFragment<VM : ViewModel, V : ViewBinding, BR : BaseRepository> : Fragment () {
+abstract class BaseFragment<VM : ViewModel, V : ViewBinding, BR : BaseRepository> : Fragment() {
     private var _binding: V? = null
     protected val binding get() = _binding!!
     lateinit var viewModel: VM
@@ -37,6 +32,7 @@ abstract class BaseFragment<VM : ViewModel, V : ViewBinding, BR : BaseRepository
         viewModel = ViewModelProvider(this, factory).get(createViewModel())
         return binding.root
     }
+
 
     abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): V
     abstract fun createViewModel(): Class<VM>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.auth.SignInViaEmailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/header_view"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/curved_custom_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/back_image_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cree_un_compte_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/cr_er_un_compte"
+            android:textColor="@color/custom_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_view" />
+
+        <TextView
+            android:id="@+id/connetez_vous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:text="@string/connectez_vous"
+            android:textColor="@color/custom_black"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="@+id/cree_un_compte_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cree_un_compte_text_view" />
+
+        <com.majjane.chefmajjane.views.customviews.CustomTextField
+            android:id="@+id/emailTextField"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            app:hint="Jhon@gmail.com"
+            app:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connetez_vous"
+            app:textTitle="@string/email" />
+
+        <com.majjane.chefmajjane.views.customviews.CustomTextField
+            android:id="@+id/passwordTextField"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="41dp"
+            app:drawableRight="@drawable/password_ic"
+            app:hint="********"
+            app:inputType="numberPassword"
+            app:layout_constraintEnd_toEndOf="@+id/emailTextField"
+            app:layout_constraintStart_toStartOf="@+id/emailTextField"
+            app:layout_constraintTop_toBottomOf="@+id/emailTextField"
+            app:textTitle="@string/pin_code" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/connecterButton"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@color/custom_green"
+            android:text="@string/connecter"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/passwordTextField"
+            app:layout_constraintStart_toStartOf="@+id/passwordTextField"
+            app:layout_constraintTop_toBottomOf="@+id/passwordTextField" />
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

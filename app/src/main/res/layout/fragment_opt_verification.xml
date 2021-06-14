@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/custom_black"
-    tools:context=".views.OptVerificationFragment">
+    tools:context=".views.auth.OtpVerificationFragment">
 
     <TextView
-        
         android:id="@+id/tvVerficationCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="Please type the verification code sent\nto +212 24524710"
         android:textColor="@color/white"
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="@+id/tvVerficationCode"
@@ -34,13 +32,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tvVerficationCode" />
 
     <com.chaos.view.PinView
-        android:id="@+id/firstPinView"
+        android:id="@+id/pinView"
         style="@style/PinWidget.PinView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
         android:cursorVisible="true"
-        android:focusable="false"
         android:inputType="phone"
         android:itemBackground="@color/custom_gray"
         android:textColor="@color/white"
@@ -66,9 +63,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/firstPinView"
-        app:layout_constraintStart_toStartOf="@+id/firstPinView"
-        app:layout_constraintTop_toBottomOf="@+id/firstPinView">
+        app:layout_constraintEnd_toEndOf="@+id/pinView"
+        app:layout_constraintStart_toStartOf="@+id/pinView"
+        app:layout_constraintTop_toBottomOf="@+id/pinView">
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,6 +75,7 @@
             android:textSize="17sp" />
 
         <TextView
+            android:id="@+id/tvResendCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/resend_again"
@@ -85,136 +83,7 @@
             android:textSize="17sp" />
     </LinearLayout>
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="*"
-        app:layout_constrainedWidth="true"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-        <TableRow>
-            <TextView
-                android:id="@+id/numOne"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="1"
-                android:textSize="45sp"
-                android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/numTwo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="2"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-
-            <TextView
-                android:id="@+id/numTree"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="3"
-
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/numFour"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="4"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-
-            <TextView
-                android:id="@+id/numFive"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="5"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-
-            <TextView
-                android:id="@+id/numSix"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="6"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/numSeven"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="7"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-
-            <TextView
-                android:id="@+id/numEight"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="8"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-
-            <TextView
-                android:id="@+id/numNine"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="9"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-
-            <TextView
-                android:id="@+id/numZero"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-
-            <ImageView
-                android:id="@+id/deleteIcon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:src="@drawable/delete_ic"
-                android:textColor="@color/white"
-                android:textSize="45sp" />
-        </TableRow>
-    </TableLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
