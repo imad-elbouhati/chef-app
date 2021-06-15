@@ -96,4 +96,5 @@
     <string name="appeler">Appeler</string>
     <string name="no_email_client">Aucun application messagerie n\'est installé</string>
     <string name="send_email">Envoyer email...</string>
+    <string name="pour">pour</string>
 </resources>

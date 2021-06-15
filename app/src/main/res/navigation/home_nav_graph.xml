@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/contactFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -12,7 +12,18 @@
         tools:layout="@layout/fragment_accueil" >
         <action
             android:id="@+id/action_accueilFragment_to_espaceSushiFragment"
-            app:destination="@id/espaceSushiFragment" />
+            app:destination="@id/espaceSushiFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_homeFragment_to_profileMenuFragment"
+            app:destination="@id/profileMenuFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/espaceSushiFragment"
@@ -21,14 +32,29 @@
         tools:layout="@layout/fragment_espace_sushi" >
         <action
             android:id="@+id/action_espaceSushiFragment_to_sushiDetailsFragment"
-            app:destination="@id/sushiDetailsFragment" />
+            app:destination="@id/sushiDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="category_bundle"
             app:argType="com.majjane.chefmajjane.responses.AccueilResponseItem"
             />
         <action
             android:id="@+id/action_espaceSushiFragment_to_mesCommandesFragment"
-            app:destination="@id/mesCommandesFragment" />
+            app:destination="@id/mesCommandesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_espaceSushiFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
 
     </fragment>
     <fragment
@@ -41,7 +67,11 @@
             app:argType="com.majjane.chefmajjane.responses.Article" />
         <action
             android:id="@+id/action_sushiDetailsFragment_to_espaceSushiFragment"
-            app:destination="@id/espaceSushiFragment" />
+            app:destination="@id/espaceSushiFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/mesCommandesFragment"
@@ -53,10 +83,25 @@
             app:argType="com.majjane.chefmajjane.responses.Article[]" />
         <action
             android:id="@+id/action_mesCommandesFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
+            app:destination="@id/mapsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_mesCommandesFragment_to_displayCommandsFragment"
-            app:destination="@id/displayCommandsFragment" />
+            app:destination="@id/displayCommandsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mesCommandesFragment_to_espaceSushiFragment"
+            app:destination="@id/espaceSushiFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/languageFragment"
@@ -75,7 +120,11 @@
         tools:layout="@layout/fragment_my_profile" >
         <action
             android:id="@+id/action_myProfileFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
@@ -84,7 +133,11 @@
         tools:layout="@layout/fragment_change_password" >
         <action
             android:id="@+id/action_changePasswordFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -93,7 +146,11 @@
         tools:layout="@layout/fragment_maps" >
         <action
             android:id="@+id/action_mapsFragment_to_mesCommandesFragment"
-            app:destination="@id/mesCommandesFragment" />
+            app:destination="@id/mesCommandesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/displayCommandsFragment"
@@ -108,11 +165,44 @@
         <action
             android:id="@+id/action_reclamationFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.majjane.chefmajjane.views.auth.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        android:id="@+id/profileMenuFragment"
+        android:name="com.majjane.chefmajjane.views.ProfileMenuFragment"
+        android:label="fragment_profile_menu"
+        tools:layout="@layout/fragment_profile_menu" >
+        <action
+            android:id="@+id/action_profileMenuFragment_to_languageFragment"
+            app:destination="@id/languageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_profileMenuFragment_to_contactFragment"
+            app:destination="@id/contactFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_profileMenuFragment_to_reclamationFragment"
+            app:destination="@id/reclamationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_profileMenuFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
 </navigation>

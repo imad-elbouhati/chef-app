@@ -55,8 +55,7 @@ class MapsFragment : Fragment() {
         map?.let { map ->
             map.clear()
             val rabat = LatLng(33.966304, -6.8549541)
-            val rabatMarker =
-                map.addMarker(MarkerOptions().position(rabat).title("Marker in Rabat"))
+            val rabatMarker = map.addMarker(MarkerOptions().position(rabat).title(""))
             rabatMarker?.apply {
                 setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker_map))
                 isDraggable = true
@@ -72,7 +71,8 @@ class MapsFragment : Fragment() {
             val polygon = map.addPolygon(
                 PolygonOptions().apply {
                     add(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26)
-                        .fillColor(Color.TRANSPARENT)
+                        .strokeColor(Color.TRANSPARENT)
+
                 }
             )
 
@@ -80,7 +80,6 @@ class MapsFragment : Fragment() {
             map.setOnCameraMoveListener {
                 rabatMarker?.let {
                     it.position = googleMap.cameraPosition.target
-                    Log.d(TAG, "${it.position.latitude} ${it.position.longitude}")
                     val isContains = PolyUtil.containsLocation(
                         LatLng(it.position.latitude, it.position.longitude),
                         polygon.points,

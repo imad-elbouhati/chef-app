@@ -1,13 +1,15 @@
 package com.majjane.chefmajjane
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.majjane.chefmajjane.databinding.FragmentSushiDetailsBinding
 import com.majjane.chefmajjane.network.AccueilMenuApi
@@ -15,10 +17,9 @@ import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AccueilMenuRepository
 import com.majjane.chefmajjane.responses.Article
 import com.majjane.chefmajjane.utils.Constants.Companion.ARTICLE_BUNDLE
-import com.majjane.chefmajjane.utils.visible
 import com.majjane.chefmajjane.viewmodel.AccueilMenuViewModel
+import com.majjane.chefmajjane.views.activities.HomeActivity
 import com.majjane.chefmajjane.views.base.BaseFragment
-import com.majjane.chefmajjane.views.customviews.CounterView
 
 
 class FoodDetailsFragment :
@@ -45,7 +46,12 @@ class FoodDetailsFragment :
                 .into(this.sushiImageView)
 
         }
-     //   onBackPressed()
+
+        ((activity) as HomeActivity).toolbarIcon?.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+
     }
 
     override fun createViewBinding(
@@ -58,13 +64,5 @@ class FoodDetailsFragment :
     override fun getFragmentRepository(): AccueilMenuRepository = AccueilMenuRepository(
         RemoteDataSource().buildApi(AccueilMenuApi::class.java)
     )
-    private fun onBackPressed() {
-        val bundle = bundleOf("from_details" to true)
-        val callback = object : OnBackPressedCallback(true ) {
-            override fun handleOnBackPressed() {
-                navController?.navigate(R.id.action_sushiDetailsFragment_to_espaceSushiFragment, bundle)
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-    }
+
 }

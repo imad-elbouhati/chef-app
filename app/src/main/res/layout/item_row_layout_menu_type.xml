@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.chip.Chip android:id="@+id/menuChip"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/Widget.MaterialComponents.Chip.Choice"
+    android:layout_height="55dp"
+    style="@style/CustomChip"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginLeft="5dp"
+    android:layout_marginStart="5dp"
     android:paddingEnd="27dp">
 </com.google.android.material.chip.Chip>

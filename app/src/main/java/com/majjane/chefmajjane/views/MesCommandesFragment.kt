@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.adapters.CommandeAdapter
 import com.majjane.chefmajjane.databinding.FragmentMesCommandesBinding
@@ -83,6 +84,10 @@ class MesCommandesFragment :
             }
         })
 
+
+        ((activity) as HomeActivity).toolbarIcon?.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         binding.locationRow.setOnClickListener {
             navController.navigate(R.id.action_mesCommandesFragment_to_mapsFragment)

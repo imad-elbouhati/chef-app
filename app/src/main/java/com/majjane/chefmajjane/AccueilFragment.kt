@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.majjane.chefmajjane.adapters.AccueilAdapter
@@ -19,6 +20,7 @@ import com.majjane.chefmajjane.utils.Resource
 import com.majjane.chefmajjane.utils.handleApiError
 import com.majjane.chefmajjane.utils.visible
 import com.majjane.chefmajjane.viewmodel.AccueilMenuViewModel
+import com.majjane.chefmajjane.viewmodel.SharedViewModel
 import com.majjane.chefmajjane.views.activities.HomeActivity
 import com.majjane.chefmajjane.views.base.BaseFragment
 
@@ -27,10 +29,18 @@ class AccueilFragment :
     BaseFragment<AccueilMenuViewModel, FragmentAccueilBinding, AccueilMenuRepository>() {
     private val TAG = "AccueilFragment"
     private lateinit var navController: NavController
+    lateinit var sharedViewModel: SharedViewModel
+
     private val adapter by lazy {
         AccueilAdapter { category, position -> onCategoryClicked(category, position) }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.run {
+            sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+        }
+    }
 
     override fun createViewBinding(
         inflater: LayoutInflater,
@@ -43,6 +53,10 @@ class AccueilFragment :
 
         getAccueil()
         binding.recyclerViewAccueil.adapter = adapter
+
+        ((activity) as HomeActivity).toolbarIcon?.setOnClickListener {
+            navController.navigate(R.id.action_homeFragment_to_profileMenuFragment)
+        }
 
 
         viewModel.accueilResponse.observe(viewLifecycleOwner, {
@@ -66,10 +80,12 @@ class AccueilFragment :
         onBackPressed()
     }
 
-    private fun onCategoryClicked(category: AccueilResponseItem, position:Int){
-        val bundle = bundleOf(CATEGORY_BUNDLE to category)
-        navController.navigate(R.id.action_accueilFragment_to_espaceSushiFragment,bundle)
+    private fun onCategoryClicked(category: AccueilResponseItem, position: Int) {
+        // val bundle = bundleOf(CATEGORY_BUNDLE to category)
+        sharedViewModel.sharedCategory.value = category
+        navController.navigate(R.id.action_accueilFragment_to_espaceSushiFragment)
     }
+
     private fun getAccueil() {
         viewModel.getAccueil(1)
     }
@@ -88,13 +104,11 @@ class AccueilFragment :
             toolbarIcon?.setImageResource(R.drawable.profile_ic)
             setToolbarHeight(50)
             this.setToolbar("")
-            toolbarIcon?.setOnClickListener {
-               // navController.nav
-            }
         }
     }
+
     private fun onBackPressed() {
-        val callback = object : OnBackPressedCallback(true ) {
+        val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 activity?.finish()
             }

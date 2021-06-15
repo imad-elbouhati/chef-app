@@ -41,6 +41,8 @@ import kotlin.collections.HashMap
 class FoodListFragment :
     BaseFragment<AccueilMenuViewModel, FragmentEspaceSushiBinding, AccueilMenuRepository>() {
     private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var categoryArgs: AccueilResponseItem
+
     private val adapter by lazy {
         SushiAdapter({ food, position -> onFoodClicked(food, position) }, { sum, articleHashMap ->
             onTotalPriceChangedListener(
@@ -64,7 +66,6 @@ class FoodListFragment :
     }
 
     private val TAG = "FoodListFragment"
-    private lateinit var categoryArgs: AccueilResponseItem
     override fun onResume() {
         super.onResume()
         ((activity) as HomeActivity).apply {
@@ -76,10 +77,18 @@ class FoodListFragment :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        categoryArgs = requireArguments().getParcelable(CATEGORY_BUNDLE)!!
+
+//        arguments?.let { bundle ->
+//            bundle.getParcelable<AccueilResponseItem>(CATEGORY_BUNDLE)?.let {
+//                categoryArgs = it
+//                sharedViewModel
+//            }
+//        }
         activity?.run {
             sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
         }
+
+
     }
 
     private var navController: NavController? = null
@@ -89,25 +98,38 @@ class FoodListFragment :
         super.onViewCreated(view, savedInstanceState)
         // getMenuList(1, 121)
         navController = Navigation.findNavController(view)
+        sharedViewModel.sharedCategory.observe(viewLifecycleOwner,{
+            categoryArgs = it
+            if (menuId == 0) {
+                getFoodList(preferences.getIdLang(), categoryArgs.id)
+                getMenuList(preferences.getIdLang(), categoryArgs.id)
+            } else {
+                getFoodList(preferences.getIdLang(), menuId)
+                getMenuList(preferences.getIdLang(), 121)
+            }
+        })
         initRecyclerView()
-        if (menuId == 0) {
-            getFoodList(idLang = 1, categoryArgs.id)
-            getMenuList(idLang = 1, categoryArgs.id)
-        } else {
-            getFoodList(idLang = 1, menuId)
-            getMenuList(idLang = 1, 121)
-        }
+//        if (menuId == 0) {
+//            getFoodList(preferences.getIdLang(), categoryArgs.id)
+//            getMenuList(preferences.getIdLang(), categoryArgs.id)
+//        } else {
+//            getFoodList(preferences.getIdLang(), menuId)
+//            getMenuList(preferences.getIdLang(), 121)
+//        }
+
+        //Check whether the articleHashMap is empty or not to show the button every time the fragment been created
         adapter.articleHashMap?.let {
             if (it.size > 0) {
-                Log.d(TAG, "onViewCreated: ${it.size}")
                 binding.totalSumButton.apply {
-                    text = "Commander ${it.size} pour ${adapter.totalPrice} MAD "
+                    text =
+                        getString(R.string.commander) + " ${it.size} " + getString(R.string.pour) + " pour ${adapter.totalPrice} MAD"
                     visible(true)
                 }
             }
         }
 
 
+        //On Total Button Clicked Send Array in a bundle to CammandeFragment
         binding.totalSumButton.setOnClickListener {
             val articleList = ArrayList(mArticleHashMap?.values).toTypedArray()
             navController?.navigate(
@@ -116,6 +138,10 @@ class FoodListFragment :
             )
             sharedViewModel.commandList.value = articleList.toList()
         }
+        ((activity) as HomeActivity).toolbarIcon?.setOnClickListener {
+            navController?.navigate(R.id.action_espaceSushiFragment_to_homeFragment)
+        }
+
         observeFoodListResponse()
         observerMenuListResponse()
 
@@ -136,7 +162,7 @@ class FoodListFragment :
                 is Resource.Failure -> {
                     binding.progressBar2.visible(false)
                     handleApiError(it) {
-                        getMenuList(1, 121)
+                        getMenuList(preferences.getIdLang(), 121)
                     }
                 }
             }

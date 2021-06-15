@@ -18,9 +18,7 @@ class AccueilAdapter(val onClick: (AccueilResponseItem, Int) -> Unit) : Recycler
     }
 
     class AccueilViewHolder(val binding: ItemRowAccueilLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-    }
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccueilViewHolder {
 
@@ -45,8 +43,6 @@ class AccueilAdapter(val onClick: (AccueilResponseItem, Int) -> Unit) : Recycler
                 onClick(accueilResponseItem,position)
             }
         }
-
-
     }
 
     override fun getItemCount(): Int {
