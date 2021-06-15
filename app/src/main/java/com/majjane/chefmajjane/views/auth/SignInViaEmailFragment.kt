@@ -5,6 +5,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.majjane.chefmajjane.R
@@ -13,6 +14,7 @@ import com.majjane.chefmajjane.network.AuthApi
 import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AuthRepository
 import com.majjane.chefmajjane.responses.login.Login
+import com.majjane.chefmajjane.utils.Constants.Companion.FROM_CREATE_ACCOUNT
 import com.majjane.chefmajjane.utils.Resource
 import com.majjane.chefmajjane.utils.snackbar
 import com.majjane.chefmajjane.utils.startNewActivity
@@ -38,7 +40,8 @@ class SignInViaEmailFragment : BaseFragment<AuthViewModel, FragmentSignInViaEmai
 
         //Créer un compte click listener
         binding.creeUnCompteTextView.setOnClickListener {
-            navController.navigate(R.id.action_signInFragment_to_signUpFragment2)
+            navController.navigate(R.id.action_signInFragment_to_signUpFragment2,
+            bundleOf(FROM_CREATE_ACCOUNT to true))
         }
 
 

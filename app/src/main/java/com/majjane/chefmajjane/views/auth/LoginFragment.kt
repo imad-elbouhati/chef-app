@@ -140,8 +140,15 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 is Resource.Success -> {
                     binding.progressBar3.visible(false)
                     Log.d(TAG, "onViewCreated: facebook ${it.data}")
-                    preferences.saveIdCustomer(it.data)
-                    requireActivity().startNewActivity(HomeActivity::class.java)
+                    if(it.data.success == 1){
+                        preferences.saveIdCustomer(it.data.id)
+                        requireActivity().startNewActivity(HomeActivity::class.java)
+                        return@observe
+                    }
+                    if(it.data.success == 0){
+                        requireView().snackbar(it.data.message)
+                    }
+
                 }
                 is Resource.Failure -> {
                     binding.progressBar3.visible(false)
@@ -180,7 +187,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 //TODO: Facebook token to api
-                viewModel.facebookLogin(preferences.getIdLang(), result?.accessToken.toString())
+                viewModel.facebookLogin( result?.accessToken?.token.toString())
                 Log.d(TAG, "onSuccess: ${result?.accessToken?.token.toString()}")
             }
 

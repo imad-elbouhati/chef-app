@@ -31,13 +31,13 @@ class AuthViewModel(
     private val _googleLoginResponse: MutableLiveData<Resource<GoogleSignInAccount>> =
         MutableLiveData()
     private val _gConnectResponse: MutableLiveData<Resource<GoogleResponse>> = MutableLiveData()
-    private val _facebookResponse: MutableLiveData<Resource<Int>> = MutableLiveData()
+    private val _facebookResponse: MutableLiveData<Resource<BaseResponse>> = MutableLiveData()
     private val _signUpResponse: MutableLiveData<Resource<BaseResponse>> = MutableLiveData()
     private val _loginResponse: MutableLiveData<Resource<BaseResponse>> = MutableLiveData()
     private var onIntentListener: ((Intent) -> Unit?)? = null
     private val _otpResponse: MutableLiveData<Resource<BaseResponse>> = MutableLiveData()
     private val _updatePasswordResponse: MutableLiveData<Resource<BaseResponse>> = MutableLiveData()
-    val facebookResponse: MutableLiveData<Resource<Int>> get() = _facebookResponse
+    val facebookResponse: MutableLiveData<Resource<BaseResponse>> get() = _facebookResponse
     val gConnectResponse: LiveData<Resource<GoogleResponse>> get() = _gConnectResponse
     val googleLoginResponse: LiveData<Resource<GoogleSignInAccount>> get() = _googleLoginResponse
     val signUpResponse: LiveData<Resource<BaseResponse>> get() = _signUpResponse
@@ -109,8 +109,9 @@ class AuthViewModel(
             )
         }
 
-    fun facebookLogin(id_lang: Int, accessToken: String) = viewModelScope.launch {
-        _facebookResponse.postValue(repository.facebookLogin(id_lang, accessToken))
+    fun facebookLogin(accessToken: String) = viewModelScope.launch {
+        _facebookResponse.postValue(Resource.Loading())
+        _facebookResponse.postValue(repository.facebookLogin(accessToken))
     }
 
     fun sendOTP(phoneNumber: String) = viewModelScope.launch {

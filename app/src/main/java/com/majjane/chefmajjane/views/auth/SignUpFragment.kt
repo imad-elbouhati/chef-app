@@ -13,6 +13,7 @@ import com.majjane.chefmajjane.network.AuthApi
 import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AuthRepository
 import com.majjane.chefmajjane.responses.SignUp
+import com.majjane.chefmajjane.utils.Constants.Companion.FROM_CREATE_ACCOUNT
 import com.majjane.chefmajjane.utils.Resource
 import com.majjane.chefmajjane.utils.snackbar
 import com.majjane.chefmajjane.utils.startNewActivity
@@ -24,11 +25,25 @@ import com.majjane.chefmajjane.views.base.BaseFragment
 
 class SignUpFragment : BaseFragment<AuthViewModel, FragmentSignUpBinding, AuthRepository>() {
     private lateinit var navController: NavController
+    private var isFromCreateAccount = false
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let { bundle ->
+            bundle.getBoolean(FROM_CREATE_ACCOUNT).let {
+                isFromCreateAccount = it
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         binding.nextButton.setOnClickListener {
             preformSignUp()
+        }
+
+        if(isFromCreateAccount){
+            binding.phoneNumber.visible(true)
         }
 
         binding.backArrow.setOnClickListener {
@@ -79,7 +94,7 @@ class SignUpFragment : BaseFragment<AuthViewModel, FragmentSignUpBinding, AuthRe
                     preferences.getIdLang(),
                     nom.getText(),
                     password.getText(),
-                    ""
+                    binding.phoneNumber.getText()
                 )
             )
         }

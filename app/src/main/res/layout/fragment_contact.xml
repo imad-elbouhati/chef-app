@@ -38,7 +38,6 @@
                 android:layout_height="22dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="21dp"
-                android:layout_marginRight="21dp"
                 android:src="@drawable/mail" />
 
             <TextView
@@ -59,7 +58,7 @@
 
         <LinearLayout
             android:id="@+id/appeler"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp">
 
@@ -74,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Appeler"
+                android:text="@string/appeler"
                 android:textColor="@color/custom_black"
                 android:textSize="21sp" />
         </LinearLayout>
@@ -86,18 +85,4 @@
             android:background="#DBDBE0" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="362dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:text="@string/envoyer"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:background="@drawable/lang_rounded_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        app:layout_constraintVertical_bias="0.883" />
 </androidx.constraintlayout.widget.ConstraintLayout>

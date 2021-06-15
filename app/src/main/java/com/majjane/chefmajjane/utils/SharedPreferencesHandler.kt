@@ -2,13 +2,10 @@ package com.majjane.chefmajjane.utils
 
 import android.content.Context
 import com.majjane.chefmajjane.MainApplication
-import com.majjane.chefmajjane.utils.Constants.Companion.EMAIL_KEY
-import com.majjane.chefmajjane.utils.Constants.Companion.FAMILY_NAME_KEY
 import com.majjane.chefmajjane.utils.Constants.Companion.ID_CUSTOMER_KEY
 import com.majjane.chefmajjane.utils.Constants.Companion.ID_LANG_KEY
 import com.majjane.chefmajjane.utils.Constants.Companion.IS_SOCIAL_CONNECTED
 import com.majjane.chefmajjane.utils.Constants.Companion.MY_DATA_PREFERENCES
-import com.majjane.chefmajjane.utils.Constants.Companion.NAME_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -26,7 +23,7 @@ class SharedPreferencesHandler(val context:Context) {
     }
 
     fun getIdCustomer(): Int {
-        return sharedPreference.getInt(ID_CUSTOMER_KEY, 0)
+        return sharedPreference.getInt(ID_CUSTOMER_KEY, -1)
     }
 
     fun saveIdLang(id_lang: Int) {

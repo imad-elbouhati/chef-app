@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signUpFragment2">
+    app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.majjane.chefmajjane.views.auth.LoginFragment"
@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_signUpFragment2_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <argument android:name="FROM_CREATE_ACCOUNT"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"

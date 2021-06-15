@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Chef</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="facebook_app_id">630907857886564</string>
+    <string name="facebook_app_id">318338549828273</string>
     <string name="fb_login_protocol_scheme">fb630907857886564</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -93,4 +93,7 @@
     <string name="resaisissez_new_password">Ressaisissez votre nouveau mot de passe</string>
     <string name="password_do_not_match">Les mots de passe ne correspondent pas</string>
     <string name="password_updated_succefully">Mot de passe mis à jour avec succès</string>
+    <string name="appeler">Appeler</string>
+    <string name="no_email_client">Aucun application messagerie n\'est installé</string>
+    <string name="send_email">Envoyer email...</string>
 </resources>

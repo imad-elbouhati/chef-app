@@ -15,8 +15,8 @@ interface AuthApi {
         @Body login: Login
     ): GoogleResponse
 
-    @POST("fconnect.php")
-    suspend fun facebookLogin(id_lang: Int, @Query("token") token: String): Int
+    @GET("fconnect.php")
+    suspend fun facebookLogin( @Query("token") token: String): BaseResponse
 
     @GET("sendOTP.php")
     suspend fun sendOTP(@Query("phone_number") phoneNumber: String): BaseResponse

@@ -19,9 +19,8 @@ class AuthRepository(val api: AuthApi) : BaseRepository() {
         api.postGoogleLogin(Login(id_lang, givenName, familyName, email, null))
     }
 
-    suspend fun facebookLogin(id_lang: Int, accessToken: String) = safeApiCall {
-        api.facebookLogin(id_lang, accessToken)
-    }
+    suspend fun facebookLogin(accessToken: String)= safeApiCall { api.facebookLogin(accessToken) }
+
 
     suspend fun sendOTP(phoneNumber: String) = safeApiCall {
         api.sendOTP(phoneNumber)
