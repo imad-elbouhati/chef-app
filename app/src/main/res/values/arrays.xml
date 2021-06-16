@@ -7,4 +7,9 @@
         <item>55sp</item>
         <item>60sp</item>
     </array>
+    <string-array name="cities_array">
+        <item>Rabat</item>
+        <item>Salé</item>
+
+    </string-array>
 </resources>

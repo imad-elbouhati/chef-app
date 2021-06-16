@@ -37,8 +37,10 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     private var callBackManager: CallbackManager? = null
     override fun onStart() {
         super.onStart()
-        val account = GoogleSignIn.getLastSignedInAccount(requireContext())
-        // TODO : IF $account != null NAVIGATE TO HOME ACTIVITY
+        // TODO: TEST
+        if (preferences.getIdCustomer() != -1) {
+            requireActivity().startNewActivity(HomeActivity::class.java)
+        }
     }
 
     private lateinit var navController: NavController
@@ -140,12 +142,12 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 is Resource.Success -> {
                     binding.progressBar3.visible(false)
                     Log.d(TAG, "onViewCreated: facebook ${it.data}")
-                    if(it.data.success == 1){
+                    if (it.data.success == 1) {
                         preferences.saveIdCustomer(it.data.id)
                         requireActivity().startNewActivity(HomeActivity::class.java)
                         return@observe
                     }
-                    if(it.data.success == 0){
+                    if (it.data.success == 0) {
                         requireView().snackbar(it.data.message)
                     }
 
@@ -187,7 +189,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 //TODO: Facebook token to api
-                viewModel.facebookLogin( result?.accessToken?.token.toString())
+                viewModel.facebookLogin(result?.accessToken?.token.toString())
                 Log.d(TAG, "onSuccess: ${result?.accessToken?.token.toString()}")
             }
 

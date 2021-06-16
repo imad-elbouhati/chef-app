@@ -97,4 +97,18 @@
     <string name="no_email_client">Aucun application messagerie n\'est installé</string>
     <string name="send_email">Envoyer email...</string>
     <string name="pour">pour</string>
+    <string name="pick_city">Choisir une ville</string>
+    <string name="no_city_selected">No city selected</string>
+    <string name="ville_de_livraison">VILLE DE LIVRAISON</string>
+    <string name="modifier_le_mot_de_passe">Modifier le mot de passe</string>
+    <string name="d_utilisation_et_notre">d’utilisation et notre &#x20;</string>
+    <string name="aucune_m_thode_de_paiement_s_lectionn_e">Aucune méthode de paiement sélectionnée</string>
+    <string name="aucune_addresse_selectionn_e">Aucune addresse selectionnée</string>
+    <string name="payment_by_card">Paiement par carte</string>
+    <string name="cash_on_delivery">Paiement à la livraison</string>
+    <string name="plase_select_city">Aucune ville sélectionnée</string>
+    <string name="please_select_address">Aucune adresse sélectionnée</string>
+    <string name="please_select_payment_method">Aucun mode de paiement sélectionné</string>
+    <string name="please_type_phone_number">Veuillez saisir votre numéro de téléphone</string>
+    <string name="commande_send_succefully">Commande envoyée avec succès</string>
 </resources>

@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -109,7 +110,7 @@ class MapsFragment : Fragment() {
                     val country: String? = addresses[0].countryName
                     val myAddress = Address(city, state, country, address)
                     sharedViewModel.address.value = myAddress
-                    navController.navigate(R.id.action_mapsFragment_to_mesCommandesFragment)
+                    findNavController().popBackStack()
                 }
             }
 

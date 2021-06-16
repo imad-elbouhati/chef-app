@@ -57,6 +57,14 @@ class MyProfileFragment :
         }
 
         navController = Navigation.findNavController(view)
+
+
+        binding.changePasswordButton.setOnClickListener {
+            navController.navigate(R.id.action_myProfileFragment_to_changePasswordFragment)
+        }
+
+
+
         viewModel.updateProfileResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {

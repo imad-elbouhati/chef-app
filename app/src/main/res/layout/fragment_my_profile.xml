@@ -70,17 +70,26 @@
                 app:inputType="phone"
                 app:textTitle="Numéro de téléphone" />
 
-
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/enregister"
+                android:id="@+id/changePasswordButton"
                 android:layout_width="326dp"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/numTele"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="45dp"
                 android:layout_marginBottom="40dp"
+                android:background="@drawable/green_rounded_button_stroke"
+                android:text="@string/modifier_le_mot_de_passe"
+                android:textColor="@color/custom_green" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/enregister"
+                android:layout_width="326dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/changePasswordButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/green_rounded_button"
-                android:text="Enregister"
+                android:text="@string/enregister"
                 android:textColor="@color/white" />
         </RelativeLayout>
     </ScrollView>

@@ -1,14 +1,19 @@
 package com.majjane.chefmajjane.views
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.facebook.login.LoginManager
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.databinding.FragmentProfileMenuBinding
 import com.majjane.chefmajjane.utils.SharedPreferencesHandler
@@ -19,7 +24,7 @@ import com.majjane.chefmajjane.views.activities.LoginActivity
 
 class ProfileMenuFragment : Fragment(R.layout.fragment_profile_menu) {
     private lateinit var navController: NavController
-    private  var _binding : FragmentProfileMenuBinding?=null
+    private var _binding: FragmentProfileMenuBinding? = null
     private val binding get() = _binding!!
     override fun onResume() {
         super.onResume()
@@ -60,6 +65,10 @@ class ProfileMenuFragment : Fragment(R.layout.fragment_profile_menu) {
 
         binding.logout.setOnClickListener {
             SharedPreferencesHandler(requireContext()).saveIdCustomer(-1)
+            LoginManager.getInstance().logOut()
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+            val googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+            googleSignInClient.signOut()
             requireActivity().startNewActivity(LoginActivity::class.java)
         }
 

@@ -59,7 +59,61 @@
             android:layout_marginRight="15dp"
             android:animateLayoutChanges="true"
             android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cityRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp">
 
+                <TextView
+                    android:id="@+id/cityDeLaivrisain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ville_de_livraison"
+                    android:textColor="@color/custom_black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView33"
+                    android:layout_width="20dp"
+                    android:layout_height="27dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/location_ic"
+                    app:layout_constraintLeft_toLeftOf="@+id/cityDeLaivrisain"
+                    app:layout_constraintTop_toBottomOf="@+id/cityDeLaivrisain" />
+
+                <TextView
+                    android:id="@+id/cityText"
+                    android:layout_width="299dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:hint="@string/no_city_selected"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView33"
+                    app:layout_constraintStart_toEndOf="@+id/imageView33"
+                    app:layout_constraintTop_toTopOf="@+id/imageView33" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/right_arrow_ic"
+                    app:layout_constraintBottom_toBottomOf="@+id/cityText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cityText"
+                    app:layout_constraintTop_toTopOf="@+id/cityText" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#DBDBE0"
+                    app:layout_constraintEnd_toEndOf="@+id/cityText"
+                    app:layout_constraintStart_toStartOf="@+id/cityText"
+                    app:layout_constraintTop_toBottomOf="@+id/cityText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/locationRow"
                 android:layout_width="match_parent"
@@ -91,7 +145,7 @@
                     android:layout_width="299dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:hint="No adress selected"
+                    android:hint="@string/aucune_addresse_selectionn_e"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -148,7 +202,7 @@
                     android:layout_width="299dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="@string/lorem_ipsum_dolor_amet_consectetuer_adipiscing_elit"
+                    android:hint="@string/aucune_m_thode_de_paiement_s_lectionn_e"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                     app:layout_constraintStart_toEndOf="@+id/imageView4"
                     app:layout_constraintTop_toTopOf="@+id/imageView4" />
@@ -174,7 +228,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/phoneNumberPhone"
+                android:id="@+id/phoneNumberRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -196,12 +250,11 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/telephon_ic"
-
                     app:layout_constraintLeft_toLeftOf="@+id/numDeTele"
                     app:layout_constraintTop_toBottomOf="@+id/numDeTele" />
 
                 <EditText
-                    android:id="@+id/textView11"
+                    android:id="@+id/phoneNumberEditText"
                     android:layout_width="299dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -217,9 +270,9 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="15dp"
                     android:background="#DBDBE0"
-                    app:layout_constraintEnd_toEndOf="@+id/textView11"
-                    app:layout_constraintStart_toStartOf="@+id/textView11"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintEnd_toEndOf="@+id/phoneNumberEditText"
+                    app:layout_constraintStart_toStartOf="@+id/phoneNumberEditText"
+                    app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -241,8 +294,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginRight="70dp"
-                    android:text="109,00 MAD"
+                    android:layout_marginEnd="70dp"
                     android:textColor="@color/custom_black" />
             </RelativeLayout>
 
@@ -264,8 +316,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginRight="70dp"
-                    android:text="10,00 MAD"
+                    android:layout_marginEnd="70dp"
                     android:textColor="@color/custom_black" />
             </RelativeLayout>
 
@@ -279,6 +330,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:text="@string/total"
+                    android:textStyle="bold"
                     android:textColor="@color/custom_black"
                     android:textSize="13sp" />
 
@@ -288,7 +340,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="70dp"
-                    android:text="209,00 MAD"
+                    android:textStyle="bold"
                     android:textColor="@color/custom_black" />
             </RelativeLayout>
 
@@ -302,6 +354,7 @@
                 android:text="@string/livraison_sans_contact" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/confirmerCommandeButton"
                 android:layout_width="326dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -313,5 +366,13 @@
         </LinearLayout>
     </ScrollView>
 
-
+    <ProgressBar
+        android:id="@+id/progressBar10"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

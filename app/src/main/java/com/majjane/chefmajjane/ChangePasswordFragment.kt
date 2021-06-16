@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.majjane.chefmajjane.databinding.FragmentChangePasswordBinding
 import com.majjane.chefmajjane.network.AuthApi
 import com.majjane.chefmajjane.network.RemoteDataSource
@@ -36,6 +37,9 @@ class ChangePasswordFragment :
             navController.navigate(R.id.action_changePasswordFragment_to_homeFragment)
         }
 
+        ((activity) as HomeActivity).toolbarIcon?.setOnClickListener {
+            findNavController().popBackStack()
+        }
         viewModel.updatePasswordResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
