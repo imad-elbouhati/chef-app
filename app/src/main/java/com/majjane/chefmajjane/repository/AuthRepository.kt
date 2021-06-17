@@ -42,4 +42,8 @@ class AuthRepository(val api: AuthApi) : BaseRepository() {
         api.updatePassword(password)
     }
 
+    suspend fun signUpWithPhone(signUp: SignUp) = safeApiCall {
+        api.signUpWithPhone(signUp)
+    }
+
 }

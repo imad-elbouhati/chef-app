@@ -1,9 +1,7 @@
 <resources>
-    <string name="app_name">Chef</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Gojo</string>
     <string name="facebook_app_id">318338549828273</string>
     <string name="fb_login_protocol_scheme">fb630907857886564</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ignore">Ignore</string>
     <string name="numero_de_telephone">Numero de telephone</string>
@@ -111,4 +109,12 @@
     <string name="please_select_payment_method">Aucun mode de paiement sélectionné</string>
     <string name="please_type_phone_number">Veuillez saisir votre numéro de téléphone</string>
     <string name="commande_send_succefully">Commande envoyée avec succès</string>
+    <string name="en_continuant_vous_acceptez_nos_conditions_d_utilisation_et_notre_politique_de_confidentialit">En continuant, vous acceptez nos Conditions
+        d’utilisation et notre Politique de confidentialité</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

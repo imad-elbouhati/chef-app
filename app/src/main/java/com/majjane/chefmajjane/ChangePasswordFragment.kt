@@ -24,7 +24,10 @@ class ChangePasswordFragment :
     private lateinit var navController: NavController
     override fun onResume() {
         super.onResume()
-        ((activity) as HomeActivity).setToolbar(getString(R.string.change_password))
+        ((activity) as HomeActivity).apply {
+            setToolbar(getString(R.string.change_password))
+            setToolbarHeight(50)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +51,6 @@ class ChangePasswordFragment :
                 is Resource.Failure -> {
                     binding.progressBar7.visible(false)
                     requireView().snackbar(getString(R.string.went_wrong))
-
                 }
                 is Resource.Success -> {
                     if(it.data.success == 1){

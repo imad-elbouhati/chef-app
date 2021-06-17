@@ -14,6 +14,7 @@ class MenuAdapter(val onClick: (MenuResponseItem, Int) -> Unit) :
 
     @JvmName("setItems1")
     fun setItems(items: List<MenuResponseItem>) {
+
         this.items = items as MutableList<MenuResponseItem>
         notifyDataSetChanged()
     }

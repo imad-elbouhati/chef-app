@@ -135,9 +135,14 @@ class AuthViewModel(
     }
 
     fun updatePassword(password: Password) = viewModelScope.launch {
-        Log.d(TAG, "updatePassword: $password")
+
         _updatePasswordResponse.postValue(Resource.Loading())
         _updatePasswordResponse.postValue(repository.updatePassword(password))
+    }
+
+    fun signUpWithPhone(signUp: SignUp) = viewModelScope.launch {
+        _signUpResponse.postValue(Resource.Loading())
+        _signUpResponse.postValue(repository.signUpWithPhone(signUp))
     }
 
 

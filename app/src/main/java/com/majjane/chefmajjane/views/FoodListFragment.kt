@@ -22,16 +22,15 @@ import com.majjane.chefmajjane.repository.AccueilMenuRepository
 import com.majjane.chefmajjane.responses.AccueilResponseItem
 import com.majjane.chefmajjane.responses.Article
 import com.majjane.chefmajjane.responses.menu.MenuResponseItem
+import com.majjane.chefmajjane.utils.*
 import com.majjane.chefmajjane.utils.Constants.Companion.ARTICLE_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.ARTICLE_LIST_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.CATEGORY_BUNDLE
 import com.majjane.chefmajjane.utils.Constants.Companion.QUERY_PAGE_SIZE
-import com.majjane.chefmajjane.utils.Resource
-import com.majjane.chefmajjane.utils.handleApiError
-import com.majjane.chefmajjane.utils.visible
 import com.majjane.chefmajjane.viewmodel.AccueilMenuViewModel
 import com.majjane.chefmajjane.viewmodel.SharedViewModel
 import com.majjane.chefmajjane.views.activities.HomeActivity
+import com.majjane.chefmajjane.views.activities.LoginActivity
 import com.majjane.chefmajjane.views.base.BaseFragment
 import java.util.*
 import kotlin.collections.ArrayList
@@ -98,7 +97,7 @@ class FoodListFragment :
         super.onViewCreated(view, savedInstanceState)
         // getMenuList(1, 121)
         navController = Navigation.findNavController(view)
-        sharedViewModel.sharedCategory.observe(viewLifecycleOwner,{
+        sharedViewModel.sharedCategory.observe(viewLifecycleOwner, {
             categoryArgs = it
             if (menuId == 0) {
                 getFoodList(preferences.getIdLang(), categoryArgs.id)
@@ -109,13 +108,7 @@ class FoodListFragment :
             }
         })
         initRecyclerView()
-//        if (menuId == 0) {
-//            getFoodList(preferences.getIdLang(), categoryArgs.id)
-//            getMenuList(preferences.getIdLang(), categoryArgs.id)
-//        } else {
-//            getFoodList(preferences.getIdLang(), menuId)
-//            getMenuList(preferences.getIdLang(), 121)
-//        }
+
 
         //Check whether the articleHashMap is empty or not to show the button every time the fragment been created
         adapter.articleHashMap?.let {
@@ -156,7 +149,7 @@ class FoodListFragment :
                 }
                 is Resource.Success -> {
                     binding.progressBar2.visible(false)
-
+                    it.data[0].selected = true
                     menuAdapter.setItems(it.data)
                 }
                 is Resource.Failure -> {
@@ -245,15 +238,21 @@ class FoodListFragment :
 
     var mArticleHashMap: HashMap<Int, Article>? = null
     private fun onTotalPriceChangedListener(sum: Float, articleHashMap: HashMap<Int, Article>) {
-        if (sum > 0) {
-            binding.totalSumButton.apply {
-                visible(true)
-                text = "Commander ${articleHashMap.size} pour $sum MAD "
+        //Check if user connected
+        if (preferences.getIdCustomer() != -1) {
+            if (sum > 0) {
+                binding.totalSumButton.apply {
+                    visible(true)
+                    text = "Commander ${articleHashMap.size} pour $sum MAD "
+                }
+                this.mArticleHashMap = articleHashMap
+            } else {
+                binding.totalSumButton.visible(false)
             }
-            this.mArticleHashMap = articleHashMap
         } else {
-            binding.totalSumButton.visible(false)
+            requireActivity().startNewActivity(LoginActivity::class.java)
         }
+
     }
 
     private fun onFoodClicked(article: Article, position: Int) {

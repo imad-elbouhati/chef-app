@@ -130,14 +130,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2.5dp"
-                android:layout_marginRight="2.5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_button"
                 android:drawableLeft="@drawable/facebook_circular_ic"
-
                 android:drawablePadding="18dp"
                 android:gravity="start|center_vertical"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:text="@string/facebook"
                 android:textAllCaps="false"
                 android:textColor="#707070"
@@ -148,7 +146,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2.5dp"
-                android:layout_marginLeft="2.5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_button"
                 android:drawableLeft="@drawable/google_ic"
@@ -170,39 +167,13 @@
             app:layout_constraintStart_toStartOf="@+id/socialLinearLayout"
             app:layout_constraintTop_toBottomOf="@+id/socialLinearLayout">
             <TextView
-                android:id="@+id/a"
-                android:layout_width="wrap_content"
+                android:id="@+id/cguTextView"
+                android:layout_width="365dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="En continuant, vous acceptez nos"
+
+                android:text="@string/en_continuant_vous_acceptez_nos_conditions_d_utilisation_et_notre_politique_de_confidentialit"
                 android:textColor="@color/custom_black" />
-            <TextView
-                android:id="@+id/b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/a"
-                android:gravity="center"
-                android:text=" Conditions"
-                android:textStyle="bold"
-                android:textColor="@color/custom_black" />
-            <TextView
-                android:id="@+id/c"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_below="@+id/b"
-                android:text="@string/d_utilisation_et_notre"
-                android:textColor="@color/custom_black" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_below="@+id/b"
-                android:layout_toEndOf="@+id/c"
-                android:textStyle="bold"
-                android:text=""
-                android:textColor="@color/custom_black" />
-            <!--                En continuant, vous acceptez nos Conditions\n-->
 
         </RelativeLayout>
 

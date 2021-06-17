@@ -14,6 +14,7 @@ import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AuthRepository
 import com.majjane.chefmajjane.responses.SignUp
 import com.majjane.chefmajjane.utils.Constants.Companion.FROM_CREATE_ACCOUNT
+import com.majjane.chefmajjane.utils.Constants.Companion.PHONE_NUMBER_KEY
 import com.majjane.chefmajjane.utils.Resource
 import com.majjane.chefmajjane.utils.snackbar
 import com.majjane.chefmajjane.utils.startNewActivity
@@ -26,11 +27,15 @@ import com.majjane.chefmajjane.views.base.BaseFragment
 class SignUpFragment : BaseFragment<AuthViewModel, FragmentSignUpBinding, AuthRepository>() {
     private lateinit var navController: NavController
     private var isFromCreateAccount = false
+    private var phoneNumberArg = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let { bundle ->
             bundle.getBoolean(FROM_CREATE_ACCOUNT).let {
                 isFromCreateAccount = it
+            }
+            bundle.getString(PHONE_NUMBER_KEY)?.let {
+                phoneNumberArg = it
             }
         }
     }
@@ -38,12 +43,15 @@ class SignUpFragment : BaseFragment<AuthViewModel, FragmentSignUpBinding, AuthRe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        binding.nextButton.setOnClickListener {
-            preformSignUp()
+
+        if (isFromCreateAccount) {
+            binding.phoneNumber.visible(true)
+        } else {
+            binding.email.visible(false)
         }
 
-        if(isFromCreateAccount){
-            binding.phoneNumber.visible(true)
+        binding.nextButton.setOnClickListener {
+            preformSignUp()
         }
 
         binding.backArrow.setOnClickListener {
@@ -76,27 +84,52 @@ class SignUpFragment : BaseFragment<AuthViewModel, FragmentSignUpBinding, AuthRe
 
     private fun preformSignUp() {
         binding.apply {
-            if (prenom.getText().isEmpty() || nom.getText().isEmpty() || email.getText()
-                    .isEmpty() || password.getText().isEmpty()
-            ) {
-                requireView().snackbar(getString(R.string.empty_field_not_allowed))
-                return
+            if (isFromCreateAccount) {
+                if (prenom.getText().isEmpty() || nom.getText().isEmpty() || email.getText()
+                        .isEmpty() || password.getText().isEmpty()
+                ) {
+                    requireView().snackbar(getString(R.string.empty_field_not_allowed))
+                    return
+                }
+                if (!Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()) {
+                    requireView().snackbar(getString(R.string.invalid_email))
+                    return
+                }
+            } else {
+                if (prenom.getText().isEmpty() || nom.getText().isEmpty() || password.getText()
+                        .isEmpty()
+                ) {
+                    requireView().snackbar(getString(R.string.empty_field_not_allowed))
+                    return
+                }
+
             }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()) {
-                requireView().snackbar(getString(R.string.invalid_email))
-                return
-            }
-            viewModel.signUp(
-                SignUp(
-                    email.getText(),
-                    prenom.getText(),
-                    preferences.getIdLang(),
-                    nom.getText(),
-                    password.getText(),
-                    binding.phoneNumber.getText()
+
+            if (isFromCreateAccount) {
+                viewModel.signUp(
+                    SignUp(
+                        email.getText(),
+                        prenom.getText(),
+                        preferences.getIdLang(),
+                        nom.getText(),
+                        password.getText(),
+                        binding.phoneNumber.getText()
+                    )
                 )
-            )
+            } else {
+                viewModel.signUpWithPhone(
+                    SignUp(
+                        "",
+                        prenom.getText(),
+                        preferences.getIdLang(),
+                        nom.getText(),
+                        password.getText(),
+                        phoneNumberArg
+                    )
+                )
+            }
+
         }
     }
 

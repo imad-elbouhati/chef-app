@@ -31,7 +31,7 @@ class MyProfileFragment :
         ((activity) as HomeActivity).apply {
             setToolbar(getString(R.string.my_profile))
             bigCircleImageView?.visible(false)
-            setToolbarHeight(277)
+            setToolbarHeight(50)
         }
     }
 

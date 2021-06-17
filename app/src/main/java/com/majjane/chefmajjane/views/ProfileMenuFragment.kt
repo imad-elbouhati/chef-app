@@ -59,9 +59,7 @@ class ProfileMenuFragment : Fragment(R.layout.fragment_profile_menu) {
         binding.contact.setOnClickListener {
             navController.navigate(R.id.action_profileMenuFragment_to_contactFragment)
         }
-        binding.language.setOnClickListener {
-            navController.navigate(R.id.action_profileMenuFragment_to_languageFragment)
-        }
+        
 
         binding.logout.setOnClickListener {
             SharedPreferencesHandler(requireContext()).saveIdCustomer(-1)

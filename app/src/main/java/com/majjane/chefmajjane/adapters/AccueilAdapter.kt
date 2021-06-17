@@ -34,7 +34,9 @@ class AccueilAdapter(val onClick: (AccueilResponseItem, Int) -> Unit) : Recycler
     private val TAG = "AccueilAdapter"
     override fun onBindViewHolder(holder: AccueilViewHolder, position: Int) {
         val accueilResponseItem = items[position]
+
         holder.binding.apply {
+            categoryName.text = accueilResponseItem.name
             Glide.with(this.root)
                 .load(accueilResponseItem.image)
                 .fitCenter()

@@ -30,6 +30,9 @@ interface AuthApi {
     @POST("signUp.php")
     suspend fun signUp(@Body signUp: SignUp): BaseResponse
 
+    @POST("signUpWithPhone.php")
+    suspend fun signUpWithPhone(@Body signUp: SignUp): BaseResponse
+
 
     @POST("login.php")
     suspend fun loginWithEmail(@Body login: Login): BaseResponse

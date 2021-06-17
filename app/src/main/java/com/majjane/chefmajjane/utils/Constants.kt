@@ -11,7 +11,8 @@ class Constants {
         const val ID_LANG_KEY = "id_lang_key"
         const val IS_SOCIAL_CONNECTED = "is_social_connected"
         const val FROM_CREATE_ACCOUNT = "FROM_CREATE_ACCOUNT"
-        const val ADMIN_EMAIL = ""
-        const val ADMIN_PHONE = ""
+        const val PHONE_NUMBER_KEY = "phone_number_key"
+        const val ADMIN_EMAIL = "gojo@contact.com"
+        const val ADMIN_PHONE = "067882323"
     }
 }

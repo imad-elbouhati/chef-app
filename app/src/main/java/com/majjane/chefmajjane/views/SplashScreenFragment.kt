@@ -12,9 +12,6 @@ import com.majjane.chefmajjane.R
 class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController:NavController = Navigation.findNavController(view)
-        Handler().postDelayed({
-            navController.navigate(R.id.action_splashScreenFragment_to_loginFragment)
-        }, 3000)
+
     }
 }

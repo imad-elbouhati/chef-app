@@ -23,6 +23,7 @@ import com.majjane.chefmajjane.responses.model.CommandeModel
 import com.majjane.chefmajjane.responses.model.Product
 import com.majjane.chefmajjane.utils.Constants.Companion.ARTICLE_LIST_BUNDLE
 import com.majjane.chefmajjane.utils.Resource
+import com.majjane.chefmajjane.utils.enable
 import com.majjane.chefmajjane.utils.snackbar
 import com.majjane.chefmajjane.utils.visible
 import com.majjane.chefmajjane.viewmodel.CommandeViewModel
@@ -35,21 +36,30 @@ import kotlin.math.roundToLong
 @Suppress("UNCHECKED_CAST")
 class MesCommandesFragment :
     BaseFragment<CommandeViewModel, FragmentMesCommandesBinding, CommandeRepository>() {
+    private var mDeliveryCost: Double = 0.0
+    private var mArticleList: List<Article>? = null
+    private val TAG = "MesCommandesFragment"
+    private lateinit var navController: NavController
+    var articleList: Array<Article>? = null
+    private lateinit var sharedViewModel: SharedViewModel
+    private var mCitiesList = mutableListOf<City>()
+    private var mSelectedCity: City? = null
+    var totalSum = 0.0
 
     override fun onResume() {
         super.onResume()
         (activity as HomeActivity).apply {
-            setToolbar("Mes Commandes")
+            setHeaderVisibility(true)
+            setToolbar(getString(R.string.mes_commandes))
             setToolbarHeight(50)
-            setVisible(true)
+
         }
     }
 
     private val adapter by lazy {
         CommandeAdapter()
     }
-    var articleList: Array<Article>? = null
-    private lateinit var sharedViewModel: SharedViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,8 +73,6 @@ class MesCommandesFragment :
         }
     }
 
-    private val TAG = "MesCommandesFragment"
-    private lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,6 +94,19 @@ class MesCommandesFragment :
         sharedViewModel.address.observe(viewLifecycleOwner, {
             binding.addressText.text = it.address.toString()
         })
+
+        sharedViewModel.selectedCity.observe(viewLifecycleOwner, {city->
+            sharedViewModel.sharedTotalSum.observe(viewLifecycleOwner,{
+                binding.cityText.text = city.name
+                binding.deliveryCost.text = String.format("%.2f %s", city.price, "MAD")
+                val total = it.plus(city.price)
+                binding.totalPrice.text = String.format("%.2f %s", total, "MAD")
+            })
+        })
+        sharedViewModel.selectedPaimentMethod.observe(viewLifecycleOwner, {
+            binding.methodePaimentText.text = it.methodName
+        })
+
         binding.paimentRow.setOnClickListener {
             showPaimentMethodListDialog()
         }
@@ -141,6 +162,7 @@ class MesCommandesFragment :
         viewModel.confirmCommandResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
+                    binding.confirmerCommandeButton.enable(false)
                     binding.progressBar10.visible(true)
                 }
                 is Resource.Failure -> {
@@ -156,7 +178,6 @@ class MesCommandesFragment :
                     if (it.data.success == 0) {
                         requireView().snackbar(it.data.message)
                     }
-
                 }
             }
         })
@@ -173,15 +194,15 @@ class MesCommandesFragment :
                 is Resource.Success -> {
                     mCitiesList = it.data.cities.toList() as ArrayList<City>
                     it.data.phone_number?.let { phoneNumber ->
-                        binding.phoneNumberEditText.setText(phoneNumber)
+                        val phone = "0$phoneNumber"
+                        binding.phoneNumberEditText.setText(phone)
                     }
                 }
             }
         })
     }
 
-    private var mCitiesList = mutableListOf<City>()
-    private var mSelectedCity: City? = null
+
     private fun showCitiesListDialog() {
 
         val adapter =
@@ -189,10 +210,12 @@ class MesCommandesFragment :
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(R.string.pick_city)
         builder.setAdapter(adapter) { dialog, which ->
-            mSelectedCity = mCitiesList[which]
+            this.mSelectedCity = mCitiesList[which]
+            sharedViewModel.selectedCity.value = mCitiesList[which]
             val selectedCity = mCitiesList[which].name
             binding.cityText.text = selectedCity
             mDeliveryCost = mCitiesList[which].price
+
             binding.deliveryCost.text = String.format("%.2f %s", mCitiesList[which].price, "MAD")
             // total sum of articles +  delivery cost
             val total = totalSum.plus(mDeliveryCost)
@@ -202,6 +225,7 @@ class MesCommandesFragment :
     }
 
     private var selectedMethodModel: MethodPaiment? = null
+
     private fun showPaimentMethodListDialog() {
         val paimentMethodList = listOf(
             MethodPaiment(1, getString(R.string.cash_on_delivery)),
@@ -215,17 +239,15 @@ class MesCommandesFragment :
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(R.string.pick_city)
         builder.setAdapter(adapter) { dialog, which ->
+            sharedViewModel.selectedPaimentMethod.value = paimentMethodList[which]
             selectedMethodModel = paimentMethodList[which]
             val selectedMethod = paimentMethodList[which].methodName
             binding.methodePaimentText.text = selectedMethod
-
         }
         builder.show()
     }
 
-    private var mDeliveryCost: Double = 0.0
-    private var mArticleList: List<Article>? = null
-    var totalSum = 0.0
+
     private fun observeCommandList() {
         totalSum = 0.0
         sharedViewModel.commandList.observe(viewLifecycleOwner, {
@@ -234,6 +256,7 @@ class MesCommandesFragment :
 
             it?.let { articleList ->
                 articleList.forEach { article -> totalSum += article.prixTTC * article.selectedQuantity }
+                sharedViewModel.sharedTotalSum.value = totalSum
                 binding.apply {
                     articleTotalPrice.text = totalSum.toString() + " MAD"
                 }

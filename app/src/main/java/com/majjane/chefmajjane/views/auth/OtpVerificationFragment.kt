@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -12,6 +13,7 @@ import com.majjane.chefmajjane.databinding.FragmentOptVerificationBinding
 import com.majjane.chefmajjane.network.AuthApi
 import com.majjane.chefmajjane.network.RemoteDataSource
 import com.majjane.chefmajjane.repository.AuthRepository
+import com.majjane.chefmajjane.utils.Constants.Companion.PHONE_NUMBER_KEY
 import com.majjane.chefmajjane.utils.Resource
 import com.majjane.chefmajjane.utils.snackbar
 import com.majjane.chefmajjane.utils.startNewActivity
@@ -33,11 +35,13 @@ class OtpVerificationFragment :
             }
         }
     }
+
     private val TAG = "OtpVerificationFragment"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        binding.tvPleaseTypeVerifCode.text = getString(R.string.please_type_code) + "\n " + getString(R.string.too)+" " + phoneNumberArg
+        binding.tvPleaseTypeVerifCode.text =
+            getString(R.string.please_type_code) + "\n " + getString(R.string.too) + " " + phoneNumberArg
         Log.d(TAG, "onViewCreated: $phoneNumberArg")
         binding.pinView.doOnTextChanged { text, _, _, _ ->
             text.let {
@@ -61,8 +65,16 @@ class OtpVerificationFragment :
                     binding.progressBar.visible(false)
                     if (it.data.success == 1) {
                         if (it.data.id_customer == null) {
-                            navController.navigate(R.id.action_optVerificationFragment_to_signUpFragment2)
+
+                            navController.navigate(
+                                R.id.action_optVerificationFragment_to_signUpFragment2,
+                                bundleOf(
+                                    PHONE_NUMBER_KEY to phoneNumberArg?.removePrefix("+212 ")
+                                        ?.trim()
+                                )
+                            )
                         } else {
+                            preferences.saveIdCustomer(it.data.id_customer)
                             requireActivity().startNewActivity(HomeActivity::class.java)
                         }
                         return@observe
@@ -86,6 +98,7 @@ class OtpVerificationFragment :
         }
         onBackPressed()
     }
+
     private fun onBackPressed() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -94,6 +107,7 @@ class OtpVerificationFragment :
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
+
     override fun createViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?

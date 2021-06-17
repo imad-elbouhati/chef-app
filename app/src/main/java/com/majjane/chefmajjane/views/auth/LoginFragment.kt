@@ -1,15 +1,18 @@
 package com.majjane.chefmajjane.views.auth
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.Selection
-import android.text.TextWatcher
+import android.text.*
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
@@ -20,7 +23,6 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.databinding.FragmentLoginBinding
 import com.majjane.chefmajjane.network.AuthApi
@@ -37,7 +39,6 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     private var callBackManager: CallbackManager? = null
     override fun onStart() {
         super.onStart()
-        // TODO: TEST
         if (preferences.getIdCustomer() != -1) {
             requireActivity().startNewActivity(HomeActivity::class.java)
         }
@@ -51,6 +52,19 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         viewModel.setIntent {
             getGoogleLogIn.launch(it)
         }
+
+
+        binding.cguTextView.makeLinks(
+            Pair("Conditions d’utilisation", View.OnClickListener {
+
+                Toast.makeText(requireContext(), "Conditions d’utilisation", Toast.LENGTH_SHORT).show()
+            }),
+            Pair("Politique de confidentialité", View.OnClickListener {
+
+                Toast.makeText(requireContext(), "Politique de confidentialité", Toast.LENGTH_SHORT).show()
+            })
+        )
+
         binding.googleSignInBtn.setOnClickListener {
             viewModel.signInWithGoogle(requireActivity())
         }
@@ -64,12 +78,14 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             }
             val phone = binding.editTextPhoneNumber.text.removePrefix("+212 ")
             viewModel.sendOTP(phone.toString().trim())
-            Log.d(TAG, "onViewCreated: ${binding.editTextPhoneNumber.text}")
         }
 
 
         binding.btnContinueEmail.setOnClickListener {
             navController.navigate(R.id.action_loginFragment_to_signInFragment)
+        }
+        binding.btnIgnore.setOnClickListener {
+            requireActivity().startNewActivity(HomeActivity::class.java)
         }
 
         handlePhoneNumberPrefix()
@@ -80,6 +96,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         onBackPressed()
 
     }
+
 
     private fun handlePhoneNumberPrefix() {
         Selection.setSelection(
