@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.databinding.FragmentSignInViaEmailBinding
 import com.majjane.chefmajjane.network.AuthApi
@@ -35,7 +36,7 @@ class SignInViaEmailFragment : BaseFragment<AuthViewModel, FragmentSignInViaEmai
         }
         //back arrow click listener
         binding.backArrow.setOnClickListener {
-            navController.navigate(R.id.action_signInFragment_to_loginFragment)
+            findNavController().popBackStack()
         }
 
         //Créer un compte click listener
