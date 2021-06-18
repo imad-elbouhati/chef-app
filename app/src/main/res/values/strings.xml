@@ -117,4 +117,7 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="votre_prenom">Votre prénom</string>
+    <string name="votre_nom">Votre nom</string>
+    <string name="votre_email">Votre email</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.databinding.FragmentSignUpBinding
 import com.majjane.chefmajjane.network.AuthApi
@@ -55,7 +56,7 @@ class SignUpFragment : BaseFragment<AuthViewModel, FragmentSignUpBinding, AuthRe
         }
 
         binding.backArrow.setOnClickListener {
-            navController.navigate(R.id.action_signUpFragment2_to_loginFragment)
+           findNavController().popBackStack()
         }
 
         viewModel.signUpResponse.observe(viewLifecycleOwner, {

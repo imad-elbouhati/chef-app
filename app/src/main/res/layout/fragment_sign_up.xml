@@ -42,6 +42,8 @@
             android:layout_below="@+id/curved_header"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
+            app:hint="@string/votre_prenom"
+            android:focusable="true"
             app:inputType="text"
             app:textTitle="@string/prenom" />
 
@@ -52,6 +54,7 @@
             android:layout_below="@+id/prenom"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
+            app:hint="@string/votre_nom"
             app:inputType="text"
             app:textTitle="@string/nom" />
 
@@ -60,6 +63,7 @@
             android:layout_width="366dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nom"
+            app:hint="@string/votre_email"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             app:inputType="textEmailAddress"
@@ -72,6 +76,7 @@
             android:layout_below="@+id/email"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
+            app:hint="********"
             app:drawableRight="@drawable/password_ic"
             app:inputType="textPassword"
             app:textTitle="@string/pin_code" />
