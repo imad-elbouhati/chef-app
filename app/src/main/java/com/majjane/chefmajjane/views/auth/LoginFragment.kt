@@ -57,11 +57,11 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         binding.cguTextView.makeLinks(
             Pair("Conditions d’utilisation", View.OnClickListener {
 
-                Toast.makeText(requireContext(), "Conditions d’utilisation", Toast.LENGTH_SHORT).show()
+
             }),
             Pair("Politique de confidentialité", View.OnClickListener {
 
-                Toast.makeText(requireContext(), "Politique de confidentialité", Toast.LENGTH_SHORT).show()
+
             })
         )
 

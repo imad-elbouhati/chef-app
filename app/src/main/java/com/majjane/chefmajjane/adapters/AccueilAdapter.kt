@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.majjane.chefmajjane.R
 import com.majjane.chefmajjane.databinding.ItemRowAccueilLayoutBinding
 import com.majjane.chefmajjane.responses.AccueilResponseItem
 
@@ -39,7 +40,7 @@ class AccueilAdapter(val onClick: (AccueilResponseItem, Int) -> Unit) : Recycler
             categoryName.text = accueilResponseItem.name
             Glide.with(this.root)
                 .load(accueilResponseItem.image)
-                .fitCenter()
+                .placeholder(R.drawable.place_holder_image)
                 .into(imageViewAccueil)
             root.setOnClickListener {
                 onClick(accueilResponseItem,position)

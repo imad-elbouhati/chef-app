@@ -49,20 +49,19 @@
             <TextView
                 android:id="@+id/foodName"
                 android:layout_width="238dp"
-                android:layout_marginEnd="10dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
+                android:layout_alignParentStart="true"
                 android:textColor="@color/custom_black"
-                android:textSize="26sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/foodPrice"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_toEndOf="@+id/foodName"
                 android:textColor="@color/custom_black"
-                android:textSize="26sp" />
+                android:textSize="20sp" />
         </RelativeLayout>
 
         <TextView

@@ -14,7 +14,6 @@ class MenuAdapter(val onClick: (MenuResponseItem, Int) -> Unit) :
 
     @JvmName("setItems1")
     fun setItems(items: List<MenuResponseItem>) {
-
         this.items = items as MutableList<MenuResponseItem>
         notifyDataSetChanged()
     }
@@ -36,33 +35,21 @@ class MenuAdapter(val onClick: (MenuResponseItem, Int) -> Unit) :
     }
 
     companion object {
-        private var lastChecked: Chip? = null
-        private var lastCheckedPos = 0
+        private var selectedPosition = 0
     }
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         val menuResponseItem = items[position]
+        holder.binding.menuChip.isChecked = selectedPosition == position
         holder.binding.menuChip.text = menuResponseItem.libelle
-        holder.binding.menuChip.isChecked = menuResponseItem.selected
-        if (position == 0 && items[0].selected && holder.binding.menuChip.isChecked) {
-            lastChecked = holder.binding.menuChip
-            lastCheckedPos = 0
-        }
         holder.binding.menuChip.setOnClickListener {
-            val chip = it as (Chip)
-            if (chip.isChecked) {
-                if (lastChecked != null) {
-                    lastChecked!!.isChecked = false
-                    items[lastCheckedPos].selected = false
-                }
-                lastChecked = chip;
-                lastCheckedPos = position
-            } else
-                lastChecked = null
-            items[position].selected = chip.isChecked
-            onClick(items[position],position)
+            selectedPosition = position
+            notifyDataSetChanged()
+            onClick(items[position], position)
+
         }
     }
+
     private val TAG = "MenuAdapter"
     override fun getItemCount(): Int = items.size
 }

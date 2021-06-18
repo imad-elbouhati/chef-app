@@ -95,7 +95,6 @@ class FoodListFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // getMenuList(1, 121)
         navController = Navigation.findNavController(view)
         sharedViewModel.sharedCategory.observe(viewLifecycleOwner, {
             categoryArgs = it
@@ -108,7 +107,6 @@ class FoodListFragment :
             }
         })
         initRecyclerView()
-
 
         //Check whether the articleHashMap is empty or not to show the button every time the fragment been created
         adapter.articleHashMap?.let {
@@ -149,7 +147,7 @@ class FoodListFragment :
                 }
                 is Resource.Success -> {
                     binding.progressBar2.visible(false)
-                    it.data[0].selected = true
+
                     menuAdapter.setItems(it.data)
                 }
                 is Resource.Failure -> {
